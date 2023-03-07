@@ -5,11 +5,11 @@ const Hero = () => {
   return (
     <div className='text-center p-10'>
         <div>
-            <h2 className='text-5xl py-2'>Gustavo Carvalhaes</h2>
-            <h3>Developer</h3>
-            <p>Some stuff here texty text</p>
+            <h2 className='text-5xl py-2 text-sky-600 font-medium'>Gustavo Carvalhaes</h2>
+            <h3 className='text-2xl py-2 font-medium'>Developer</h3>
+            <p className='text-md py-5 leading-8 text-gray-800'>Still need to fill description here</p>
         </div>
-        <div>
+        <div className='text-5xl flex justify-center gap-12 py-3 text-gray-600'>
             <AiFillGithub />
             <AiFillLinkedin />
         </div>

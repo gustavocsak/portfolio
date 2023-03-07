@@ -1,6 +1,7 @@
 import { BsFillMoonStarsFill } from 'react-icons/bs'
 
 
+
 export default function Example() {
   return (
     <nav className='py-10 mb-12 flex justify-between'>
@@ -10,7 +11,7 @@ export default function Example() {
                 <BsFillMoonStarsFill className='cursor-pointer text-2xl'/>
             </li>
             <li>
-                <a className='bg-gradient-to-r from-sky-400 to-cyan-500 px-4 py-2 text-white rounded-md ml-8' href='#'>
+                <a className='bg-gradient-to-r from-sky-600 to-cyan-400 px-4 py-2 text-white rounded-md ml-8' href='#'>
                     Resume
                 </a>
             </li>
