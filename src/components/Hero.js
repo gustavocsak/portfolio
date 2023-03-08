@@ -2,6 +2,7 @@ import React from 'react'
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 import Blob from './Blob'
 
+
 const Hero = () => {
   return (
     <div className='flex text-center p-10 '>

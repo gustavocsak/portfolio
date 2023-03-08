@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    color-scheme: dark;
+}
+
+html, body, #root {
+    height: 100%;
+    background: #0e1129;
 }
