@@ -7,10 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 const App = () => {
     return (
         <div className="bg-[#0E1129] px-10 text-white">
-            <section className="min-h-screen">
+            <section className="min-h-screen relative">
                 <Navbar />
-                <Blob />
                 
+                <Blob />
             </section>
             
         </div>
