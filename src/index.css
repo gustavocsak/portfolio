@@ -2,11 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    margin: 0;
-}
-
 html, body, #root {
     height: 100%;
     background: #0e1129;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#root { 
+    overflow-x: hidden;
 }
