@@ -13,6 +13,8 @@ const Container = styled.div`
     &::-webkit-scrollbar {
         display: none;
     }
+    color: white;
+    background-image: url("./img/jack.jpg");
 
 `
 
