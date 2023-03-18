@@ -3,15 +3,15 @@ import styled from 'styled-components'
 
 const Section = styled.div`
     height: 100vh;
-    background-color: #ff0000;
+    background-color: #ffff00;
     scroll-snap-align: center;
 `
 
 
-const Hero = () => {
+const Projects = () => {
   return (
-    <Section>Hero</Section>
+    <Section>Projects</Section>
   )
 }
 
-export default Hero
+export default Projects

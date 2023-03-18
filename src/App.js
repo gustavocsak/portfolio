@@ -1,15 +1,28 @@
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
+import Hero from "./components/Hero.js";
+import Projects from "./components/Projects.js";
+import Contact from "./components/Contact.js";
+import styled from "styled-components";
 
+
+const Container = styled.div`
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+`
 
 const App = () => {
     return (
-        <main className="bg-white px-8">
-            <section className="min-h-screen">
-                <Navbar />
-                <Hero />
-            </section>
-        </main>
+        <Container>
+            <Hero />
+            <Projects />
+            <Contact />
+        </Container>
       );
     
 }
