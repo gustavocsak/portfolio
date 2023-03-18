@@ -20,7 +20,9 @@ const Links = styled.div`
 `
 
 const Icons = styled.div`
-    
+    display: flex;
+    align-items: center;
+    gap: 20px;
 `
 
 const List = styled.ul`
@@ -30,7 +32,7 @@ const List = styled.ul`
 `
 
 const ListItem = styled.li`
-   
+    cursor: pointer;
 `
 
 const MainName = styled.h1`
@@ -40,10 +42,13 @@ const MainName = styled.h1`
 const Button = styled.button`
     width: 100px;
     padding: 10px;
-    background-color: #b100ff;
+    /* background-color: #b100ff; */
     color: white;
     border: none;
     border-radius: 5px;
+    background: rgb(177,0,255);
+    background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
+    cursor: pointer;
 `
 
 
