@@ -17,8 +17,8 @@ const Container = styled.div`
     
 
     
-    background-color: rgb(0, 0, 0);
-    background-image: radial-gradient(at 100% 51%, rgb(30, 41, 59) 0, transparent 100%);
+    background-color: #121212;
+    /* background-image: radial-gradient(at 100% 51%, rgb(30, 41, 59) 0, transparent 100%); */
       
 
 `
