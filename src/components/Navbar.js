@@ -6,7 +6,7 @@ const Section = styled.div`
     justify-content: center;
 `
 const Container = styled.div`
-    width: 1200px;
+    width: 1400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,6 +37,7 @@ const ListItem = styled.li`
 
 const MainName = styled.h1`
     line-height: 1em;
+    font-size: 1.75em;
 `
 
 const Button = styled.button`
