@@ -2,6 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import Navbar from './Navbar'
 import { motion } from 'framer-motion'
+import { BsGithub, BsLinkedin } from 'react-icons/bs';
+import LetterAnimate from '../utils/LetterAnimate';
+
+const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']
 
 const Section = styled.div`
     height: 100vh;
@@ -24,7 +28,7 @@ const Intro = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 
 `
 
@@ -32,14 +36,25 @@ const Three = styled.div`
 
 `
 
-const Title = styled(motion.h1)`
+const Title = styled(motion.div)`
+    display: flex;
     font-size: 70px;
 `
 
-const Subtitle = styled.span`
+const Subtitle = styled(motion.span)`
     background-color: #C133FF;
     color: white;
     border-radius: 5px;
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 5px;
+`
+
+const Social = styled.div`
+    margin-top: 15px;
+    display: flex;
+    gap: 30px;
+    justify-content: flex-start;
 `
 
 
@@ -49,11 +64,17 @@ const Hero = () => {
         <Navbar />
         <Container>
             <Intro>
-                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.2}}>Hi, I'm Gustavo!</Title>
+                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.2}}><span style={{marginRight: "15px"}}>Hi, I'm </span>{titleLetter.map((letter, index) => {
+                    return <LetterAnimate key={index} letter={letter} />
+                })}!</Title>
                 {/* some animation later for this: */}
                 <div>
-                <Subtitle>Junior Developer</Subtitle>
+                    <Subtitle>Junior Developer</Subtitle>
                 </div>
+                <Social>
+                    <BsGithub size="35px"/>
+                    <BsLinkedin size="35px"/>
+                </Social>
             </Intro>
             <Three>
                 {/* some 3d background using threejs, do it later */}

@@ -48,6 +48,7 @@ const Button = styled.button`
     border: none;
     border-radius: 5px;
     background: rgb(177,0,255);
+    /*#B100FF  #C133FF */
     background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
     cursor: pointer;
 `
