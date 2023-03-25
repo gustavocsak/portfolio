@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import { motion } from 'framer-motion'
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import LetterAnimate from '../utils/LetterAnimate';
+import Cube from './Cube';
 
 const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']
 
@@ -17,8 +18,8 @@ const Section = styled.div`
 `
 
 const Container = styled.div`
-    height: 100vh;
-    scroll-snap-align: center;
+    height: 100%;
+    /* scroll-snap-align: center; // does not align to hero container, liked better this way */
     width: 1400px;
     display: flex;
     justify-content: space-between;
@@ -33,7 +34,8 @@ const Intro = styled.div`
 `
 
 const Three = styled.div`
-
+    flex: 3;
+    position: relative;
 `
 
 const Title = styled(motion.div)`
@@ -77,7 +79,7 @@ const Hero = () => {
                 </Social>
             </Intro>
             <Three>
-                {/* some 3d background using threejs, do it later */}
+                <Cube />
             </Three>
         </Container>
     </Section>

@@ -2,6 +2,7 @@ import Hero from "./components/Hero.js";
 import Projects from "./components/Projects.js";
 import Contact from "./components/Contact.js";
 import styled from "styled-components";
+import Test from "./components/Cube.js";
 
 
 const Container = styled.div`
@@ -18,7 +19,7 @@ const Container = styled.div`
 
     
     background-color: #121212;
-    /* background-image: radial-gradient(at 100% 51%, rgb(30, 41, 59) 0, transparent 100%); */
+    
       
 
 `
@@ -29,6 +30,7 @@ const App = () => {
             <Hero />
             <Projects />
             <Contact />
+ 
         </Container>
       );
     
