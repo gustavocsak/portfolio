@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Cube = () => {
   return (
-    <Container>
+   
         <Canvas camera={{fov: 25, position:[5,5,5]}}>
         <Suspense fallback={null}>
             <OrbitControls enableZoom={false} autoRotate/>
@@ -23,7 +23,7 @@ const Cube = () => {
             </mesh>
             </Suspense>
         </Canvas>
-    </Container>
+    
   )
 }
 
