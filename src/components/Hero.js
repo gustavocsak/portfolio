@@ -15,6 +15,7 @@ const Section = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    
 `
 
 const Container = styled.div`
@@ -23,6 +24,9 @@ const Container = styled.div`
     width: 1400px;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
 const Intro = styled.div`
@@ -36,10 +40,11 @@ const Intro = styled.div`
 const Three = styled.div`
     flex: 3;
     position: relative;
+    
 `
 
 const Title = styled(motion.div)`
-    display: flex;
+    
     font-size: 70px;
 `
 
@@ -66,7 +71,7 @@ const Hero = () => {
         <Navbar />
         <Container>
             <Intro>
-                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.2}}><span style={{marginRight: "15px"}}>Hi, I'm </span>{titleLetter.map((letter, index) => {
+                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.2}}><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
                     return <LetterAnimate key={index} letter={letter} />
                 })}!</Title>
                 {/* some animation later for this: */}

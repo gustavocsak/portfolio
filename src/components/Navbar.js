@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Section = styled.div`
+    width: 100%;
     display: flex;
     justify-content: center;
+    margin: 0 2em;
 `
 const Container = styled.div`
     width: 1400px;
