@@ -6,6 +6,7 @@ import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import LetterAnimate from '../utils/LetterAnimate';
 import Cube from './Cube';
 
+
 const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']
 
 const Section = styled.div`
@@ -24,9 +25,7 @@ const Container = styled.div`
     width: 1400px;
     display: flex;
     justify-content: space-between;
-    @media (max-width: 768px) {
-        flex-direction: column;
-    }
+    
 `
 
 const Intro = styled.div`
@@ -57,7 +56,7 @@ const Subtitle = styled(motion.span)`
     padding: 5px;
 `
 
-const Social = styled.div`
+const Social = styled(motion.div)`
     margin-top: 15px;
     display: flex;
     gap: 30px;
@@ -71,14 +70,14 @@ const Hero = () => {
         <Navbar />
         <Container>
             <Intro>
-                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.2}}><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
+                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.3}}><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
                     return <LetterAnimate key={index} letter={letter} />
                 })}!</Title>
                 {/* some animation later for this: */}
-                <div>
+                <motion.div initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.5}}>
                     <Subtitle>Junior Developer</Subtitle>
-                </div>
-                <Social>
+                </motion.div>
+                <Social as={motion.div} initial={{x: -50, opacity: 0}} animate={{x: 0, opacity:1}} transition={{delay: 0.7}}>
                     <BsGithub size="35px"/>
                     <BsLinkedin size="35px"/>
                 </Social>

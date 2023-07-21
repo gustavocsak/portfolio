@@ -1,10 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import Tricket from '../img/tricket.webp'
-import { FiGithub } from 'react-icons/fi'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+
+const squareVariants = {
+    visible: { opacity: 1, scale: 4, transition: { duration: 1 } },
+    hidden: { opacity: 0, scale: 0 }
+  };
+
 
 const Wrap = styled.div`
     background: rgba( 25, 23, 23, 0.7 );
+    background: linear-gradient(90deg, rgba(177,0,255,0.8) 0%, rgba(193,51,255,0.8) 100%);
     box-shadow: 0 8px 32px 0 rgb(193, 51, 255, 0.37);
     backdrop-filter: blur( 13.5px );
     -webkit-backdrop-filter: blur( 13.5px );
@@ -18,12 +26,14 @@ const Wrap = styled.div`
 
 const Image = styled.img`
     width: 100%;
+    border-radius: 10px;
 `
 
 const Title = styled.h3`
     margin-top: 1em;
     border-bottom: 1px solid white;
     padding-bottom: 18px;
+    font-size: 1.3rem;
    
 `
 
@@ -32,18 +42,16 @@ const Description = styled.div`
 `
 
 const Links = styled.div`
-    margin-top: 1em;
+    margin-top: 1.5em;
 `
 
 const ButtonColored = styled.button`
     width: 100px;
     padding: 10px;
-    /* background-color: #b100ff; */
     color: white;
+    font-weight: bold;
     border: none;
     border-radius: 5px;
-    background: rgb(177,0,255);
-    /*#B100FF  #C133FF */
     background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
     cursor: pointer;
 `
@@ -51,20 +59,27 @@ const ButtonColored = styled.button`
 const Button = styled.button`
     width: 100px;
     padding: 10px;
-    /* background-color: #b100ff; */
     color: white;
+    font-weight: bold;
     border: 1px solid rgb(193, 51, 255);
     border-radius: 5px;
-    background: rgba( 25, 23, 23, 0.7 );
-    /*#B100FF  #C133FF */
-   
+    background: rgba( 25, 23, 23, 0.7 );   
     cursor: pointer;
     margin-left: 0.5em;
 `
 
 const Card = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
     return (
-      <Wrap>
+    //   <Wrap ref={ref} as={motion.div} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.2}}>
+    <Wrap ref={ref} as={motion.div} style={{
+        transform: isInView ? "none" : "translateY(300px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 1.2s"
+      }}>
+        
         <Image src={Tricket} />
         <Title>Project Title</Title>
         <Description>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</Description>
