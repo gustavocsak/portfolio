@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import Card from './Card'
+
 
 const Section = styled.div`
     height: 100vh;
@@ -28,11 +30,7 @@ const ProjectDisplay = styled.div`
 	justify-content: center;
 `
 
-const Card = styled.div`
-    background-color: rgba(44,45,47,255);
-	margin: 1rem;
 
-`
 
 const Projects = () => {
   return (
