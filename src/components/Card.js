@@ -4,11 +4,6 @@ import Tricket from '../img/tricket.webp'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-const squareVariants = {
-    visible: { opacity: 1, scale: 4, transition: { duration: 1 } },
-    hidden: { opacity: 0, scale: 0 }
-  };
-
 
 const Wrap = styled.div`
     background: rgba( 25, 23, 23, 0.7 );

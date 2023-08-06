@@ -30,17 +30,26 @@ const ProjectDisplay = styled.div`
 	justify-content: center;
 `
 
+const ProjectHeading = styled.h1`
+
+`
+const ProjectHead = styled.h1`
+
+`
+
 
 
 const Projects = () => {
   return (
     <Section>
+      
       <Container>
-		<ProjectDisplay>
-			<Card>Test</Card>
-			<Card>Test</Card>
-			<Card>Test</Card>
-		</ProjectDisplay>
+        
+        <ProjectDisplay>
+          <Card>Test</Card>
+          <Card>Test</Card>
+          <Card>Test</Card>
+        </ProjectDisplay>
 		
       </Container>
     </Section>

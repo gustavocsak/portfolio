@@ -10,7 +10,7 @@ const LetterAnimate = ({ letter, time }) => {
         color: ["rgb(255,255,255)", "rgb(193, 51, 255)", "rgb(255,255,255)"],
         transition: {
             repeat: Infinity,
-            duration: 5
+            duration: 3
         }
       }}
       
