@@ -9,7 +9,7 @@ const Container = styled.div`
     scroll-snap-align: center;
 `
 
-const Cube = () => {
+const Cube = ({color}) => {
   return (
    
         <Canvas camera={{fov: 25, position:[5,5,5]}}>
@@ -19,12 +19,12 @@ const Cube = () => {
             <directionalLight position={[3,2,1]} />
             <mesh>
                 <boxGeometry args={[1,1,1]}/>
-                <meshStandardMaterial color={"rgb(193, 51, 255)"}/>
+                <meshStandardMaterial color={color}/>
             </mesh>
             </Suspense>
         </Canvas>
     
   )
 }
-
+////rgb(18, 18, 18) "rgb(193, 51, 255)"
 export default Cube
