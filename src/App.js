@@ -15,12 +15,15 @@ const Container = styled.div`
         display: none;
     }
     color: white;
-    
-
-    
     background-color: #121212;
     
-      
+    @media only screen and (max-width: 768px) {
+        scroll-snap-type: none;
+        scroll-behavior: smooth;
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+    
 
 `
 

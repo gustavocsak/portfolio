@@ -3,11 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import React, { Suspense } from 'react'
 import styled from 'styled-components'
 
-const Container = styled.div`
-    height: 100vh;
-    width: 100%;
-    scroll-snap-align: center;
-`
+
 
 const Cube = ({color, fov, position}) => {
   return (
@@ -26,5 +22,5 @@ const Cube = ({color, fov, position}) => {
     
   )
 }
-////rgb(18, 18, 18) "rgb(193, 51, 255)"
+
 export default Cube

@@ -16,6 +16,8 @@ const Section = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+   
     
 `
 
@@ -25,6 +27,13 @@ const Container = styled.div`
     width: 1400px;
     display: flex;
     justify-content: space-between;
+
+    @media only screen and (max-width: 768px) {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; 
+    }
     
 `
 
@@ -34,17 +43,30 @@ const Intro = styled.div`
     justify-content: center;
     gap: 15px;
 
+    @media only screen and (max-width: 768px) {
+        flex: 1;
+        align-items: center;
+    }
+
 `
 
 const Three = styled.div`
     flex: 3;
     position: relative;
+
+    @media only screen and (max-width: 768px) {
+        display: none;
+    }
     
 `
 
 const Title = styled(motion.div)`
     
     font-size: 70px;
+
+    @media only screen and (max-width: 768px) {
+        text-align: center;
+    }
 `
 
 const Subtitle = styled(motion.span)`
@@ -73,7 +95,7 @@ const Hero = () => {
                 <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.3}}><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
                     return <LetterAnimate key={index} letter={letter} />
                 })}!</Title>
-                {/* some animation later for this: */}
+                
                 <motion.div initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.5}}>
                     <Subtitle>Junior Developer</Subtitle>
                 </motion.div>

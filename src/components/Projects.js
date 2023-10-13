@@ -10,6 +10,10 @@ const Section = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (max-width: 768px) {
+		height: 100%;
+    }
 `
 const Container = styled.div`
     height: 100%;
@@ -19,8 +23,11 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: center;
     
-    @media (max-width: 768px) {
-        flex-direction: column;
+    @media only screen and (max-width: 768px) {
+       height: auto;
+	   width: 100%;
+	   
+		
     }
 `
 
@@ -28,13 +35,11 @@ const ProjectDisplay = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-`
 
-const ProjectHeading = styled.h1`
-
-`
-const ProjectHead = styled.h1`
-
+	@media only screen and (max-width: 768px) {
+        flex-direction: column;
+		
+    }
 `
 
 
