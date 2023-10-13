@@ -22,7 +22,7 @@ const Section = styled.div`
 const Container = styled.div`
     height: 100%;
     /* scroll-snap-align: center; // does not align to hero container, liked better this way */
-    width: 100%;
+    width: 1400px;
     display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -89,7 +89,7 @@ const MessageInput = styled.textarea`
 	border-radius: 5px;
 	border: 1px solid #E2E1E5;
 	background: #FFF;
-	height: 4rem;
+	height: 5rem;
 `
 
 const ContactForm = styled.div`
@@ -111,7 +111,7 @@ const Form3D = styled.div`
 	display: flex;
 	flex: 3;
 	margin-top: 2rem;
-	height: 20rem;
+	height: 18rem;
 `
 
 
@@ -164,7 +164,7 @@ const Contact = () => {
 							</FormGroup>
 						</FormLine>
 						<Form3D>
-							<Cube color="rgb(40, 40, 40)"/>
+							<Cube color="rgb(250, 249, 246)" fov={15} position={[5,5,5]}/>
 						</Form3D>
 						
 					</form>

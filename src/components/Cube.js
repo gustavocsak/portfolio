@@ -9,10 +9,10 @@ const Container = styled.div`
     scroll-snap-align: center;
 `
 
-const Cube = ({color}) => {
+const Cube = ({color, fov, position}) => {
   return (
    
-        <Canvas camera={{fov: 25, position:[5,5,5]}}>
+        <Canvas camera={{fov: fov, position:position}}>
         <Suspense fallback={null}>
             <OrbitControls enableZoom={false} autoRotate/>
             <ambientLight intensity={1} />

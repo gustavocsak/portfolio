@@ -83,7 +83,7 @@ const Hero = () => {
                 </Social>
             </Intro>
             <Three>
-                <Cube color="rgb(193, 51, 255)"/>
+                <Cube color="rgb(193, 51, 255)" fov={25} position={[5,5,5]}/>
             </Three>
         </Container>
     </Section>
