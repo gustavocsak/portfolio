@@ -12,7 +12,8 @@ const Section = styled.div`
     justify-content: space-between;
 
     @media only screen and (max-width: 768px) {
-		height: 100%;
+		height: fit-content;
+		min-height: 100%;
     }
 `
 const Container = styled.div`
@@ -24,7 +25,7 @@ const Container = styled.div`
 	justify-content: center;
     
     @media only screen and (max-width: 768px) {
-       height: auto;
+       /* height: auto; */
 	   width: 100%;
 	   
 		

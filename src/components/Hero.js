@@ -16,23 +16,30 @@ const Section = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
-   
-    
+    @media only screen and (max-width: 768px) {
+		min-height: 100vh;
+        scroll-snap-align: none;
+    }
+    @media only screen and (max-width: 1024px) {
+		min-height: 100vh;
+        scroll-snap-align: none;
+    }
 `
 
 const Container = styled.div`
     height: 100%;
-    /* scroll-snap-align: center; // does not align to hero container, liked better this way */
     width: 1400px;
     display: flex;
     justify-content: space-between;
-
     @media only screen and (max-width: 768px) {
         width: 100%;
         flex-direction: column;
         align-items: center;
         justify-content: center; 
+    }
+    @media only screen and (max-width: 1024px) {
+		width: 100%;
+        scroll-snap-align: none;
     }
     
 `
@@ -42,10 +49,13 @@ const Intro = styled.div`
     flex-direction: column;
     justify-content: center;
     gap: 15px;
-
     @media only screen and (max-width: 768px) {
         flex: 1;
         align-items: center;
+    }
+    @media only screen and (max-width: 1024px) {
+        flex: 3;
+        
     }
 
 `
@@ -53,17 +63,17 @@ const Intro = styled.div`
 const Three = styled.div`
     flex: 3;
     position: relative;
-
     @media only screen and (max-width: 768px) {
         display: none;
+    }
+    @media only screen and (max-width: 1024px) {
+        flex: 1;
     }
     
 `
 
 const Title = styled(motion.div)`
-    
     font-size: 70px;
-
     @media only screen and (max-width: 768px) {
         text-align: center;
     }

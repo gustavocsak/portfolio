@@ -17,7 +17,7 @@ const Container = styled.div`
     color: white;
     background-color: #121212;
     
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1024px) {
         scroll-snap-type: none;
         scroll-behavior: smooth;
         overflow-y: auto;

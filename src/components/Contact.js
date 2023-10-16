@@ -16,40 +16,39 @@ const Section = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+	@media only screen and (max-width: 768px) {
+		height: fit-content;
+		min-height: 100vh;
+		margin-top: 5rem;
+		text-align: center;
+    }
+	
     
 `
 
 const Container = styled.div`
     height: 100%;
-    /* scroll-snap-align: center; // does not align to hero container, liked better this way */
     width: 1400px;
     display: flex;
 	justify-content: space-around;
 	align-items: center;
     
+	@media only screen and (max-width: 768px) {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center; 
+    }
     
 `
 
 const ContactHeader = styled.div`
 	display: flex;
-	justify-conter: center;
+	justify-content: center;
 	align-items: center;
 	padding: 8%;
-
 `
 
-// const ContactForm = styled.div`
-// 	display: flex;
-// 	justify-content: center;
-// 	flex: 2;
-// 	padding: 2%;
-// 	margin-top: 2rem;
-// 	background-color: #222;
-// 	border-radius: 10px;
-// `
-
 const Title = styled(motion.div)`
-    
     font-size: 70px;
 `
 
@@ -65,15 +64,20 @@ const FormSubtitle = styled.div`
 
 const FormGroup = styled.div`
 	display: flex;
-	
 	flex-direction: column;
 	width: 100%;
+	@media only screen and (max-width: 768px) {
+        text-align: left;
+    }
 `
 
 const FormLine = styled.div`
 	display: flex;
 	margin-top: 2rem;
 	gap: 2rem;
+	@media only screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 	
 `
 
@@ -103,6 +107,11 @@ const ContactForm = styled.div`
 	margin: 1rem;
     padding: 1.5rem;
 	height: 80%;
+	@media only screen and (max-width: 768px) {
+        width: 80%;
+        margin: 2rem;
+		margin-bottom: 5rem;
+    }
     
 
 `
@@ -112,9 +121,10 @@ const Form3D = styled.div`
 	flex: 3;
 	margin-top: 2rem;
 	height: 18rem;
+	@media only screen and (max-width: 768px) {
+        display: none;
+    }
 `
-
-
 
 const InputLabel = styled.label`
 	margin-bottom: 3px;
