@@ -6,7 +6,6 @@ import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import LetterAnimate from '../utils/LetterAnimate';
 import Cube from './Cube';
 
-
 const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']
 
 const Section = styled.div`
@@ -40,6 +39,9 @@ const Container = styled.div`
     @media only screen and (max-width: 1024px) {
 		width: 100%;
         scroll-snap-align: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
 `
@@ -49,14 +51,11 @@ const Intro = styled.div`
     flex-direction: column;
     justify-content: center;
     gap: 15px;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1024px) {
         flex: 1;
         align-items: center;
     }
-    @media only screen and (max-width: 1024px) {
-        flex: 3;
-        
-    }
+    
 
 `
 
@@ -67,7 +66,7 @@ const Three = styled.div`
         display: none;
     }
     @media only screen and (max-width: 1024px) {
-        flex: 1;
+        display: none;
     }
     
 `
@@ -94,7 +93,6 @@ const Social = styled(motion.div)`
     gap: 30px;
     justify-content: flex-start;
 `
-
 
 const Hero = () => {
   return (

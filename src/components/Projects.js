@@ -15,6 +15,9 @@ const Section = styled.div`
 		height: fit-content;
 		min-height: 100%;
     }
+	@media only screen and (max-width: 1024px) {
+		scroll-snap-align: none;
+	}
 `
 const Container = styled.div`
     height: 100%;

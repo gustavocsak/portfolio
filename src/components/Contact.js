@@ -22,8 +22,9 @@ const Section = styled.div`
 		margin-top: 5rem;
 		text-align: center;
     }
-	
-    
+	@media only screen and (max-width: 1024px) {
+		scroll-snap-align: none;
+	}    
 `
 
 const Container = styled.div`

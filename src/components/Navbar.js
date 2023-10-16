@@ -6,8 +6,7 @@ const Section = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 2em;
-
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1024px) {
         width: 100%;
     }
 `
@@ -17,8 +16,7 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1.5em 0;
-
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1024px) {
         width: 100%;
         padding: 15px;
     }
@@ -28,8 +26,6 @@ const Links = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
-
-    
 `
 
 const Icons = styled.div`
@@ -42,8 +38,7 @@ const List = styled.ul`
     display: flex;
     gap: 20px;
     list-style: none;
-
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 1024px) {
         display: none;
     }
 `
@@ -60,12 +55,10 @@ const MainName = styled.h1`
 const Button = styled.button`
     width: 100px;
     padding: 10px;
-    /* background-color: #b100ff; */
     color: white;
     border: none;
     border-radius: 5px;
     background: rgb(177,0,255);
-    /*#B100FF  #C133FF */
     background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
     cursor: pointer;
 `
