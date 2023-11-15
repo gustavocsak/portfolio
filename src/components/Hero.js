@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import LetterAnimate from '../utils/LetterAnimate';
 import Cube from './Cube';
+import Grid from './Grid';
 
 const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']
 
@@ -29,7 +30,8 @@ const Container = styled.div`
     height: 100%;
     width: 1400px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
     @media only screen and (max-width: 768px) {
         width: 100%;
         flex-direction: column;
@@ -60,14 +62,19 @@ const Intro = styled.div`
 `
 
 const Three = styled.div`
-    flex: 3;
+    /* flex: 3;
     position: relative;
     @media only screen and (max-width: 768px) {
         display: none;
     }
     @media only screen and (max-width: 1024px) {
-        display: none;
-    }
+        display: none;s
+    } */
+
+    
+
+
+
     
 `
 
@@ -113,7 +120,8 @@ const Hero = () => {
                 </Social>
             </Intro>
             <Three>
-                <Cube color="rgb(193, 51, 255)" fov={25} position={[5,5,5]}/>
+                <Grid></Grid>
+                {/* <Cube color="rgb(193, 51, 255)" fov={25} position={[5,5,5]}/> */}
             </Three>
         </Container>
     </Section>
