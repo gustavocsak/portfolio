@@ -29,6 +29,7 @@ const Grid = () => {
 		border-radius: 50%;
 		background-color: rgb(193, 51, 255);
 		opacity: 90%;
+		/* box-shadow: 1px 1px 1px 1px rgb(193, 51, 255, 0.37); */
 	`
 	
 	const animation = useRef(null);
@@ -52,27 +53,37 @@ const Grid = () => {
 			  {value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'y'}) },
 			  {value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'y'}) }
 			],
+			background: 'rgb(233, 91, 255)',
 			duration: 1000,
 			scale: .5,
 			delay: anime.stagger(100, {grid: [20,20], from: 'center'})
 		  })
-		  .add({
-			translateX: () => anime.random(-10, 10),
-			translateY: () => anime.random(-10, 10),
-			delay: anime.stagger(8, {from: 'last'})
-		  })
-		  .add({
-			translateX: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'x'}),
-			translateY: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'y'}),
-			rotate: 0,
-			scaleX: 2.5,
-			scaleY: .25,
-			delay: anime.stagger(4, {from: 'center'})
-		  })
-		  .add({
-			rotate: anime.stagger([90, 0], {grid: grid, from: 'center'}),
-			delay: anime.stagger(50, {grid: grid, from: 'center'})
-		  })
+		//   .add({
+		// 	translateX: [
+		// 		{value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'x'}) },
+		// 		{value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'x'}) }
+		// 	  ],
+		// 	  translateY: [
+		// 		{value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'y'}) },
+		// 		{value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'y'}) }
+		// 	  ],
+		// 	  background: 'rgb(233, 91, 255)',
+		// 	  duration: 1000,
+		// 	  scale: .5,
+		// 	  delay: anime.stagger(100, {grid: [20,20], from: 'center'})
+		//   })
+		//   .add({
+		// 	translateX: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'x'}),
+		// 	translateY: anime.stagger('.25rem', {grid: grid, from: 'center', axis: 'y'}),
+		// 	rotate: 0,
+		// 	scaleX: 2.5,
+		// 	scaleY: .25,
+		// 	delay: anime.stagger(4, {from: 'center'})
+		//   })
+		//   .add({
+		// 	rotate: anime.stagger([90, 0], {grid: grid, from: 'center'}),
+		// 	delay: anime.stagger(50, {grid: grid, from: 'center'})
+		//   })
 		//   .add({
 		// 	translateX: 0,
 		// 	translateY: 0,

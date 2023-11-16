@@ -174,9 +174,9 @@ const Contact = () => {
 								<MessageInput type="email" id="email"/>
 							</FormGroup>
 						</FormLine>
-						<Form3D>
+						{/* <Form3D>
 							<Cube color="rgb(250, 249, 246)" fov={15} position={[5,5,5]}/>
-						</Form3D>
+						</Form3D> */}
 						
 					</form>
 				</ContactForm>
