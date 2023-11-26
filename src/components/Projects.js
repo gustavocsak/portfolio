@@ -5,7 +5,7 @@ import NewCard from './NewCard'
 
 
 const Section = styled.div`
-  	height: 100vh;
+  	/* height: 100vh; */
   	//scroll-snap-align: center; 
 	display: flex;
     flex-direction: column;
@@ -37,9 +37,12 @@ const Container = styled.div`
 `
 
 const ProjectDisplay = styled.div`
+	margin-top: 8rem;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	gap: 10rem;
 
 	@media only screen and (max-width: 768px) {
         flex-direction: column;
@@ -56,8 +59,9 @@ const Projects = () => {
 			<Container>
 
 				<ProjectDisplay>
-					<NewCard></NewCard>
-					
+					<NewCard />
+					<NewCard />
+					<NewCard />
 				</ProjectDisplay>
 
 			</Container>
