@@ -58,7 +58,7 @@ const Container = styled.div`
 `
 
 const ProjectDisplay = styled.div`
-	margin-top: 8rem;
+	margin-top: 5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

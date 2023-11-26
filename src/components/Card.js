@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import tricket from '../img/tricket.jpg'
+import { useRef } from 'react'
 import { BsBootstrap } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
-import { SiExpress } from "react-icons/si";
-import { SiMongodb } from "react-icons/si";
-import { motion } from 'framer-motion';
+import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
+import { motion, useInView } from 'framer-motion';
+
 
 /**
  * TODO: different projects will need different icons
@@ -30,9 +31,9 @@ const Wrap = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 82%;
-    border-left: 2px solid;
+    /* border-left: 2px solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
+    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%); */
 `
 
 const ImageWrapper = styled.div`
@@ -44,13 +45,16 @@ const Image = styled.img`
     border-radius: 20px;
 `
 
-const Description = styled.div`
+const Project = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1.5;
     padding: 1rem;
     padding-right: 3rem;
+    border-left: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
 `
 
 const ProjectTitle = styled.h1`
@@ -64,7 +68,7 @@ const OneLiner = styled.div`
     font-size: 16px;
 `
 
-const ShortDescription = styled.div`
+const Description = styled.div`
 `
 
 const Technologies = styled.div`
@@ -146,14 +150,21 @@ const NewCard = ({ project }) => {
         }
     }
 
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
     return (
-        <Wrap>
-            <Description>
+        <Wrap ref={ref} >
+            <Project as={motion.div} style={{
+                transform: isInView ? "none" : "translateX(-300px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 2s"
+            }}>
                 <ProjectMain>
                     <ProjectTitle>{project.title}</ProjectTitle>
                     <OneLiner>{project.oneLiner}</OneLiner>
                 </ProjectMain>
-                <ShortDescription>{project.description}</ShortDescription>
+                <Description>{project.description}</Description>
                 <Technologies>
                     <span>Built with: </span>
                     {project.techStack.map((tech, index) => {
@@ -164,8 +175,12 @@ const NewCard = ({ project }) => {
                     <Button as={motion.button} variants={variants} whileHover={"main"}><Link href={project.github} target='_blank'>Github</Link></Button>
                     <ButtonColored as={motion.button} variants={variants} whileHover={"black"}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
                 </Links>
-            </Description>
-            <ImageWrapper>
+            </Project>
+            <ImageWrapper as={motion.div} style={{
+                transform: isInView ? "none" : "translateX(300px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 2s"
+            }}>
                 <Image src={tricket} />
             </ImageWrapper>
         </Wrap>
