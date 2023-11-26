@@ -6,8 +6,8 @@ import Test from "./components/Cube.js";
 
 
 const Container = styled.div`
-    height: 100vh;
-    scroll-snap-type: y mandatory;
+    /* height: 100vh;
+    scroll-snap-type: y mandatory; */
     scroll-behavior: smooth;
     overflow-y: auto;
     scrollbar-width: none;
@@ -32,7 +32,7 @@ const App = () => {
         <Container>
             <Hero />
             <Projects />
-            <Contact />
+            {/* <Contact /> */}
  
         </Container>
       );

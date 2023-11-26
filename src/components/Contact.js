@@ -10,8 +10,8 @@ const titleLetter = ['M', 'e']
 
 
 const Section = styled.div`
-    height: 100vh;
-    scroll-snap-align: center;
+    /* height: 100vh;
+    scroll-snap-align: center; */
     display: flex;
     flex-direction: column;
     align-items: center;

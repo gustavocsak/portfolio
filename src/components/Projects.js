@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card from './Card'
+// import Card from './Card'
+import NewCard from './NewCard'
 
 
 const Section = styled.div`
-    height: 100vh;
-    scroll-snap-align: center;
+  	height: 100vh;
+  	//scroll-snap-align: center; 
 	display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,20 +50,19 @@ const ProjectDisplay = styled.div`
 
 
 const Projects = () => {
-  return (
-    <Section>
-      
-      <Container>
-        
-        <ProjectDisplay>
-          <Card>Test</Card>
-          <Card>Test</Card>
-          <Card>Test</Card>
-        </ProjectDisplay>
-		
-      </Container>
-    </Section>
-  )
+	return (
+		<Section>
+
+			<Container>
+
+				<ProjectDisplay>
+					<NewCard></NewCard>
+					
+				</ProjectDisplay>
+
+			</Container>
+		</Section>
+	)
 }
 
 export default Projects
