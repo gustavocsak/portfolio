@@ -3,6 +3,35 @@ import styled from 'styled-components'
 // import Card from './Card'
 import NewCard from './NewCard'
 
+/**
+ * TODO: fix live source URL for projects array
+ */
+
+const projects = [
+	{
+		title: "Tricket",
+		oneLiner: "Tricket is a ticket tracking system.",
+		description: `Web application that allows you to create, update, delete and track tickets/tasks for your various projects.
+					 Tricket makes you more productive by giving you a view of your tasks and tickets that needs to be worked on.`,
+		techStack: ["bootstrap", "react", "express", "mongodb"],
+		liveSource: "tricket",
+		github: "https://github.com/gustavocsak/tricket",
+		image: "tricket.jpg"
+	},
+	{
+		title: "cornerBet",
+		oneLiner: "cornerBet is an automated bot for scrapping socccer matches and making predictions.",
+		description: `Automated script to scrape soccer matches statistics and make predictions for possible end time corners.
+					cornerBet is built using javascript and powered by cheerio, a library for parsing and manipulating HTML and XML, future updates
+					will include a web version showing prediction statistics and live match tracking.`,
+		techStack: ["javascript", "mongodb"],
+		liveSource: "cornerbet",
+		github: "https://github.com/gustavocsak/cornerbet",
+		image: "cornerbet.jpg"
+	},
+
+]
+
 
 const Section = styled.div`
   	/* height: 100vh; */

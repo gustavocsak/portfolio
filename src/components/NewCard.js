@@ -5,19 +5,33 @@ import { BsBootstrap } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import { SiExpress } from "react-icons/si";
 import { SiMongodb } from "react-icons/si";
+import { motion } from 'framer-motion';
 
 /**
  * TODO: different projects will need different icons
  * think about how to implement that
  * 
  * TODO: make it responsive
+ * 
+ * TODO: animate
  */
+
+/**
+ * Framer variants
+ */
+const variants = {
+    main: {scale: 1.2, backgroundColor: 'rgb(193, 51, 255)', transition: {duration: 0.15}},
+    black: {scale: 1.2, backgroundColor: 'rgb(25, 23, 23)', transition: {duration: 0.15}}
+    
+}
 
 const Wrap = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 80%;
-
+    border-left: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
 `
 
 const ImageWrapper = styled.div`
@@ -59,7 +73,7 @@ const Technologies = styled.div`
 `
 
 const Links = styled.div`
-
+    
 `
 
 const ProjectMain = styled.div`
@@ -70,6 +84,7 @@ const ProjectMain = styled.div`
 /**
  * TODO: add animation for button hover
  * invert colors black and rgb(193, 51, 255)
+ * FIXME: from main color to black currently not working
  */
 const ButtonColored = styled.button`
     width: 100px;
@@ -78,7 +93,9 @@ const ButtonColored = styled.button`
     font-weight: bold;
     border: none;
     border-radius: 5px;
+    
     background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
+    background-color: rgba(193,51,255,1);
     cursor: pointer;
 `
 
@@ -91,7 +108,7 @@ const Button = styled.button`
     border-radius: 5px;
     background: rgba( 25, 23, 23, 0.7 );   
     cursor: pointer;
-    margin-right: 0.5em;
+    margin-right: 1.5rem;
 `
 
 const NewCard = () => {
@@ -102,7 +119,8 @@ const NewCard = () => {
                 <ProjectTitle>Tricket</ProjectTitle>
                 <OneLiner>Tricket is a ticket tracking system.</OneLiner>
             </ProjectMain>
-            <ShortDescription>Web application that allows you to create, update, delete and track tickets/tasks for your various projects. Tricket makes you more productive by giving you a view of your tasks and tickets that needs to be worked on.</ShortDescription>
+            <ShortDescription>Web application that allows you to create, update, delete and track tickets/tasks for your various projects.
+                            Tricket makes you more productive by giving you a view of your tasks and tickets that needs to be worked on.</ShortDescription>
             <Technologies>
                 <span>Built with: </span>
                 <BsBootstrap color='rgb(193, 51, 255)' size={"25px"} />
@@ -112,8 +130,8 @@ const NewCard = () => {
             </Technologies>
             <Links>
                 
-                <Button>Github</Button>
-                <ButtonColored>Live</ButtonColored>
+                <Button as={motion.button} variants={variants} whileHover={"main"}>Github</Button>
+                <ButtonColored as={motion.button} variants={variants} whileHover={"black"}>Live</ButtonColored>
             </Links>
         </Description>
         <ImageWrapper>

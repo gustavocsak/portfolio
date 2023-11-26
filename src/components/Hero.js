@@ -61,6 +61,10 @@ const Intro = styled.div`
 
 `
 
+/**
+ * TODO: remove threejs, rename accordingly
+ */
+
 const Three = styled.div`
     /* flex: 3;
     position: relative;
@@ -121,7 +125,6 @@ const Hero = () => {
             </Intro>
             <Three>
                 <Grid></Grid>
-                {/* <Cube color="rgb(193, 51, 255)" fov={25} position={[5,5,5]}/> */}
             </Three>
         </Container>
     </Section>
