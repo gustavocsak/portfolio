@@ -31,33 +31,70 @@ const Grid = () => {
 		opacity: 90%;
 		/* box-shadow: 1px 1px 1px 1px rgb(193, 51, 255, 0.37); */
 	`
-	
+
 	const animation = useRef(null);
 
 	useEffect(() => {
-		animation.current = anime.timeline({
+		// animation.current = anime.timeline({
+		// 	targets: '.grid div',
+		// 	easing: 'easeInOutSine',
+		// 	loop: true,
+		// 	autoplay: false,
+		// 	delay: anime.stagger(50, { grid: [20, 20], from: 'center' }),
+
+
+
+		// })
+		// .add({
+		// 	translateX: [
+		// 		{ value: anime.stagger('-.2rem', { grid: [20, 20], from: 'center', axis: 'x' }) },
+		// 		{ value: anime.stagger('.2rem', { grid: [20, 20], from: 'center', axis: 'x' }) }
+		// 	],
+		// 	translateY: [
+		// 		{ value: anime.stagger('-.2rem', { grid: [20, 20], from: 'center', axis: 'y' }) },
+		// 		{ value: anime.stagger('.2rem', { grid: [20, 20], from: 'center', axis: 'y' }) }
+		// 	],
+		// 	scale: 0.5,
+		// 	// delay: anime.stagger(100, { grid: [20, 20], from: 'center' })
+		// })
+		// .add({
+		// 	translateX: [
+		// 		{ value: anime.stagger('0rem', { grid: [20, 20], from: 'center', axis: 'x' }) },
+		// 		{ value: anime.stagger('0rem', { grid: [20, 20], from: 'center', axis: 'x' }) }
+		// 	],
+		// 	translateY: [
+		// 		{ value: anime.stagger('0rem', { grid: [20, 20], from: 'center', axis: 'y' }) },
+		// 		{ value: anime.stagger('0rem', { grid: [20, 20], from: 'center', axis: 'y' }) }
+		// 	],
+		// 	scale: 1,
+		// 	// delay: anime.stagger(100, { grid: [20, 20], from: 'center' })
+		// })
+
+
+		animation.current = anime({
 			targets: '.grid div',
 			easing: 'easeInOutSine',
-			delay: anime.stagger(50),
 			loop: true,
 			autoplay: false,
-			
-			
-		})
-		.add({
-			translateX: [
-			  {value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'x'}) },
-			  {value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'x'}) }
+			scale: [
+				{value: 0.5, easing: "easeOutSine", duration: 250},
+				// {value: 0.75, easing: "easeOutSine", duration: 250},
+				{value: 1, easing: "easeInOutQuad", duration: 500},
+				
 			],
 			translateY: [
-			  {value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'y'}) },
-			  {value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'y'}) }
+				{ value: anime.stagger('-.5rem', { grid: [20, 20], from: 'center', axis: 'y' }) },
+				{ value: anime.stagger('0rem', { grid: [20, 20], from: 'center', axis: 'y' }) }
 			],
-			background: 'rgb(233, 91, 255)',
-			duration: 1000,
-			scale: .5,
-			delay: anime.stagger(100, {grid: [20,20], from: 'center'})
-		  })
+			translateX: [
+				{ value: anime.stagger('-.5rem', { grid: [20, 20], from: 'center', axis: 'x' }) },
+				{ value: anime.stagger('0rem', { grid: [20, 20], from: 'center', axis: 'x' }) }
+			],
+			delay: anime.stagger(50, { grid: [20, 20], from: 'center' }),
+
+
+
+		})
 		//   .add({
 		// 	translateX: [
 		// 		{value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'x'}) },
@@ -67,9 +104,23 @@ const Grid = () => {
 		// 		{value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'y'}) },
 		// 		{value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'y'}) }
 		// 	  ],
-		// 	  background: 'rgb(233, 91, 255)',
-		// 	  duration: 1000,
-		// 	  scale: .5,
+		// 	//   background: 'rgb(233, 91, 255)',
+		// 	  duration: 500,
+		// 	//   scale: .5,
+		// 	  delay: anime.stagger(100, {grid: [20,20], from: 'center'})
+		//   })
+		//   .add({
+		// 	translateX: [
+		// 		{value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'x'}) },
+		// 		{value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'x'}) }
+		// 	  ],
+		// 	  translateY: [
+		// 		{value: anime.stagger('-.1rem', {grid: [20,20], from: 'center', axis: 'y'}) },
+		// 		{value: anime.stagger('.1rem', {grid: [20,20], from: 'center', axis: 'y'}) }
+		// 	  ],
+		// 	//   background: 'rgb(233, 91, 255)',
+		// 	  duration: 500,
+		// 	//   scale: 1,
 		// 	  delay: anime.stagger(100, {grid: [20,20], from: 'center'})
 		//   })
 		//   .add({
@@ -99,18 +150,18 @@ const Grid = () => {
 		// 	delay: anime.stagger(20, {grid: grid, from: 'center'})
 		//   })
 
-			animation.current.play();
-		}, []);
+		animation.current.play();
+	}, []);
 
 
-		return (
-			<GridContainer className='grid'>
-				{grid.map((_, i) => {
-					return <GridItem key={i} />
-				})}
-			</GridContainer>
-		)
-	}
+	return (
+		<GridContainer className='grid'>
+			{grid.map((_, i) => {
+				return <GridItem key={i} />
+			})}
+		</GridContainer>
+	)
+}
 
 export default Grid
 
