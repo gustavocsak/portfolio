@@ -50,6 +50,7 @@ const Container = styled.div`
     height: 100%;
     width: 1400px;
     display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	@media only screen and (max-width: 768px) {
@@ -63,7 +64,8 @@ const ProjectDisplay = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 10rem;
+	gap: 7rem;
+	
 
 	@media only screen and (max-width: 768px) {
         flex-direction: column;
@@ -71,6 +73,17 @@ const ProjectDisplay = styled.div`
     }
 `
 
+const Title = styled.div`
+	font-size: 50px;
+	font-weight: bold;
+	width: 80%;
+`
+
+const Main = styled.div`
+	width: 82%;
+	display: flex;
+	flex-direction: column;
+`
 
 
 const Projects = () => {
@@ -78,10 +91,12 @@ const Projects = () => {
 		<Section>
 			<Container>
 				<ProjectDisplay>
+					<Title>Projects</Title>
 					{projects.map((project, index) => {
-						return <Card project={project}/>
+						return <Card project={project} />
 					})}
 				</ProjectDisplay>
+
 			</Container>
 		</Section>
 	)
