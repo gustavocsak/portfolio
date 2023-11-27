@@ -1,45 +1,102 @@
 import React from 'react'
 import styled from 'styled-components'
-import Tricket from '../img/tricket.webp'
-import { motion, useInView } from 'framer-motion'
+import tricket from '../img/tricket.jpg'
 import { useRef } from 'react'
+import { BsBootstrap } from "react-icons/bs";
+import { FaReact } from "react-icons/fa";
+import { SiExpress, SiMongodb } from "react-icons/si";
+import { IoLogoJavascript } from "react-icons/io5";
+import { motion, useInView } from 'framer-motion';
 
+
+/**
+ * TODO: different projects will need different icons
+ * think about how to implement that
+ * 
+ * TODO: make it responsive
+ * 
+ * TODO: animate
+ */
+
+/**
+ * Framer variants
+ */
+const variants = {
+    main: { scale: 1.2, backgroundColor: 'rgb(193, 51, 255)', transition: { duration: 0.15 } },
+    black: { scale: 1.2, backgroundColor: 'rgb(25, 23, 23)', transition: { duration: 0.15 } }
+
+}
 
 const Wrap = styled.div`
-    background: rgba( 25, 23, 23, 0.7 );
-    background: linear-gradient(90deg, rgba(177,0,255,0.8) 0%, rgba(193,51,255,0.8) 100%);
-    box-shadow: 0 8px 32px 0 rgb(193, 51, 255, 0.37);
-    backdrop-filter: blur( 13.5px );
-    -webkit-backdrop-filter: blur( 13.5px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-	margin: 1rem;
-    padding: 1.5rem;
-    
+    display: flex;
+    flex-direction: row;
+    max-width: 82%;
+    /* border-left: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%); */
+`
 
+const ImageWrapper = styled.div`
+    flex: 1;
 `
 
 const Image = styled.img`
     width: 100%;
-    border-radius: 10px;
+    border-radius: 20px;
 `
 
-const Title = styled.h3`
-    margin-top: 1em;
-    border-bottom: 1px solid white;
-    padding-bottom: 18px;
-    font-size: 1.3rem;
-   
+const Project = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1.5;
+    padding: 1rem;
+    padding-right: 3rem;
+    border-left: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
+`
+
+const ProjectTitle = styled.h1`
+    font-size: 55px;
+    
+    
+`
+
+const OneLiner = styled.div`
+    font-weight: bold;
+    font-size: 16px;
 `
 
 const Description = styled.div`
-    margin-top: 1em;
+`
+
+const Technologies = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
 `
 
 const Links = styled.div`
-    margin-top: 1.5em;
+    
 `
 
+const Link = styled.a`
+    text-decoration: none;
+    color: #fff;
+`
+
+const ProjectMain = styled.div`
+
+`
+
+
+/**
+ * TODO: add animation for button hover
+ * invert colors black and rgb(193, 51, 255)
+ * FIXME: from main color to black currently not working
+ */
 const ButtonColored = styled.button`
     width: 100px;
     padding: 10px;
@@ -47,7 +104,9 @@ const ButtonColored = styled.button`
     font-weight: bold;
     border: none;
     border-radius: 5px;
+    
     background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
+    background-color: rgba(193,51,255,1);
     cursor: pointer;
 `
 
@@ -60,11 +119,13 @@ const Button = styled.button`
     border-radius: 5px;
     background: rgba( 25, 23, 23, 0.7 );   
     cursor: pointer;
-    margin-left: 0.5em;
+    margin-right: 1.5rem;
 `
 
-const Card = () => {
-    const ref = useRef(null);
+/**
+ * for reference from old card:
+ * 
+ * const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
     return (
@@ -73,18 +134,57 @@ const Card = () => {
         transform: isInView ? "none" : "translateY(300px)",
         opacity: isInView ? 1 : 0,
         transition: "all 1.2s"
-      }}>
-        
-        <Image src={Tricket} />
-        <Title>Project Title</Title>
-        <Description>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</Description>
-        <Links>
-            <ButtonColored>Live</ButtonColored>
-            <Button>Github</Button>
-            {/* <FiGithub size="28px" color='rgb(193, 51, 255)'/> */}
-        </Links>
-      </Wrap>
+      }}> 
+ * 
+ */
+
+const NewCard = ({ project }) => {
+
+    const translateTechStack = (tech) => {
+        switch(tech) {
+            case "react": return <FaReact color='rgb(193, 51, 255)' size={"25px"} />;
+            case "mongodb": return <SiMongodb color='rgb(193, 51, 255)' size={"25px"} aria-label="MongoDB" />;
+            case "express": return <SiExpress color='rgb(193, 51, 255)' size={"25px"} />;
+            case "bootstrap": return <BsBootstrap color='rgb(193, 51, 255)' size={"25px"} />;
+            case "javascript": return <IoLogoJavascript color='rgb(193, 51, 255)' size={"25px"} />;
+        }
+    }
+
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    return (
+        <Wrap ref={ref} >
+            <Project as={motion.div} style={{
+                transform: isInView ? "none" : "translateX(-300px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 2s"
+            }}>
+                <ProjectMain>
+                    <ProjectTitle>{project.title}</ProjectTitle>
+                    <OneLiner>{project.oneLiner}</OneLiner>
+                </ProjectMain>
+                <Description>{project.description}</Description>
+                <Technologies>
+                    <span>Built with: </span>
+                    {project.techStack.map((tech, index) => {
+                        return translateTechStack(tech);
+                    })}
+                </Technologies>
+                <Links>
+                    <Button as={motion.button} variants={variants} whileHover={"main"}><Link href={project.github} target='_blank'>Github</Link></Button>
+                    <ButtonColored as={motion.button} variants={variants} whileHover={"black"}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
+                </Links>
+            </Project>
+            <ImageWrapper as={motion.div} style={{
+                transform: isInView ? "none" : "translateX(300px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 2s"
+            }}>
+                <Image src={tricket} />
+            </ImageWrapper>
+        </Wrap>
     )
-  }
-  
-  export default Card
+}
+
+export default NewCard
