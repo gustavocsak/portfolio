@@ -3,6 +3,7 @@ import Projects from "./components/Projects.js";
 import Contact from "./components/Contact.js";
 import styled from "styled-components";
 import Test from "./components/Cube.js";
+import About from "./components/About.js";
 
 
 const Container = styled.div`
@@ -33,6 +34,7 @@ const App = () => {
             <Hero />
             <Projects />
             {/* <Contact /> */}
+            <About />
  
         </Container>
       );
