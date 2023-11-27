@@ -111,7 +111,7 @@ const Hero = () => {
         <Navbar />
         <Container>
             <Intro>
-                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.3}}><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
+                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.5}}><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
                     return <LetterAnimate key={index} letter={letter} />
                 })}!</Title>
                 
