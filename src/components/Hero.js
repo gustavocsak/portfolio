@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Navbar from './Navbar'
 import { motion } from 'framer-motion'
@@ -6,6 +6,7 @@ import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import LetterAnimate from '../utils/LetterAnimate';
 import Cube from './Cube';
 import Grid from './Grid';
+import { gsap } from 'gsap';
 
 const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']
 
@@ -87,6 +88,7 @@ const Title = styled(motion.div)`
     @media only screen and (max-width: 768px) {
         text-align: center;
     }
+    font-weight: bold;
 `
 
 const Subtitle = styled(motion.span)`
@@ -106,29 +108,42 @@ const Social = styled(motion.div)`
 `
 
 const Hero = () => {
-  return (
-    <Section>
-        <Navbar />
-        <Container>
-            <Intro>
-                <Title as={motion.h1} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.3}}><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
-                    return <LetterAnimate key={index} letter={letter} />
-                })}!</Title>
-                
-                <motion.div initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.5}}>
-                    <Subtitle>Junior Developer</Subtitle>
-                </motion.div>
-                <Social as={motion.div} initial={{x: -50, opacity: 0}} animate={{x: 0, opacity:1}} transition={{delay: 0.7}}>
-                    <BsGithub size="35px"/>
-                    <BsLinkedin size="35px"/>
-                </Social>
-            </Intro>
-            <Three>
-                <Grid></Grid>
-            </Three>
-        </Container>
-    </Section>
-  )
+    const comp = useRef();
+
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            gsap.fromTo(".text-animate",
+                { opacity: 0, y: -50 },
+                { opacity: 1, y: 0, duration: 0.4, stagger: 0.5, delay: 0.2 })
+
+        }, comp)
+        return () => ctx.revert();
+    }, []);
+
+
+    return (
+        <Section>
+            <Navbar />
+            <Container>
+                <Intro ref={comp}>
+                    <Title className="text-animate"><span style={{}}>Hi, I'm  </span>{titleLetter.map((letter, index) => {
+                        return <LetterAnimate key={index} letter={letter} />
+                    })}!</Title>
+
+                    <div className="text-animate">
+                        <Subtitle>Junior Developer</Subtitle>
+                    </div>
+                    <Social className="text-animate">
+                        <BsGithub size="35px" />
+                        <BsLinkedin size="35px" />
+                    </Social>
+                </Intro>
+                <Three>
+                    <Grid></Grid>
+                </Three>
+            </Container>
+        </Section>
+    )
 }
 
 export default Hero
