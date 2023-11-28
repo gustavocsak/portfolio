@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import styled from 'styled-components'
 import tricket from '../img/tricket.jpg'
-import { useRef } from 'react'
 import { BsBootstrap } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import { motion, useInView } from 'framer-motion';
+import { gsap } from "gsap";
 
 
 /**
@@ -102,10 +102,10 @@ const ButtonColored = styled.button`
     padding: 10px;
     color: white;
     font-weight: bold;
-    border: none;
+    border: 1px solid rgba( 25, 23, 23, 0.7 );
     border-radius: 5px;
     
-    background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
+    /* background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%); */
     background-color: rgba(193,51,255,1);
     cursor: pointer;
 `
@@ -153,6 +153,26 @@ const NewCard = ({ project }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
+    const onEnter = ({ currentTarget }) => {
+        const buttonClasses = currentTarget.className.split(" ");
+        gsap.to(currentTarget, {
+            backgroundColor: buttonClasses[2] == "button" ? "rgb(193, 51, 255)" : "rgb(25, 23, 23)",
+            borderColor: "rgb(193, 51, 255)",
+            scale: 1.1,
+            duration: 0.2
+        })
+    }
+    
+    const onLeave = ({ currentTarget }) => {
+        const buttonClasses = currentTarget.className.split(" ");
+        gsap.to(currentTarget, {
+            backgroundColor: buttonClasses[2] == "button" ? "rgb(25, 23, 23)" : "rgb(193, 51, 255)",
+            scale: 1,
+            duration: 0.2
+        })
+    }  
+   
+
     return (
         <Wrap ref={ref} >
             <Project as={motion.div} style={{
@@ -172,8 +192,8 @@ const NewCard = ({ project }) => {
                     })}
                 </Technologies>
                 <Links>
-                    <Button as={motion.button} variants={variants} whileHover={"main"}><Link href={project.github} target='_blank'>Github</Link></Button>
-                    <ButtonColored as={motion.button} variants={variants} whileHover={"black"}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
+                    <Button className='button' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.github} target='_blank'>Github</Link></Button>
+                    <ButtonColored className='button-color' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
                 </Links>
             </Project>
             <ImageWrapper as={motion.div} style={{
