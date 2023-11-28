@@ -65,11 +65,11 @@ const Button = styled.button`
 
 
 
-const Navbar = () => {
+const Navbar = ({ navRef }) => {
   return (
     <Section>
-        <Container>
-            <Links>
+        <Container ref={navRef}>
+            <Links >
                 <MainName>gustavocs</MainName>
                 <List>
                     <ListItem>Projects</ListItem>
