@@ -1,10 +1,8 @@
 import React, { useLayoutEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Navbar from './Navbar'
-import { motion } from 'framer-motion'
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import LetterAnimate from '../utils/LetterAnimate';
-import Cube from './Cube';
 import Grid from './Grid';
 import { gsap } from 'gsap';
 
@@ -59,29 +57,6 @@ const Intro = styled.div`
         flex: 1;
         align-items: center;
     }
-    
-
-`
-
-/**
- * TODO: remove threejs, rename accordingly
- */
-
-const Three = styled.div`
-    /* flex: 3;
-    position: relative;
-    @media only screen and (max-width: 768px) {
-        display: none;
-    }
-    @media only screen and (max-width: 1024px) {
-        display: none;s
-    } */
-
-    
-
-
-
-    
 `
 
 const Title = styled.div`
@@ -99,13 +74,6 @@ const Header = styled.h1`
     font-size: 70px;
     transform: translateY(115px);
     transition: transform .5s;
-`
-
-
-const Blur = styled.div`
-    /* background-color: rgba(193, 51, 255, 0.2);
-    box-shadow: 0px 0px 10px 10px rgba(193, 51, 255);
-    backdrop-filter: blur(18px); */
 `
 
 const SubtitleClip = styled.div`
@@ -131,7 +99,7 @@ const SocialClip = styled.div`
     line-height: 5rem;
 `
 
-const Social = styled(motion.div)`
+const Social = styled.div`
     margin-top: 15px;
     display: flex;
     gap: 30px;
@@ -146,9 +114,7 @@ const Hero = () => {
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
-            // gsap.fromTo(".text-animate",
-            //     { opacity: 0, y: -50 },
-            //     { opacity: 1, y: 0, duration: 0.4, stagger: 0.5, delay: 0.2, ease: "power4.out" })
+            
             gsap.to(".reveal", { y: 0, duration: 0.5, stagger: 0.5, delay: 0.2, ease: "power4.out" })
             
             gsap.fromTo(nav.current,
@@ -183,9 +149,9 @@ const Hero = () => {
                         </Social>
                     </SocialClip>
                 </Intro>
-                <Three>
-                    <Grid></Grid>
-                </Three>
+                <div>
+                    <Grid />
+                </div>
             </Container>
         </Section>
     )
