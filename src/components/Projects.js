@@ -115,6 +115,9 @@ const Projects = () => {
 			ease: "power4.out"
 		})
 		
+		/**
+		 * TODO: fix the delay between projects /scroll trigger
+		 */
 		
 		gsap.to(".project-reveal", {
 			scrollTrigger: {

@@ -9,12 +9,9 @@ import { gsap } from "gsap";
 
 
 /**
- * TODO: different projects will need different icons
- * think about how to implement that
  * 
  * TODO: make it responsive
  * 
- * TODO: animate
  */
 
 /**
@@ -78,13 +75,6 @@ const Link = styled.a`
     color: #fff;
 `
 
-
-
-/**
- * TODO: add animation for button hover
- * invert colors black and rgb(193, 51, 255)
- * FIXME: from main color to black currently not working
- */
 const ButtonColored = styled.button`
     width: 100px;
     padding: 10px;
