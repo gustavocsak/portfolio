@@ -20,15 +20,12 @@ import { gsap } from "gsap";
 /**
  * Framer variants
  */
-const variants = {
-    main: { scale: 1.2, backgroundColor: 'rgb(193, 51, 255)', transition: { duration: 0.15 } },
-    black: { scale: 1.2, backgroundColor: 'rgb(25, 23, 23)', transition: { duration: 0.15 } }
-
-}
 
 const Wrap = styled.div`
     display: flex;
     flex-direction: row;
+    transform: translateY(400px);
+    transition: transform .5s;
 `
 
 const ImageWrapper = styled.div`
@@ -59,7 +56,7 @@ const ProjectTitle = styled.h1`
 
 const OneLiner = styled.div`
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
 `
 
 const Description = styled.div`
@@ -147,7 +144,7 @@ const Project = ({ project }) => {
    
 
     return (
-        <Wrap>
+        <Wrap className="project-reveal">
             <Info>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <OneLiner>{project.oneLiner}</OneLiner>

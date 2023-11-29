@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import Project from './Project'
 import { gsap } from "gsap";
@@ -91,30 +91,50 @@ const ProjectList = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 6rem;
+	overflow: hidden;
 `
 
 const ProjectClip = styled.div`
-	
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 `
 
 
 const Projects = () => {
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		gsap.to(".title-reveal", {
 			scrollTrigger: {
 				trigger: ".project-section",
 				start: "top 90%",
 				end: "+=200",
 				scrub: true,
+				once: true,
 			},
 			y: 0,
 			duration: 0.5,
 			ease: "power4.out"
 		})
-		gsap.to(".project-reveal", { scrollTrigger: ".project-reveal", y: 0, duration: 0.5, ease: "power4.out" })
-	  }, []);
+		
+		
+		gsap.to(".project-reveal", {
+			scrollTrigger: {
+				trigger: ".project-section",
+				start: 'top 20%',
+				end: '+=200',
+				scrub: true,	
+				once: true,
+			},
+			y: 0,
+			duration: 1,
+			delay: 1,
+			stagger: 5,
+			ease: 'power4.out',
+		});
+		
+	}, []);
+
 	
+
 
 	return (
 		<Section className="project-section">
@@ -125,7 +145,7 @@ const Projects = () => {
 					</TitleClip>
 					<ProjectList>
 						{projects.map((project, index) => {
-							return <ProjectClip><Project className="project-reveal" project={project} key={index} /></ProjectClip>
+							return <ProjectClip><Project project={project} key={index} /></ProjectClip>
 						})}
 					</ProjectList>
 				</ProjectDisplay>
