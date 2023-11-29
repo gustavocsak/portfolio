@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect } from 'react'
 import styled from 'styled-components'
-import Card from './Card'
+import Project from './Project'
+import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
 /**
  * TODO: fix live source URL for projects array
  * TODO: move projects data to a separate js file
@@ -53,6 +56,7 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
 	@media only screen and (max-width: 768px) {
 	   width: 100%;
     }
@@ -62,39 +66,91 @@ const ProjectDisplay = styled.div`
 	margin-top: 5rem;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 7rem;
+	align-items: start;
+	justify-content: start;
+	gap: 4.5rem;
 	
-
-	@media only screen and (max-width: 768px) {
-        flex-direction: column;
-		
-    }
 `
 
 const Title = styled.div`
 	font-size: 50px;
 	font-weight: bold;
-	width: 80%;
+	transform: translateY(115px);
+    transition: transform .5s;
 `
 
-const Main = styled.div`
-	width: 82%;
+const TitleClip = styled.div`
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    line-height: 5rem;
+	
+`
+
+const ProjectList = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 6rem;
+	overflow: hidden;
+`
+
+const ProjectClip = styled.div`
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 `
 
 
 const Projects = () => {
+
+	useLayoutEffect(() => {
+		gsap.to(".title-reveal", {
+			scrollTrigger: {
+				trigger: ".project-section",
+				start: "top 90%",
+				end: "+=200",
+				scrub: true,
+				once: true,
+			},
+			y: 0,
+			duration: 0.5,
+			ease: "power4.out"
+		})
+		
+		/**
+		 * TODO: fix the delay between projects /scroll trigger
+		 */
+		
+		gsap.to(".project-reveal", {
+			scrollTrigger: {
+				trigger: ".project-section",
+				start: 'top 20%',
+				end: '+=200',
+				scrub: true,	
+				once: true,
+			},
+			y: 0,
+			duration: 1,
+			delay: 1,
+			stagger: 5,
+			ease: 'power4.out',
+		});
+		
+	}, []);
+
+	
+
+
 	return (
-		<Section>
+		<Section className="project-section">
 			<Container>
-				<ProjectDisplay>
-					<Title>Projects</Title>
-					{projects.map((project, index) => {
-						return <Card project={project} />
-					})}
+				<ProjectDisplay className="projects">
+					<TitleClip>
+						<Title className="title-reveal">Projects</Title>
+					</TitleClip>
+					<ProjectList>
+						{projects.map((project, index) => {
+							return <ProjectClip><Project project={project} key={index} /></ProjectClip>
+						})}
+					</ProjectList>
 				</ProjectDisplay>
 
 			</Container>

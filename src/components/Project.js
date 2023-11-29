@@ -1,39 +1,28 @@
-import React from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import styled from 'styled-components'
 import tricket from '../img/tricket.jpg'
-import { useRef } from 'react'
 import { BsBootstrap } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
-import { motion, useInView } from 'framer-motion';
+import { gsap } from "gsap";
 
 
 /**
- * TODO: different projects will need different icons
- * think about how to implement that
  * 
  * TODO: make it responsive
  * 
- * TODO: animate
  */
 
 /**
  * Framer variants
  */
-const variants = {
-    main: { scale: 1.2, backgroundColor: 'rgb(193, 51, 255)', transition: { duration: 0.15 } },
-    black: { scale: 1.2, backgroundColor: 'rgb(25, 23, 23)', transition: { duration: 0.15 } }
-
-}
 
 const Wrap = styled.div`
     display: flex;
     flex-direction: row;
-    max-width: 82%;
-    /* border-left: 2px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%); */
+    transform: translateY(400px);
+    transition: transform .5s;
 `
 
 const ImageWrapper = styled.div`
@@ -45,7 +34,7 @@ const Image = styled.img`
     border-radius: 20px;
 `
 
-const Project = styled.div`
+const Info = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,12 +49,11 @@ const Project = styled.div`
 const ProjectTitle = styled.h1`
     font-size: 55px;
     
-    
 `
 
 const OneLiner = styled.div`
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
 `
 
 const Description = styled.div`
@@ -87,25 +75,13 @@ const Link = styled.a`
     color: #fff;
 `
 
-const ProjectMain = styled.div`
-
-`
-
-
-/**
- * TODO: add animation for button hover
- * invert colors black and rgb(193, 51, 255)
- * FIXME: from main color to black currently not working
- */
 const ButtonColored = styled.button`
     width: 100px;
     padding: 10px;
     color: white;
     font-weight: bold;
-    border: none;
+    border: 1px solid rgba( 25, 23, 23, 0.7 );
     border-radius: 5px;
-    
-    background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
     background-color: rgba(193,51,255,1);
     cursor: pointer;
 `
@@ -122,23 +98,7 @@ const Button = styled.button`
     margin-right: 1.5rem;
 `
 
-/**
- * for reference from old card:
- * 
- * const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-
-    return (
-    //   <Wrap ref={ref} as={motion.div} initial={{y: -50, opacity: 0}} animate={{y: 0, opacity:1}} transition={{delay: 0.2}}>
-    <Wrap ref={ref} as={motion.div} style={{
-        transform: isInView ? "none" : "translateY(300px)",
-        opacity: isInView ? 1 : 0,
-        transition: "all 1.2s"
-      }}> 
- * 
- */
-
-const NewCard = ({ project }) => {
+const Project = ({ project }) => {
 
     const translateTechStack = (tech) => {
         switch(tech) {
@@ -150,20 +110,34 @@ const NewCard = ({ project }) => {
         }
     }
 
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
+   
+    
+   
+    const onEnter = ({ currentTarget }) => {
+        const buttonClasses = currentTarget.className.split(" ");
+        gsap.to(currentTarget, {
+            backgroundColor: buttonClasses[2] == "button" ? "rgb(193, 51, 255)" : "rgb(25, 23, 23)",
+            borderColor: "rgb(193, 51, 255)",
+            scale: 1.1,
+            duration: 0.2
+        })
+    }
+    
+    const onLeave = ({ currentTarget }) => {
+        const buttonClasses = currentTarget.className.split(" ");
+        gsap.to(currentTarget, {
+            backgroundColor: buttonClasses[2] == "button" ? "rgb(25, 23, 23)" : "rgb(193, 51, 255)",
+            scale: 1,
+            duration: 0.2,
+        })
+    }  
+   
 
     return (
-        <Wrap ref={ref} >
-            <Project as={motion.div} style={{
-                transform: isInView ? "none" : "translateX(-300px)",
-                opacity: isInView ? 1 : 0,
-                transition: "all 2s"
-            }}>
-                <ProjectMain>
-                    <ProjectTitle>{project.title}</ProjectTitle>
-                    <OneLiner>{project.oneLiner}</OneLiner>
-                </ProjectMain>
+        <Wrap className="project-reveal">
+            <Info>
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <OneLiner>{project.oneLiner}</OneLiner>
                 <Description>{project.description}</Description>
                 <Technologies>
                     <span>Built with: </span>
@@ -172,19 +146,15 @@ const NewCard = ({ project }) => {
                     })}
                 </Technologies>
                 <Links>
-                    <Button as={motion.button} variants={variants} whileHover={"main"}><Link href={project.github} target='_blank'>Github</Link></Button>
-                    <ButtonColored as={motion.button} variants={variants} whileHover={"black"}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
+                    <Button className='button' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.github} target='_blank'>Github</Link></Button>
+                    <ButtonColored className='button-color' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
                 </Links>
-            </Project>
-            <ImageWrapper as={motion.div} style={{
-                transform: isInView ? "none" : "translateX(300px)",
-                opacity: isInView ? 1 : 0,
-                transition: "all 2s"
-            }}>
+            </Info>
+            <ImageWrapper>
                 <Image src={tricket} />
             </ImageWrapper>
         </Wrap>
     )
 }
 
-export default NewCard
+export default Project
