@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import Card from './Card'
+import Project from './Project'
 import { gsap } from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
 /**
  * TODO: fix live source URL for projects array
  * TODO: move projects data to a separate js file
@@ -54,6 +56,7 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
 	@media only screen and (max-width: 768px) {
 	   width: 100%;
     }
@@ -63,15 +66,10 @@ const ProjectDisplay = styled.div`
 	margin-top: 5rem;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 7rem;
+	align-items: start;
+	justify-content: start;
+	gap: 4.5rem;
 	
-
-	@media only screen and (max-width: 768px) {
-        flex-direction: column;
-		
-    }
 `
 
 const Title = styled.div`
@@ -84,24 +82,52 @@ const Title = styled.div`
 const TitleClip = styled.div`
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     line-height: 5rem;
-	width: 80%;
+	
+`
+
+const ProjectList = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 6rem;
+`
+
+const ProjectClip = styled.div`
+	
 `
 
 
 const Projects = () => {
 
-	gsap.to(".reveal", { scrollTrigger: ".projects", y: 0, duration: 0.5, ease: "power4.out" })
+	useEffect(() => {
+		gsap.to(".title-reveal", {
+			scrollTrigger: {
+				trigger: ".project-section",
+				start: "top 90%",
+				end: "+=200",
+				scrub: true,
+			},
+			y: 0,
+			duration: 0.5,
+			ease: "power4.out"
+		})
+		gsap.to(".project-reveal", { scrollTrigger: ".project-reveal", y: 0, duration: 0.5, ease: "power4.out" })
+	  }, []);
+	
 
 	return (
-		<Section>
-			<Container className="projects">
-				<ProjectDisplay>
-					<TitleClip >
-						<Title className="reveal">Projects</Title>
+		<Section className="project-section">
+			<Container>
+				<ProjectDisplay className="projects">
+					<TitleClip>
+						<Title className="title-reveal">Projects</Title>
 					</TitleClip>
-					{projects.map((project, index) => {
-						return <Card project={project} />
-					})}
+					<ProjectList>
+						{projects.map((project, index) => {
+							return <ProjectClip><Project className="project-reveal" project={project} key={index} /></ProjectClip>
+						})}
+					</ProjectList>
 				</ProjectDisplay>
 
 			</Container>
