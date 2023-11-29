@@ -108,6 +108,7 @@ const Social = styled.div`
     transition: transform .5s;
 `
 
+
 const Hero = () => {
     const comp = useRef();
     const nav = useRef();
@@ -116,6 +117,7 @@ const Hero = () => {
         let ctx = gsap.context(() => {
             
             gsap.to(".reveal", { y: 0, duration: 0.5, stagger: 0.5, delay: 0.2, ease: "power4.out" })
+            
             
             gsap.fromTo(nav.current,
                 { opacity: 0, y: 50 },

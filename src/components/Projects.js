@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
+import { gsap } from "gsap";
 
 /**
  * TODO: fix live source URL for projects array
@@ -76,22 +77,28 @@ const ProjectDisplay = styled.div`
 const Title = styled.div`
 	font-size: 50px;
 	font-weight: bold;
-	width: 80%;
+	transform: translateY(115px);
+    transition: transform .5s;
 `
 
-const Main = styled.div`
-	width: 82%;
-	display: flex;
-	flex-direction: column;
+const TitleClip = styled.div`
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    line-height: 5rem;
+	width: 80%;
 `
 
 
 const Projects = () => {
+
+	gsap.to(".reveal", { scrollTrigger: ".projects", y: 0, duration: 0.5, ease: "power4.out" })
+
 	return (
 		<Section>
-			<Container>
+			<Container className="projects">
 				<ProjectDisplay>
-					<Title>Projects</Title>
+					<TitleClip >
+						<Title className="reveal">Projects</Title>
+					</TitleClip>
 					{projects.map((project, index) => {
 						return <Card project={project} />
 					})}

@@ -59,13 +59,16 @@ const Project = styled.div`
 
 const ProjectTitle = styled.h1`
     font-size: 55px;
-    
+    transform: translateY(115px);
+    transition: transform .5s;
     
 `
 
 const OneLiner = styled.div`
     font-weight: bold;
     font-size: 16px;
+    transform: translateY(115px);
+    transition: transform .5s;
 `
 
 const Description = styled.div`
@@ -87,8 +90,13 @@ const Link = styled.a`
     color: #fff;
 `
 
-const ProjectMain = styled.div`
+const MainClip = styled.div`
+    
+`
 
+const ProjectMain = styled.div`
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    line-height: 3rem;
 `
 
 
@@ -135,6 +143,11 @@ const Button = styled.button`
         opacity: isInView ? 1 : 0,
         transition: "all 1.2s"
       }}> 
+
+      as={motion.div} style={{
+                transform: isInView ? "none" : "translateX(-300px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 2s"
  * 
  */
 
@@ -152,7 +165,9 @@ const NewCard = ({ project }) => {
 
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
-
+   
+    gsap.to(".reveal", { scrollTrigger: ".projects", y: 0, duration: 0.5, ease: "power4.out" })
+   
     const onEnter = ({ currentTarget }) => {
         const buttonClasses = currentTarget.className.split(" ");
         gsap.to(currentTarget, {
@@ -168,22 +183,20 @@ const NewCard = ({ project }) => {
         gsap.to(currentTarget, {
             backgroundColor: buttonClasses[2] == "button" ? "rgb(25, 23, 23)" : "rgb(193, 51, 255)",
             scale: 1,
-            duration: 0.2
+            duration: 0.2,
         })
     }  
    
 
     return (
         <Wrap ref={ref} >
-            <Project as={motion.div} style={{
-                transform: isInView ? "none" : "translateX(-300px)",
-                opacity: isInView ? 1 : 0,
-                transition: "all 2s"
-            }}>
-                <ProjectMain>
-                    <ProjectTitle>{project.title}</ProjectTitle>
-                    <OneLiner>{project.oneLiner}</OneLiner>
-                </ProjectMain>
+            <Project>
+                
+                    <ProjectMain>
+                        <ProjectTitle className="reveal">{project.title}</ProjectTitle>
+                        <OneLiner className="reveal">{project.oneLiner}</OneLiner>
+                    </ProjectMain>
+                
                 <Description>{project.description}</Description>
                 <Technologies>
                     <span>Built with: </span>
