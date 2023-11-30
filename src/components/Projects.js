@@ -115,24 +115,23 @@ const Projects = () => {
 			ease: "power4.out"
 		})
 		
-		/**
-		 * TODO: fix the delay between projects /scroll trigger
-		 */
 		
-		gsap.to(".project-reveal", {
-			scrollTrigger: {
-				trigger: ".project-section",
-				start: 'top 20%',
-				end: '+=200',
-				scrub: true,	
-				once: true,
-			},
-			y: 0,
-			duration: 1,
-			delay: 1,
-			stagger: 5,
-			ease: 'power4.out',
-		});
+		
+		let projectClips = gsap.utils.toArray(".animate-each")
+		projectClips.forEach((clip) => {
+			let eachProject = clip.querySelectorAll(".project-reveal")
+			gsap.to(eachProject, {
+				y: 0,
+				duration: 1,
+				scrollTrigger: {
+					trigger: clip, 
+					markers: true,
+					start: "top 90%"
+				}
+			})
+		})
+		
+		// ScrollTrigger.addEventListener("refreshInit", () => gsap.set(".project-reveal", {y: 0}));
 		
 	}, []);
 
@@ -148,7 +147,7 @@ const Projects = () => {
 					</TitleClip>
 					<ProjectList>
 						{projects.map((project, index) => {
-							return <ProjectClip><Project project={project} key={index} /></ProjectClip>
+							return <ProjectClip className='animate-each'><Project  project={project} key={index} /></ProjectClip>
 						})}
 					</ProjectList>
 				</ProjectDisplay>
