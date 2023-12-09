@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import tricket from '../img/tricket.jpg'
 import { BsBootstrap } from "react-icons/bs";
@@ -14,15 +14,15 @@ import { gsap } from "gsap";
  * 
  */
 
-/**
- * Framer variants
- */
 
 const Wrap = styled.div`
     display: flex;
     flex-direction: row;
     transform: translateY(400px);
     transition: transform .5s;
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
 `
 
 const ImageWrapper = styled.div`
@@ -110,9 +110,6 @@ const Project = ({ project }) => {
         }
     }
 
-   
-    
-   
     const onEnter = ({ currentTarget }) => {
         const buttonClasses = currentTarget.className.split(" ");
         gsap.to(currentTarget, {
