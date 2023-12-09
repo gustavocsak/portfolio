@@ -116,22 +116,19 @@ const Projects = () => {
 		})
 		
 		
-		
-		let projectClips = gsap.utils.toArray(".animate-each")
+		let projectClips = gsap.utils.toArray(".clip")
 		projectClips.forEach((clip) => {
 			let eachProject = clip.querySelectorAll(".project-reveal")
 			gsap.to(eachProject, {
 				y: 0,
-				duration: 1,
+				duration: 0.6,
 				scrollTrigger: {
 					trigger: clip, 
-					markers: true,
 					start: "top 90%"
 				}
 			})
 		})
-		
-		// ScrollTrigger.addEventListener("refreshInit", () => gsap.set(".project-reveal", {y: 0}));
+
 		
 	}, []);
 
@@ -147,7 +144,7 @@ const Projects = () => {
 					</TitleClip>
 					<ProjectList>
 						{projects.map((project, index) => {
-							return <ProjectClip className='animate-each'><Project  project={project} key={index} /></ProjectClip>
+							return <ProjectClip className='clip'><Project  project={project} key={index} /></ProjectClip>
 						})}
 					</ProjectList>
 				</ProjectDisplay>
