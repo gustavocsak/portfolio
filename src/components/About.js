@@ -1,16 +1,8 @@
 import React, { useLayoutEffect} from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-
-gsap.registerPlugin(ScrollTrigger);
-
-/**
- * TODO: animate
- */
+import { color } from '../utils/constants';
 
 
 const Section = styled.div`
@@ -60,7 +52,7 @@ const Sentence = styled.div.attrs({ className: 'sentence'})`
 `
 
 const Highlight = styled.span`
-    color: #C133FF;
+    color: ${color.primaryPurple};
     font-size: 26px;
     font-weight: bold;
     
@@ -68,7 +60,7 @@ const Highlight = styled.span`
 
 const HighlightAnchor = styled.a`
     text-decoration: none;
-    color: #C133FF;
+    color: ${color.primaryPurple};
     text-decoration: underline;
     font-weight: bold;
 `
@@ -80,6 +72,8 @@ const SentenceClip = styled.div`
 const About = () => {
 
     useLayoutEffect(() => {
+
+        gsap.registerPlugin(ScrollTrigger);
 				
 		let sentenceClips = gsap.utils.toArray(".clip")
 		sentenceClips.forEach((clip) => {
