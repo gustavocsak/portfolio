@@ -50,7 +50,7 @@ const ContactHeader = styled.div`
 `
 
 const Title = styled(motion.div)`
-    font-size: 70px;
+    font-size: 62px;
 `
 
 const FormTitle = styled.div`
@@ -117,15 +117,13 @@ const ContactForm = styled.div`
 
 `
 
-const Form3D = styled.div`
-	display: flex;
-	flex: 3;
-	margin-top: 2rem;
-	height: 18rem;
-	@media only screen and (max-width: 768px) {
-        display: none;
-    }
-`
+// const Title = styled.div`
+// 	font-size: 62px;
+// 	font-weight: bold;
+// 	transform: translateY(115px);
+//     transition: transform .5s;
+// `
+
 
 const InputLabel = styled.label`
 	margin-bottom: 3px;
@@ -137,16 +135,7 @@ const Contact = () => {
 		<Section>
 			<Container>
 				<ContactHeader>
-					<Title as={motion.h1} initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true }}
-						transition={{ duration: 0.8 }}
-						variants={{
-							visible: { opacity: 1, y: 0 },
-							hidden: { opacity: 0, y: -50 }
-						}} ><span style={{}}>Contact  </span>{titleLetter.map((letter, index) => {
-							return <LetterAnimate key={index} letter={letter} />
-						})}!</Title>
+					<Title>Contact Me</Title>
 				</ContactHeader>
 				<ContactForm>
 					<form>
@@ -174,9 +163,7 @@ const Contact = () => {
 								<MessageInput type="email" id="email"/>
 							</FormGroup>
 						</FormLine>
-						{/* <Form3D>
-							<Cube color="rgb(250, 249, 246)" fov={15} position={[5,5,5]}/>
-						</Form3D> */}
+						
 						
 					</form>
 				</ContactForm>

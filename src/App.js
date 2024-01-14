@@ -33,9 +33,8 @@ const App = () => {
         <Container>
             <Hero />
             <Projects />
-            {/* <Contact /> */}
             <About />
- 
+            <Contact />
         </Container>
       );
     

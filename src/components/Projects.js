@@ -1,10 +1,8 @@
-import React, { useEffect, useLayoutEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import Project from './Project'
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 /**
  * TODO: fix live source URL for projects array
  * TODO: move projects data to a separate js file
@@ -103,6 +101,7 @@ const ProjectClip = styled.div`
 const Projects = () => {
 
 	useLayoutEffect(() => {
+		gsap.registerPlugin(ScrollTrigger);
 		gsap.to(".title-reveal", {
 			scrollTrigger: {
 				trigger: ".project-section",
@@ -117,7 +116,7 @@ const Projects = () => {
 		})
 		
 		
-		let projectClips = gsap.utils.toArray(".clip")
+		let projectClips = gsap.utils.toArray(".project-clip")
 		projectClips.forEach((clip) => {
 			let eachProject = clip.querySelectorAll(".project-reveal")
 			gsap.to(eachProject, {
@@ -145,7 +144,7 @@ const Projects = () => {
 					</TitleClip>
 					<ProjectList>
 						{projects.map((project, index) => {
-							return <ProjectClip className='clip'><Project  project={project} key={index} /></ProjectClip>
+							return <ProjectClip className='project-clip'><Project  project={project} key={index} /></ProjectClip>
 						})}
 					</ProjectList>
 				</ProjectDisplay>

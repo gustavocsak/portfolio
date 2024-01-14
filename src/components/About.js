@@ -1,4 +1,4 @@
-import React, { useLayoutEffect} from 'react'
+import React, { useLayoutEffect, useEffect } from 'react'
 import styled from 'styled-components'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,6 +11,7 @@ const Section = styled.div`
     align-items: center;
     justify-content: space-between;
 	padding: 5rem;
+    margin-top: 5rem;
     @media only screen and (max-width: 768px) {
 		height: fit-content;
 		min-height: 100%;
@@ -25,7 +26,7 @@ const Container = styled.div`
     width: 1400px;
     display: flex;
     flex-direction: row;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 	@media only screen and (max-width: 768px) {
 	   width: 100%;
@@ -40,8 +41,18 @@ const Main = styled.div`
     gap: 2rem;
 `
 
-const Title = styled.h1`
-    font-size: 40px;
+const Title = styled.div`
+	font-size: 62px;
+	font-weight: bold;
+	transform: translateY(115px);
+    transition: transform .5s;
+    line-height: 5rem;
+`
+//transition: transform .5s;
+const TitleClip = styled.div`
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    
+	
 `
 
 const Sentence = styled.div.attrs({ className: 'sentence'})`
@@ -69,26 +80,24 @@ const SentenceClip = styled.div`
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 `
 
+gsap.registerPlugin(ScrollTrigger);
+
 const About = () => {
 
     useLayoutEffect(() => {
 
-        gsap.registerPlugin(ScrollTrigger);
-				
-		let sentenceClips = gsap.utils.toArray(".clip")
-		sentenceClips.forEach((clip) => {
-			let eachSentence = clip.querySelectorAll(".sentence")
-			gsap.to(eachSentence, {
-				y: 0,
-                stagger: 0.5,
-				duration: 0.5,
-				scrollTrigger: {
-					trigger: clip, 
-					start: "top 80%",
-                    markers: true
-				}
-			})
-		})
+        gsap.to(".sentence", {
+            y: 0,
+            duration: 0.5,
+            stagger: 0.6,
+            scrollTrigger: {
+                trigger: ".title-start", 
+                start: "top 65%",
+                once: true,
+                markers: true,
+                
+            }
+        })
 
 		
 	}, []);
@@ -97,19 +106,22 @@ const About = () => {
         <Section>
             <Container>
                 <Main>
-                    <Title>About Me</Title>
-                    <SentenceClip className='clip'>
+                    <TitleClip className='title-start'>
+                        <Title className='sentence'>About Me</Title>
+                    </TitleClip>
+                    
+                    <SentenceClip>
                         <Sentence>
                             Currently working as a <Highlight>Computer Lab Assistant at Langara College</Highlight>, where I graduated with
                             a <Highlight>Diploma in Computer Studies</Highlight> and a <Highlight>citation in Full Stack Web Development</Highlight>.
                         </Sentence>
                     </SentenceClip>
-                    <SentenceClip className='clip'>
+                    <SentenceClip>
                         <Sentence>
                             Pursuing a bachelor's degree in <Highlight>Computer Science</Highlight> at Estácio University.
                         </Sentence>
                     </SentenceClip>
-                    <SentenceClip className='clip'>
+                    <SentenceClip>
                         <Sentence>
                             Aside from coding, I really enjoy <Highlight>exploring new musical instruments </Highlight> —
                             I'm currently learning how to play the <HighlightAnchor href="https://en.wikipedia.org/wiki/Cavaquinho" target="_blank">cavaquinho</HighlightAnchor> —
