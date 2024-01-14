@@ -1,17 +1,15 @@
 import React, { useLayoutEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Navbar from './Navbar'
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
+import { BsGithub } from 'react-icons/bs';
 import { AiOutlineLinkedin } from "react-icons/ai";
 import LetterAnimate from '../utils/LetterAnimate';
 import Grid from './Grid';
 import { gsap } from 'gsap';
-
-const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']
-// reference: rgb(193, 51, 255)
+import { color, titleLetter } from '../utils/constants';
 
 /**
- * TODO: padronize colors please
+ * TODO: padronize sizes
  */
 
 const Section = styled.div`
@@ -87,8 +85,8 @@ const SubtitleClip = styled.div`
 `
 
 const Subtitle = styled.div`
-    background-color: #C133FF;
-    color: white;
+    background-color: ${color.primaryPurple};
+    color: ${color.primaryWhite};
     border-radius: 5px;
     font-size: 1.8rem;
     font-weight: bold;
@@ -116,7 +114,7 @@ const SocialIconContainer = styled.div`
     height: 55px;
     width: 55px;
     border-radius: 50%;
-    border: 2px solid rgb(193, 51, 255); 
+    border: 2px solid ${color.primaryPurple}; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,18 +125,6 @@ const SocialIconContainer = styled.div`
 
 `
 
-const SocialIconContainerv2 = styled.div`
-    height: 55px;
-    width: 55px;
-    border-radius: 50%;
-    background-color: #1e1e1e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    
-`
-
 
 const Hero = () => {
     const comp = useRef();
@@ -146,10 +132,10 @@ const Hero = () => {
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
-            
+
             gsap.to(".reveal", { y: 0, duration: 0.5, stagger: 0.2, delay: 0.2, ease: "power4.out" })
-            
-            
+
+
             gsap.fromTo(nav.current,
                 { opacity: 0, y: 50 },
                 { opacity: 1, y: 0, duration: 1, delay: 1.5, ease: "power4.out" }
@@ -160,33 +146,33 @@ const Hero = () => {
 
     const onEnter = ({ currentTarget }) => {
         gsap.to(currentTarget, {
-            backgroundColor: "rgb(193, 51, 255)",
-            duration: 0.2,
+            backgroundColor: color.primaryPurple,
+            duration: 0.35,
             ease: 'power4.out',
         })
         const icon = currentTarget.querySelector('.icon');
         gsap.to(icon, {
-            color: '#F8F8FF',
-            duration: 0.2,
+            color: color.primaryWhite,
+            duration: 0.35,
             ease: 'power4.out',
-            backgroundColor: "rgb(193, 51, 255)"
+            backgroundColor: color.primaryPurple
         })
     }
-    
+
     const onLeave = ({ currentTarget }) => {
         gsap.to(currentTarget, {
-            backgroundColor: "rgb(25, 23, 23)",
-            duration: 0.2,
+            backgroundColor: color.primaryBlack,
+            duration: 0.35,
             ease: 'power4.out',
         })
         const icon = currentTarget.querySelector('.icon');
         gsap.to(icon, {
-            color: "rgb(193, 51, 255)",
-            duration: 0.2,
+            color: color.primaryPurple,
+            duration: 0.35,
             ease: 'power4.out',
-            backgroundColor: "rgb(25, 23, 23)"
+            backgroundColor: color.primaryBlack
         })
-    }  
+    }
 
 
     return (
@@ -197,7 +183,7 @@ const Hero = () => {
                     <Title>
                         <Header className="reveal">
                             <span>Hi, I'm  </span>
-                            
+
                             {titleLetter.map((letter, index) => {
                                 return <LetterAnimate key={index} letter={letter} />
                             })}!
@@ -209,10 +195,10 @@ const Hero = () => {
                     <SocialClip>
                         <Social className="reveal">
                             <SocialIconContainer onMouseEnter={onEnter} onMouseLeave={onLeave}>
-                                <BsGithub size="28px" color='rgb(193, 51, 255)' className='icon' />
+                                <BsGithub size="28px" color={color.primaryPurple} className='icon' />
                             </SocialIconContainer>
                             <SocialIconContainer onMouseEnter={onEnter} onMouseLeave={onLeave}>
-                                <AiOutlineLinkedin size="28px" color='rgb(193, 51, 255)' className='icon'/>
+                                <AiOutlineLinkedin size="28px" color={color.primaryPurple} className='icon' />
                             </SocialIconContainer>
                         </Social>
                     </SocialClip>

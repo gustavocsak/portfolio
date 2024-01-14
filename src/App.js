@@ -16,7 +16,7 @@ const Container = styled.div`
         display: none;
     }
     color: white;
-    background-color: #121212;
+    background-color: rgb(18, 18, 18);
     
     @media only screen and (max-width: 1024px) {
         scroll-snap-type: none;

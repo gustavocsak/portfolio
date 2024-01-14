@@ -6,6 +6,7 @@ import { FaReact } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import { gsap } from "gsap";
+import { color } from "../utils/constants"
 
 
 /**
@@ -20,8 +21,8 @@ const Wrap = styled.div`
     flex-direction: row;
     transform: translateY(400px);
     transition: transform .5s;
-    background-color: #1e1e1e;
-    padding: 1rem;
+    background-color: ${color.primaryBlack};
+    padding: 0.2rem;
     border-radius: 10px;
 `
 
@@ -43,7 +44,7 @@ const Info = styled.div`
     padding-right: 3rem;
     border-left: 2px solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
+    border-image-source: linear-gradient(90deg, ${color.gradientPurple} 0%, ${color.primaryPurple} 100%);
 `
 
 const ProjectTitle = styled.h1`
@@ -80,9 +81,9 @@ const ButtonColored = styled.button`
     padding: 10px;
     color: white;
     font-weight: bold;
-    border: 1px solid rgba( 25, 23, 23, 0.7 );
+    border: 1px solid ${color.primaryBlackAlpha};
     border-radius: 5px;
-    background-color: rgba(193,51,255,1);
+    background-color: ${color.primaryPurple};
     cursor: pointer;
 `
 
@@ -91,9 +92,9 @@ const Button = styled.button`
     padding: 10px;
     color: white;
     font-weight: bold;
-    border: 1px solid rgb(193, 51, 255);
+    border: 1px solid ${color.primaryPurple};
     border-radius: 5px;
-    background: rgba( 25, 23, 23, 0.7 );   
+    background: ${color.primaryBlackAlpha};   
     cursor: pointer;
     margin-right: 1.5rem;
 `
@@ -102,19 +103,19 @@ const Project = ({ project }) => {
 
     const translateTechStack = (tech) => {
         switch(tech) {
-            case "react": return <FaReact color='rgb(193, 51, 255)' size={"25px"} />;
-            case "mongodb": return <SiMongodb color='rgb(193, 51, 255)' size={"25px"} aria-label="MongoDB" />;
-            case "express": return <SiExpress color='rgb(193, 51, 255)' size={"25px"} />;
-            case "bootstrap": return <BsBootstrap color='rgb(193, 51, 255)' size={"25px"} />;
-            case "javascript": return <IoLogoJavascript color='rgb(193, 51, 255)' size={"25px"} />;
+            case "react": return <FaReact color={color.primaryPurple} size={"25px"} />;
+            case "mongodb": return <SiMongodb color={color.primaryPurple} size={"25px"} aria-label="MongoDB" />;
+            case "express": return <SiExpress color={color.primaryPurple} size={"25px"} />;
+            case "bootstrap": return <BsBootstrap color={color.primaryPurple} size={"25px"} />;
+            case "javascript": return <IoLogoJavascript color={color.primaryPurple} size={"25px"} />;
         }
     }
 
     const onEnter = ({ currentTarget }) => {
         const buttonClasses = currentTarget.className.split(" ");
         gsap.to(currentTarget, {
-            backgroundColor: buttonClasses[2] == "button" ? "rgb(193, 51, 255)" : "rgb(25, 23, 23)",
-            borderColor: "rgb(193, 51, 255)",
+            backgroundColor: buttonClasses[2] == "button" ? color.primaryPurple : color.primaryBlack,
+            borderColor: color.primaryPurple,
             scale: 1.1,
             duration: 0.2
         })
@@ -123,7 +124,7 @@ const Project = ({ project }) => {
     const onLeave = ({ currentTarget }) => {
         const buttonClasses = currentTarget.className.split(" ");
         gsap.to(currentTarget, {
-            backgroundColor: buttonClasses[2] == "button" ? "rgb(25, 23, 23)" : "rgb(193, 51, 255)",
+            backgroundColor: buttonClasses[2] == "button" ? color.primaryBlack : color.primaryPurple,
             scale: 1,
             duration: 0.2,
         })

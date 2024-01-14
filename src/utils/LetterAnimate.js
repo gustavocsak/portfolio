@@ -1,13 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import styled from "styled-components";
+import { color } from "./constants"
+
+/**
+ * TODO: change animation to gsap
+ */
 
 const LetterAnimate = ({ letter, time }) => {
   return (
     <motion.span
       
       animate={{
-        color: ["rgb(255,255,255)", "rgb(193, 51, 255)", "rgb(255,255,255)"],
+        color: [color.primaryWhite, color.primaryPurple, color.primaryWhite],
         transition: {
             repeat: Infinity,
             duration: 3
@@ -15,7 +19,7 @@ const LetterAnimate = ({ letter, time }) => {
       }}
       
       whileHover={{
-        color: "rgb(193, 51, 255)",
+        color: color.primaryPurple,
         transition: {
             
             duration: 0.1
