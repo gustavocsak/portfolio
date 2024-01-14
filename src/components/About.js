@@ -1,8 +1,12 @@
-import React, { useRef } from 'react'
+import React, { useLayoutEffect} from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
+import { gsap } from 'gsap/gsap-core'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * TODO: animate
@@ -48,9 +52,11 @@ const Title = styled.h1`
     font-size: 40px;
 `
 
-const Sentence = styled.div`
+const Sentence = styled.div.attrs({ className: 'sentence'})`
     font-size: 26px;
     line-height: 2.2rem;
+    transform: translateY(400px);
+    transition: transform .5s;
 `
 
 const Highlight = styled.span`
@@ -66,63 +72,58 @@ const HighlightAnchor = styled.a`
     text-decoration: underline;
     font-weight: bold;
 `
-/**
- * 
- * <ImageWrapper as={motion.div} style={{
-                transform: isInView ? "none" : "translateX(300px)",
-                opacity: isInView ? 1 : 0,
-                transition: "all 2s"
-            }}>
- */
+
+const SentenceClip = styled.div`
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+`
 
 const About = () => {
-    const fadeInVariants = {
-        hidden: { opacity: 0, x: -300 },
-        visible: { opacity: 1, x: 0 },
-    };
 
-    const staggerTransition = {
-        delay: 0.5, // Adjust the delay to your preference
-        duration: 1,
-    };
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
+    useLayoutEffect(() => {
+				
+		let sentenceClips = gsap.utils.toArray(".clip")
+		sentenceClips.forEach((clip) => {
+			let eachSentence = clip.querySelectorAll(".sentence")
+			gsap.to(eachSentence, {
+				y: 0,
+                stagger: 0.5,
+				duration: 0.5,
+				scrollTrigger: {
+					trigger: clip, 
+					start: "top 80%",
+                    markers: true
+				}
+			})
+		})
+
+		
+	}, []);
+
     return (
         <Section>
             <Container>
-                <Main ref={ref}>
+                <Main>
                     <Title>About Me</Title>
-                    <Sentence
-                        as={motion.div}
-                        variants={fadeInVariants}
-                        initial="hidden"
-                        animate={isInView ? "visible" : "hidden"}
-                        transition={{delay: 0.5, duration: 1}}
-                    >
-                        Currently working as a <Highlight>Computer Lab Assistant at Langara College</Highlight>, where I graduated with
-                        a <Highlight>Diploma in Computer Studies</Highlight> and a <Highlight>citation in Full Stack Web Development</Highlight>.
-                    </Sentence>
-                    <Sentence 
-                        as={motion.div}
-                        variants={fadeInVariants}
-                        initial="hidden"
-                        animate={isInView ? "visible" : "hidden"}
-                        transition={{delay: 1, duration: 1}}
-                    >
-                        Pursuing a bachelor's degree in <Highlight>Computer Science</Highlight> at Estácio University.
-                    </Sentence>
-                    <Sentence 
-                        as={motion.div}
-                        variants={fadeInVariants}
-                        initial="hidden"
-                        animate={isInView ? "visible" : "hidden"}
-                        transition={{delay: 1.5, duration: 1}}
-                    >
-                        Aside from coding, I really enjoy <Highlight>exploring new musical instruments </Highlight> —
-                        I'm currently learning how to play the <HighlightAnchor href="https://en.wikipedia.org/wiki/Cavaquinho" target="_blank">cavaquinho</HighlightAnchor> —
-                        watching and playing <Highlight>soccer</Highlight> and <Highlight>gaming with friends</Highlight>.
-                    </Sentence>
-                </Main></Container>
+                    <SentenceClip className='clip'>
+                        <Sentence>
+                            Currently working as a <Highlight>Computer Lab Assistant at Langara College</Highlight>, where I graduated with
+                            a <Highlight>Diploma in Computer Studies</Highlight> and a <Highlight>citation in Full Stack Web Development</Highlight>.
+                        </Sentence>
+                    </SentenceClip>
+                    <SentenceClip className='clip'>
+                        <Sentence>
+                            Pursuing a bachelor's degree in <Highlight>Computer Science</Highlight> at Estácio University.
+                        </Sentence>
+                    </SentenceClip>
+                    <SentenceClip className='clip'>
+                        <Sentence>
+                            Aside from coding, I really enjoy <Highlight>exploring new musical instruments </Highlight> —
+                            I'm currently learning how to play the <HighlightAnchor href="https://en.wikipedia.org/wiki/Cavaquinho" target="_blank">cavaquinho</HighlightAnchor> —
+                            watching and playing <Highlight>soccer</Highlight> and <Highlight>gaming with friends</Highlight>.
+                        </Sentence>
+                    </SentenceClip>
+                </Main>
+            </Container>
         </Section>
     )
 }

@@ -23,9 +23,9 @@ const projects = [
 	},
 	{
 		title: "cornerBet",
-		oneLiner: "Automated bot for scrapping socccer matches and making predictions.",
+		oneLiner: "Automated bot for scrapping socccer matches.",
 		description: `Automated scrapper for soccer matches statistics and make predictions for possible end time corners.
-					Built using javascript and powered by cheerio, a library for parsing and manipulating HTML and XML`,
+					Built using javascript and powered by cheerio, a library for parsing and manipulating HTML and XML.`,
 		techStack: ["javascript", "mongodb"],
 		liveSource: "cornerbet",
 		github: "https://github.com/gustavocsak/cornerbet",
@@ -65,6 +65,7 @@ const Container = styled.div`
 const ProjectDisplay = styled.div`
 	margin-top: 5rem;
 	display: flex;
+	width: 82%;
 	flex-direction: column;
 	align-items: start;
 	justify-content: start;
@@ -73,7 +74,7 @@ const ProjectDisplay = styled.div`
 `
 
 const Title = styled.div`
-	font-size: 50px;
+	font-size: 62px;
 	font-weight: bold;
 	transform: translateY(115px);
     transition: transform .5s;
@@ -115,24 +116,20 @@ const Projects = () => {
 			ease: "power4.out"
 		})
 		
-		/**
-		 * TODO: fix the delay between projects /scroll trigger
-		 */
 		
-		gsap.to(".project-reveal", {
-			scrollTrigger: {
-				trigger: ".project-section",
-				start: 'top 20%',
-				end: '+=200',
-				scrub: true,	
-				once: true,
-			},
-			y: 0,
-			duration: 1,
-			delay: 1,
-			stagger: 5,
-			ease: 'power4.out',
-		});
+		let projectClips = gsap.utils.toArray(".clip")
+		projectClips.forEach((clip) => {
+			let eachProject = clip.querySelectorAll(".project-reveal")
+			gsap.to(eachProject, {
+				y: 0,
+				duration: 0.6,
+				scrollTrigger: {
+					trigger: clip, 
+					start: "top 90%"
+				}
+			})
+		})
+
 		
 	}, []);
 
@@ -148,7 +145,7 @@ const Projects = () => {
 					</TitleClip>
 					<ProjectList>
 						{projects.map((project, index) => {
-							return <ProjectClip><Project project={project} key={index} /></ProjectClip>
+							return <ProjectClip className='clip'><Project  project={project} key={index} /></ProjectClip>
 						})}
 					</ProjectList>
 				</ProjectDisplay>
