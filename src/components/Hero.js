@@ -147,12 +147,12 @@ const Hero = () => {
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             
-            gsap.to(".reveal", { y: 0, duration: 0.5, stagger: 0.5, delay: 0.2, ease: "power4.out" })
+            gsap.to(".reveal", { y: 0, duration: 0.5, stagger: 0.2, delay: 0.2, ease: "power4.out" })
             
             
             gsap.fromTo(nav.current,
                 { opacity: 0, y: 50 },
-                { opacity: 1, y: 0, duration: 1, delay: 2.5, ease: "power4.out" }
+                { opacity: 1, y: 0, duration: 1, delay: 1.5, ease: "power4.out" }
             )
         }, comp)
         return () => ctx.revert();
@@ -162,11 +162,13 @@ const Hero = () => {
         gsap.to(currentTarget, {
             backgroundColor: "rgb(193, 51, 255)",
             duration: 0.2,
+            ease: 'power4.out',
         })
         const icon = currentTarget.querySelector('.icon');
         gsap.to(icon, {
             color: '#F8F8FF',
             duration: 0.2,
+            ease: 'power4.out',
             backgroundColor: "rgb(193, 51, 255)"
         })
     }
@@ -175,11 +177,13 @@ const Hero = () => {
         gsap.to(currentTarget, {
             backgroundColor: "rgb(25, 23, 23)",
             duration: 0.2,
+            ease: 'power4.out',
         })
         const icon = currentTarget.querySelector('.icon');
         gsap.to(icon, {
             color: "rgb(193, 51, 255)",
             duration: 0.2,
+            ease: 'power4.out',
             backgroundColor: "rgb(25, 23, 23)"
         })
     }  
@@ -193,6 +197,7 @@ const Hero = () => {
                     <Title>
                         <Header className="reveal">
                             <span>Hi, I'm  </span>
+                            
                             {titleLetter.map((letter, index) => {
                                 return <LetterAnimate key={index} letter={letter} />
                             })}!
