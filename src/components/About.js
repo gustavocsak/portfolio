@@ -11,7 +11,7 @@ const Section = styled.div`
     align-items: center;
     justify-content: space-between;
 	padding: 5rem;
-    margin-top: 5rem;
+    margin-top: 2rem;
     @media only screen and (max-width: 768px) {
 		height: fit-content;
 		min-height: 100%;
@@ -22,7 +22,7 @@ const Section = styled.div`
 `
 
 const Container = styled.div`
-    height: 100vh;
+    height: 55vh;
     width: 1400px;
     display: flex;
     flex-direction: row;
@@ -80,6 +80,13 @@ const SentenceClip = styled.div`
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 `
 
+const Underline = styled.span`
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: white;
+`
+
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
@@ -108,6 +115,7 @@ const About = () => {
                 <Main>
                     <TitleClip className='title-start'>
                         <Title className='sentence'>About Me</Title>
+                        <Underline></Underline>
                     </TitleClip>
                     
                     <SentenceClip>
