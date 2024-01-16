@@ -9,8 +9,7 @@ const Section = styled.div`
     align-items: center;
     justify-content: space-between;
 	padding: 5rem;
-	background-color: ${color.primaryPurple};
-	clip-path: polygon(0 35%,100% 0,100% 100%,0 100%);
+	height: fit-content;
     @media only screen and (max-width: 768px) {
 		height: fit-content;
 		min-height: 100%;
@@ -24,8 +23,7 @@ const Container = styled.div`
     height: 50vh;
     width: 1400px;
     display: flex;
-    flex-direction: row;
-	
+    align-items: flex-start;	
 	justify-content: center;
 	
 	@media only screen and (max-width: 768px) {
@@ -35,10 +33,12 @@ const Container = styled.div`
 
 const Wrap = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
-	align-items: center;
-	gap: 1rem;
+	align-items: flex-start;
+	height: 100%;
+	width: 82%;
+	gap: 2rem;
 `
 
 const Title = styled.div`
@@ -47,11 +47,36 @@ const Title = styled.div`
     line-height: 5rem;
 `
 
+const Left = styled.div`
+	border: 2px solid ${color.primaryPurple};
+	border-radius: 1rem;
+	background-color: ${color.primaryBlack};
+	padding: 1rem;
+	flex-grow: 1;
+	
+	height: 100%;
+`
+
+const Subtitle = styled.div`
+
+`
+
+const Right = styled.div`
+	background: linear-gradient(90deg, ${color.gradientPurple} 0%, ${color.primaryPurple} 100%);
+	padding: 1rem;
+	height: 100%;
+	flex-grow: 2;
+`
+
 const EmailBox = styled.div`
+	display: flex;
 	background-color: ${color.primaryBlack};
 	border: 2px solid ${color.primaryWhite};
     border-radius: 0.5rem;
 	padding: 1rem;
+`
+
+const EmailAddress = styled.div`
 `
 
 
@@ -61,9 +86,20 @@ const Contact = () => {
 		<Section>
 			<Container>
 				<Wrap>
-					<Title>Contact Me</Title>
+					<Left>
+						<Title>Contact Me</Title>
+						<Subtitle>
+							Feel free to reach out if you have any questions, want to discuss a potential project,
+							or simply share ideas or suggestions — Open for opportunities and ready to discuss
+							your unique web development needs.
+						</Subtitle>
+					</Left>
+					<Right>
+						FORM
+					</Right>
 					
-					<EmailBox>gustavocsak@gmail.com</EmailBox>
+					
+					
 				</Wrap>
 			</Container>
 		</Section>
