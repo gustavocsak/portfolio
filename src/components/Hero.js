@@ -138,7 +138,7 @@ const Hero = () => {
 
             gsap.fromTo(nav.current,
                 { opacity: 0, y: 50 },
-                { opacity: 1, y: 0, duration: 1, delay: 1.5, ease: "power4.out" }
+                { opacity: 1, y: 0, duration: 0.5, delay: 1.5, ease: "power4.out" }
             )
         }, comp)
         return () => ctx.revert();

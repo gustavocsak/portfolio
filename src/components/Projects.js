@@ -121,7 +121,7 @@ const Projects = () => {
 			let eachProject = clip.querySelectorAll(".project-reveal")
 			gsap.to(eachProject, {
 				y: 0,
-				duration: 0.6,
+				duration: 0.5,
 				scrollTrigger: {
 					trigger: clip, 
 					start: "top 90%"

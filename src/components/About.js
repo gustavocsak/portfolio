@@ -96,7 +96,7 @@ const About = () => {
         gsap.to(".sentence", {
             y: 0,
             duration: 0.5,
-            stagger: 0.6,
+            stagger: 0.3,
             scrollTrigger: {
                 trigger: ".title-start", 
                 start: "top 65%",
