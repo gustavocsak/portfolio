@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react'
 
 /**
  * TODO: implement captcha?
+ * TODO: animate
  */
 
 const Section = styled.div`

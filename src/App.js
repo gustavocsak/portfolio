@@ -4,6 +4,7 @@ import Contact from "./components/Contact.js";
 import styled from "styled-components";
 import Test from "./components/Cube.js";
 import About from "./components/About.js";
+import Footer from "./components/Footer.js";
 
 
 const Container = styled.div`
@@ -35,6 +36,7 @@ const App = () => {
             <Projects />
             <About />
             <Contact />
+            <Footer />
         </Container>
       );
     
