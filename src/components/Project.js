@@ -12,7 +12,8 @@ import { color } from "../utils/constants"
 /**
  * 
  * TODO: make it responsive
- * 
+ * TODO: cards with slight different black color
+ *       maybe add box-shadow and have the glow light behind effect following mouse (github website)
  */
 
 
@@ -48,7 +49,7 @@ const Info = styled.div`
 `
 
 const ProjectTitle = styled.h1`
-    font-size: 55px;
+    font-size: 47px;
     
 `
 
@@ -108,13 +109,14 @@ const Project = ({ project }) => {
             case "express": return <SiExpress color={color.primaryPurple} size={"25px"} />;
             case "bootstrap": return <BsBootstrap color={color.primaryPurple} size={"25px"} />;
             case "javascript": return <IoLogoJavascript color={color.primaryPurple} size={"25px"} />;
+            default: break;
         }
     }
 
     const onEnter = ({ currentTarget }) => {
         const buttonClasses = currentTarget.className.split(" ");
         gsap.to(currentTarget, {
-            backgroundColor: buttonClasses[2] == "button" ? color.primaryPurple : color.primaryBlack,
+            backgroundColor: buttonClasses[2] === "button" ? color.primaryPurple : color.primaryBlack,
             borderColor: color.primaryPurple,
             scale: 1.1,
             duration: 0.2
@@ -124,7 +126,7 @@ const Project = ({ project }) => {
     const onLeave = ({ currentTarget }) => {
         const buttonClasses = currentTarget.className.split(" ");
         gsap.to(currentTarget, {
-            backgroundColor: buttonClasses[2] == "button" ? color.primaryBlack : color.primaryPurple,
+            backgroundColor: buttonClasses[2] === "button" ? color.primaryBlack : color.primaryPurple,
             scale: 1,
             duration: 0.2,
         })

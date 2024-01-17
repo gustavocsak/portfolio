@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 const grid = Array.from(Array(400).keys());
 
+/**
+ * TODO: change animejs to gsap
+ */
 
 const Grid = () => {
 
