@@ -120,7 +120,7 @@ const About = () => {
                 <Main>
                     <TitleClip className='title-start'>
                         <Title className='sentence'>About Me</Title>
-                        <Underline></Underline>
+                        
                     </TitleClip>
                     
                     <SentenceClip>

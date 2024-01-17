@@ -1,9 +1,12 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { color } from '../utils/constants'
 import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
 
+/**
+ * TODO: implement captcha?
+ */
 
 const Section = styled.div`
 	display: flex;
@@ -85,7 +88,7 @@ const InputGroup = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	margin-bottom: 4rem;
+	margin-bottom: 2.5rem;
 	position: relative;
 `
 
@@ -97,16 +100,32 @@ const InputLabel = styled.label`
 	
 `
 
+const borderBottomAnimation = keyframes`
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+`;
+
 const Input = styled.input`
 	padding: 0.5rem;
 	font-size: 1rem;
 	color: ${color.primaryWhite};
 	background-color: ${color.primaryBlack};
 	border: none;
-	border-bottom: 2px solid ${color.primaryPurple};
+	border-bottom: 2px solid ${color.primaryWhite};
 	width: 100%;
 	box-sizing: border-box;
 	outline: none;
+	transition: border-bottom 0.3s ease;
+
+  &:focus {
+    border-bottom: 2px solid ${color.primaryPurple};
+    animation: ${borderBottomAnimation} 0.5s ease;
+  }
+
 `
 
 const Subtitle = styled.div`
@@ -129,17 +148,35 @@ const Right = styled.div`
 	flex-grow: 3;
 `
 
-const FocusInputBorder = styled.span``
 
 
 const EmailAddress = styled.div`
 `
 
+const Button = styled.button`
+  	cursor: pointer;
+	overflow: hidden;
+	border: 0;
+	padding: 0;
+	height: 4rem;
+	border-radius: 10px;
+	color: ${color.primaryWhite};
+	background-color: ${color.primaryBlack};
+	border: 2px solid ${color.primaryPurple};
+	font-weight: bold;
+	font-size: 22px;
+`
+
+const Bar = styled.div`
+  	background-color: ${color.primaryPurple};
+	position: absolute;
+`
 
 const Contact = () => {
 
 	const ball = useRef();
 	const [animation, setAnimation] = useState(0);
+	const [buttonHover, setButtonHover] = useState(0);
 
 	const handleEndAnimation = () => {
 		console.log('test')
@@ -161,8 +198,25 @@ const Contact = () => {
 			onComplete: handleEndAnimation
 			
 		})
+
 	
 	}, [animation])
+
+	const onEnter = ({ currentTarget }) => {
+        gsap.to(currentTarget, {
+            backgroundColor: color.primaryPurple,
+            scale: 1.02,
+            duration: 0.2
+        })
+    }
+    
+    const onLeave = ({ currentTarget }) => {
+        gsap.to(currentTarget, {
+            backgroundColor: color.primaryBlack,
+            scale: 1,
+            duration: 0.2,
+        })
+    }
 	
 	
 	  
@@ -190,19 +244,21 @@ const Contact = () => {
 							<InputGroup>
 								<InputLabel htmlFor='name'>Name</InputLabel>
 								<Input type='text' id='name' name='name'></Input>
-								<FocusInputBorder />
+								
 							</InputGroup>
 							<InputGroup>
-								<InputLabel>email</InputLabel>
-								<Input type='email'></Input>
-								<FocusInputBorder />
+								<InputLabel htmlFor='email'>Email</InputLabel>
+								<Input type='email' id='email' name='email'></Input>
+								
 							</InputGroup>
 							<InputGroup>
-								<InputLabel>message</InputLabel>
-								<Input type='text'></Input>
-								<FocusInputBorder />
+								<InputLabel htmlFor='message'>Message</InputLabel>
+								<Input type='textarea' id='message' name='message'></Input>
+								
 							</InputGroup>
-							
+							<InputGroup>
+								<Button onMouseEnter={onEnter} onMouseLeave={onLeave}>Send message</Button>
+							</InputGroup>
 						</Form>
 					</Right>
 				</Wrap>

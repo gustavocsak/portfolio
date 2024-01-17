@@ -13,7 +13,7 @@ import { color } from "../utils/constants"
  * 
  * TODO: make it responsive
  * TODO: cards with slight different black color
- *       maybe add box-shadow and have the glow light behind effect following mouse
+ *       maybe add box-shadow and have the glow light behind effect following mouse (github website)
  */
 
 
