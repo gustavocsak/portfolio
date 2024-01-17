@@ -6,6 +6,7 @@ import { color } from '../utils/constants';
 
 
 const Section = styled.div`
+    
 	display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,6 +91,10 @@ const Underline = styled.span`
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
+
+    const buttonEnter = () => {
+
+    }
 
     useLayoutEffect(() => {
 
