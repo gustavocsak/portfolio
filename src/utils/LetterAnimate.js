@@ -3,10 +3,6 @@ import { color } from "./constants"
 import { gsap } from "gsap/gsap-core";
 import { useGSAP } from "@gsap/react";
 
-/**
- * TODO: change animation to gsap
- */
-
 const LetterAnimate = ({ letter, time }) => {
 
   const letterRef = useRef();

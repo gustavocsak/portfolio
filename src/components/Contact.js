@@ -142,7 +142,6 @@ const Highlight = styled.span`
 `
 
 const Right = styled.div`
-	
 	border-radius: 1rem;
 	margin-top: 1rem;
 	height: 100%;
@@ -178,18 +177,13 @@ const Contact = () => {
 	}
 
 	useGSAP(() => {
-			
 		gsap.to(".ball", {
 			x: getRandom(0,500),
 			y: getRandom(0,220),
 			duration: (getRandom(5,14)/10),
 			ease: "power4.out",
-			
 			onComplete: handleEndAnimation
-			
 		})
-
-	
 	}, [animation])
 
 	const onEnter = ({ currentTarget }) => {
@@ -207,10 +201,6 @@ const Contact = () => {
             duration: 0.2,
         })
     }
-	
-	
-	  
-	
 
 	return (
 		<Section>
