@@ -1,5 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from 'react'
-import anime from 'animejs/lib/anime.es.js';
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components';
 import { gsap } from 'gsap';
 import { color } from '../utils/constants';
@@ -9,6 +8,7 @@ const grid = Array.from(Array(400).keys());
 
 /**
  * TODO: put util functions in constants or another file
+ * TODO: animate only when in view?
  */
 
 const getRandom = (min, max) => {
@@ -67,8 +67,6 @@ const GridItem = styled.div`
 `
 
 const Grid = () => {
-
-	
 
 	const createTimeline = () => {
 
@@ -212,9 +210,6 @@ const Grid = () => {
 		animation.current.play();
 
 	}, [endAnimation])
-
-
-
 
 	return (
 		<GridContainer className='grid'>
