@@ -20,9 +20,11 @@ const Section = styled.div`
     @media only screen and (max-width: 768px) {
 		height: fit-content;
 		min-height: 100%;
+		margin-top: 5rem;
     }
 	@media only screen and (max-width: 1024px) {
 		scroll-snap-align: none;
+		margin-bottom: 5rem;
 	}
 `
 
@@ -33,7 +35,7 @@ const Container = styled.div`
     align-items: flex-start;	
 	justify-content: center;
 	
-	@media only screen and (max-width: 768px) {
+	@media only screen and (max-width: 1024px) {
 	   width: 100%;
     }
 `
@@ -46,14 +48,21 @@ const Wrap = styled.div`
 	height: 100%;
 	width: 82%;
 	gap: 7rem;
-	// border: 2px solid ${color.primaryPurple};
-	// border-radius: 1rem;
+	@media only screen and (max-width: 1024px) {
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+	}
 `
 
 const Title = styled.div`
 	font-size: 62px;
 	font-weight: bold;
     line-height: 5rem;
+	@media only screen and (max-width: 1024px) {
+		text-align: center;
+		
+	}
 `
 
 const Left = styled.div`
@@ -63,7 +72,12 @@ const Left = styled.div`
 	flex-grow: 1;
 	height: 100%;
 	max-width: 500px;
-	
+	@media only screen and (max-width: 1024px) {
+		justify-content: center;
+		align-items: center;
+		max-width: none;
+		gap: 2rem;
+	}
 `
 
 const BallContainer = styled.div`
@@ -83,6 +97,10 @@ const Ball = styled.div`
 const Form = styled.form`
 	display: flex;
 	flex-direction: column;
+	@media only screen and (max-width: 1024px) {
+		width: 100%;
+		
+	}
 `	
 
 const InputGroup = styled.div`
@@ -114,7 +132,8 @@ const Input = styled.input`
 	padding: 0.5rem;
 	font-size: 1rem;
 	color: ${color.primaryWhite};
-	background-color: ${color.primaryBlack};
+	// background-color: ${color.primaryBlack};
+	background: rgba(0,0,0,0);
 	border: none;
 	border-bottom: 2px solid ${color.primaryWhite};
 	width: 100%;
@@ -134,6 +153,10 @@ const Subtitle = styled.div`
 	line-height: 1.5rem;
 	color: ${color.primaryWhite};
 	font-weight: 600;
+	@media only screen and (max-width: 1024px) {
+		text-align: center;
+		
+	}
 `
 
 const Highlight = styled.span`
@@ -146,6 +169,10 @@ const Right = styled.div`
 	margin-top: 1rem;
 	height: 100%;
 	flex-grow: 3;
+	@media only screen and (max-width: 1024px) {
+		width: 100%;
+		
+	}
 `
 
 const Button = styled.button`

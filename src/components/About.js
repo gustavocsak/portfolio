@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,11 +14,11 @@ const Section = styled.div`
 	padding: 5rem;
     margin-top: 2rem;
     @media only screen and (max-width: 768px) {
-		height: fit-content;
-		min-height: 100%;
+		height: 100vh;
     }
 	@media only screen and (max-width: 1024px) {
-		scroll-snap-align: none;
+        
+        margin-bottom: 5rem;
 	}
 `
 
@@ -32,6 +32,9 @@ const Container = styled.div`
 	@media only screen and (max-width: 768px) {
 	   width: 100%;
     }
+    @media only screen and (max-width: 1024px) {
+		width: 100%;
+	}
 `
 
 const Main = styled.div`
@@ -40,6 +43,11 @@ const Main = styled.div`
     justify-content: flex-start;
     width: 82%;
     gap: 2rem;
+    @media only screen and (max-width: 1024px) {
+		width: 100%;
+        text-align: center;
+       
+	}
 `
 
 const Title = styled.div`
@@ -61,13 +69,18 @@ const Sentence = styled.div.attrs({ className: 'sentence'})`
     line-height: 2.2rem;
     transform: translateY(400px);
     transition: transform .5s;
+    @media only screen and (max-width: 768px) {
+		font-size: 19px;
+    }
 `
 
 const Highlight = styled.span`
     color: ${color.primaryPurple};
     font-size: 24px;
     font-weight: bold;
-    
+    @media only screen and (max-width: 768px) {
+		font-size: 19px;
+    }
 `
 
 const HighlightAnchor = styled.a`

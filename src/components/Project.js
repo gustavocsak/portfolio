@@ -28,10 +28,18 @@ const Wrap = styled.div`
     border: 1px solid #353535;
     border-radius: 1rem;
     box-shadow: inset 5px 8px 29px 27px rgba(0,0,0,0.1);
+    @media only screen and (max-width: 768px) {
+        
+    }
+    @media only screen and (max-width: 1024px) {
+		flex-direction: column;
+        
+    }
 `
 
 const ImageWrapper = styled.div`
     flex: 1;
+   
 `
 
 const Image = styled.img`
@@ -49,6 +57,9 @@ const Info = styled.div`
     border-left: 2px solid;
     border-image-slice: 1;
     border-image-source: linear-gradient(90deg, ${color.gradientPurple} 0%, ${color.primaryPurple} 100%);
+    @media only screen and (max-width: 1024px) {
+		gap: 2rem;
+	}
 `
 
 const ProjectTitle = styled.h1`

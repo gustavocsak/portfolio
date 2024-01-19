@@ -46,6 +46,7 @@ const Section = styled.div`
     }
 	@media only screen and (max-width: 1024px) {
 		scroll-snap-align: none;
+		padding: 0;
 	}
 `
 
@@ -60,6 +61,9 @@ const Container = styled.div`
 	@media only screen and (max-width: 768px) {
 	   width: 100%;
     }
+	@media only screen and (max-width: 1024px) {
+		width: 100%;
+	}
 `
 
 const ProjectDisplay = styled.div`
@@ -70,6 +74,10 @@ const ProjectDisplay = styled.div`
 	align-items: start;
 	justify-content: start;
 	gap: 4.5rem;
+	@media only screen and (max-width: 1024px) {
+		justify-content: center;
+		align-items: center;
+	}
 	
 `
 
@@ -100,6 +108,10 @@ const ProjectClip = styled.div`
 	transform-style: preserve-3d;
 	perspective: 1000px;
 	overflow: hidden;
+	@media only screen and (max-width: 768px) {
+        
+    }
+    
 `
 
 const Glare = styled.div`
@@ -111,6 +123,12 @@ const Glare = styled.div`
 	filter: blur(220px);
 	opacity: 0;
 	pointer-events: none;
+	@media only screen and (max-width: 768px) {
+        
+    }
+    @media only screen and (max-width: 1024px) {
+		display: hidden;
+    }
 `
 
 
