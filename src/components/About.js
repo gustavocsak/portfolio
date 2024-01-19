@@ -57,7 +57,7 @@ const TitleClip = styled.div`
 `
 
 const Sentence = styled.div.attrs({ className: 'sentence'})`
-    font-size: 26px;
+    font-size: 24px;
     line-height: 2.2rem;
     transform: translateY(400px);
     transition: transform .5s;
@@ -65,7 +65,7 @@ const Sentence = styled.div.attrs({ className: 'sentence'})`
 
 const Highlight = styled.span`
     color: ${color.primaryPurple};
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
     
 `
@@ -81,20 +81,9 @@ const SentenceClip = styled.div`
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 `
 
-const Underline = styled.span`
-    display: block;
-    height: 2px;
-    width: 100%;
-    background-color: white;
-`
-
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-
-    const buttonEnter = () => {
-
-    }
 
     useLayoutEffect(() => {
 
@@ -105,9 +94,7 @@ const About = () => {
             scrollTrigger: {
                 trigger: ".title-start", 
                 start: "top 65%",
-                once: true,
-                markers: true,
-                
+                once: true,                
             }
         })
 

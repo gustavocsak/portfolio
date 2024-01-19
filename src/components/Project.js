@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import tricket from '../img/tricket.jpg'
 import { BsBootstrap } from "react-icons/bs";
@@ -7,6 +7,7 @@ import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import { gsap } from "gsap";
 import { color } from "../utils/constants"
+import { useGSAP } from '@gsap/react';
 
 
 /**
@@ -22,9 +23,11 @@ const Wrap = styled.div`
     flex-direction: row;
     transform: translateY(400px);
     transition: transform .5s;
-    background-color: ${color.primaryBlack};
-    padding: 0.2rem;
-    border-radius: 10px;
+    background-color: #1f1f1f;
+    padding: 1.5rem;
+    border: 1px solid #353535;
+    border-radius: 1rem;
+    box-shadow: inset 5px 8px 29px 27px rgba(0,0,0,0.1);
 `
 
 const ImageWrapper = styled.div`
@@ -130,7 +133,9 @@ const Project = ({ project }) => {
             scale: 1,
             duration: 0.2,
         })
-    }  
+    }
+
+    
    
 
     return (

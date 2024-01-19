@@ -130,9 +130,9 @@ const Input = styled.input`
 `
 
 const Subtitle = styled.div`
+  	font-size: 18px;
 	line-height: 1.5rem;
 	color: ${color.primaryWhite};
-	
 	font-weight: 600;
 `
 
@@ -149,11 +149,6 @@ const Right = styled.div`
 	flex-grow: 3;
 `
 
-
-
-const EmailAddress = styled.div`
-`
-
 const Button = styled.button`
   	cursor: pointer;
 	overflow: hidden;
@@ -168,19 +163,13 @@ const Button = styled.button`
 	font-size: 22px;
 `
 
-const Bar = styled.div`
-  	background-color: ${color.primaryPurple};
-	position: absolute;
-`
 
 const Contact = () => {
 
 	const ball = useRef();
 	const [animation, setAnimation] = useState(0);
-	const [buttonHover, setButtonHover] = useState(0);
 
 	const handleEndAnimation = () => {
-		console.log('test')
 		setAnimation(animation + 1);
 	}
 
