@@ -89,16 +89,14 @@ const About = () => {
 
         gsap.to(".sentence", {
             y: 0,
-            duration: 0.5,
+            duration: 0.3,
             stagger: 0.3,
             scrollTrigger: {
                 trigger: ".title-start", 
                 start: "top 65%",
                 once: true,                
             }
-        })
-
-		
+        })		
 	}, []);
 
     return (
@@ -107,7 +105,6 @@ const About = () => {
                 <Main>
                     <TitleClip className='title-start'>
                         <Title className='sentence'>About Me</Title>
-                        
                     </TitleClip>
                     
                     <SentenceClip>
