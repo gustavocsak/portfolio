@@ -115,25 +115,28 @@ const Project = ({ project }) => {
             default: break;
         }
     }
+    
+    const links = useRef();
+    const { contextSafe } = useGSAP({ scope: links });
 
-    const onEnter = ({ currentTarget }) => {
-        const buttonClasses = currentTarget.className.split(" ");
-        gsap.to(currentTarget, {
+    const onEnter = contextSafe((event) => {
+        const buttonClasses = event.currentTarget.className.split(" ");
+        gsap.to(event.currentTarget, {
             backgroundColor: buttonClasses[2] === "button" ? color.primaryPurple : color.primaryBlack,
             borderColor: color.primaryPurple,
             scale: 1.1,
             duration: 0.2
         })
-    }
+    })
     
-    const onLeave = ({ currentTarget }) => {
-        const buttonClasses = currentTarget.className.split(" ");
-        gsap.to(currentTarget, {
+    const onLeave = contextSafe((event) => {
+        const buttonClasses = event.currentTarget.className.split(" ");
+        gsap.to(event.currentTarget, {
             backgroundColor: buttonClasses[2] === "button" ? color.primaryBlack : color.primaryPurple,
             scale: 1,
             duration: 0.2,
         })
-    }
+    })
 
     
    
@@ -150,7 +153,7 @@ const Project = ({ project }) => {
                         return translateTechStack(tech);
                     })}
                 </Technologies>
-                <Links>
+                <Links ref={links}>
                     <Button className='button' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.github} target='_blank'>Github</Link></Button>
                     <ButtonColored className='button-color' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
                 </Links>

@@ -2,7 +2,6 @@ import Hero from "./components/Hero.js";
 import Projects from "./components/Projects.js";
 import Contact from "./components/Contact.js";
 import styled from "styled-components";
-import Test from "./components/Cube.js";
 import About from "./components/About.js";
 import Footer from "./components/Footer.js";
 
