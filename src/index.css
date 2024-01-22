@@ -6,3 +6,8 @@
     margin: 0;
     font-family: 'Inter', sans-serif;
 }
+
+.text-shadow {
+    color: rgb(193, 51, 255);
+	text-shadow: 7px 4px 15px rgb(193, 51, 255);
+}
