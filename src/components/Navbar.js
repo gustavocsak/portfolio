@@ -50,6 +50,7 @@ const ListItem = styled.li`
 const MainName = styled.h1`
     line-height: 1em;
     font-size: 1.75em;
+    font-weight: bold;
 `
 
 const Button = styled.button`

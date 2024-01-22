@@ -9,7 +9,7 @@ import { HiMailOpen } from "react-icons/hi";
 const Section = styled.div`
     // background-color: ${color.primaryBlack};
     background-color: #161616;
-    box-shadow: 28px 22px 15px 0px rgba(0,0,0,0.1);
+    
 	display: flex;
     align-items: center;
     justify-content: center;
@@ -78,8 +78,8 @@ const Footer = () => {
     const iconConfig = {onMouseEnter: onEnter, onMouseLeave: onLeave, size: 22}
 
     return (
-        <Section>
-            <Container>
+        <div className=' bg-neutral-800 py-6 flex justify-center'>
+            <div className='flex justify-center flex-col gap-2 md:flex-row items-center'> 
                 <Left>gustavocs | made by Gustavo Carvalhaes</Left>
                 <Right>
                     <a href='https://linkedin.com/in/gustavo-de-sa/' target='_blank'>
@@ -95,8 +95,8 @@ const Footer = () => {
                     </Mail>
 
                 </Right>
-            </Container>
-        </Section>
+            </div>
+        </div>
     )
 }
 
