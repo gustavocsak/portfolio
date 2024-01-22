@@ -3,6 +3,7 @@ import { color } from '../utils/constants'
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { gsap } from 'gsap/gsap-core';
 import { HiMailOpen } from "react-icons/hi";
+import { FaCodepen } from "react-icons/fa";
 
 
 const Footer = () => {
@@ -44,6 +45,14 @@ const Footer = () => {
                         rel='noreferrer'
                     >
                         <FaGithub {...iconConfig} title='github' />
+                    </a>
+                    <a
+                        className='text-zinc-100'
+                        href='https://codepen.io/gustavocs'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        <FaCodepen {...iconConfig} title='codepen' />
                     </a>
                     <div className='flex gap-2'>
                         <a

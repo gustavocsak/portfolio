@@ -32,11 +32,12 @@ const Project = ({ project }) => {
                         return translateTechStack(tech);
                     })}
                 </div>
-                <div className='flex gap-4 h-16'>
+                <div className='flex gap-4 h-16 lg:h-12'>
                     <button className='button w-full font-bold text-lg p-2 bg-zinc-950 rounded-lg ring-2 ring-primary hover:bg-primary transition duration-100 ease-in-out'>
                         <a href={project.github} className='no-underline' target='_blank' rel='noreferrer'>Github</a>
                     </button>
-                    <button className='button w-full font-bold text-lg p-2 bg-primary rounded-lg ring-2 ring-primary hover:bg-zinc-900 transition duration-100 ease-in-out'>
+                    <button className='button w-full font-bold text-lg p-2 bg-primary rounded-lg ring-2
+                     ring-primary hover:bg-zinc-900 transition duration-100 ease-in-out'>
                         <a className='no-underline' href={project.liveSource} target='_blank' rel='noreferrer'>Live</a>
                     </button>
                 </div>
