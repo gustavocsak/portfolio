@@ -25,7 +25,7 @@ const About = () => {
             <div className='lg:w-10/12'>
                 <div className='flex flex-col text-left text-wrap font-bold text-xl gap-8'>
                     <div className='title-start clip'>
-                        <div className='sentence text-6xl font-bold text-center md:text-left'>About Me</div>
+                        <div className='sentence text-5xl font-bold text-left md:text-6xl'>About Me</div>
                     </div>
 
                     <div className='clip'>

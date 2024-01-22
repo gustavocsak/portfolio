@@ -13,6 +13,9 @@ export const theme = {
     },
     colors: {
       primary: 'rgb(193, 51, 255)'
+    },
+    blur: {
+      custom: '220px',
     }
   },
 }

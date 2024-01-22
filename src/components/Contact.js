@@ -54,7 +54,7 @@ const Contact = () => {
 			<div className='lg:w-10/12'>
 				<div className='flex flex-col lg:flex-row lg:gap-32'>
 					<div className='flex flex-col gap-8 lg:basis-2/5'>
-						<div className='text-6xl text-center font-bold md:text-left'>Contact Me</div>
+						<div className='text-5xl text-left font-bold md:text-6xl'>Contact Me</div>
 						<div className='font-bold text-left text-xl text-wrap'>
 
 							Feel free to reach out if you want to&nbsp;
