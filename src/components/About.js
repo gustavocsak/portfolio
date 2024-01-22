@@ -22,7 +22,7 @@ const About = () => {
 
     return (
         <div className='flex items-center justify-center px-10 my-12 '>
-            <div className='lg:w-10/12'>
+            <div className='lg:w-8/12'>
                 <div className='flex flex-col text-left text-wrap font-bold text-xl gap-8'>
                     <div className='title-start clip'>
                         <div className='sentence text-5xl font-bold text-left md:text-6xl'>About Me</div>

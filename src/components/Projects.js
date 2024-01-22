@@ -1,13 +1,13 @@
-import React, { useLayoutEffect, useRef } from 'react'
-import styled from 'styled-components'
+import React, { useRef } from 'react'
 import Project from './Project'
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { color } from '../utils/constants';
+
 /**
  * TODO: fix live source URL for projects array
  * TODO: move projects data to a separate js file
+ * TODO: try it out with the 3d project card?
  */
 
 const projects = [
@@ -113,14 +113,13 @@ const Projects = () => {
 		});
 		gsap.to(glare, {
 			opacity: 0,
-			duration: 0.6,
 			ease: 'power2.out'
 		})	
 	})
 
 	return (
 		<div className='flex items-center justify-center px-10 my-12 project-section'>
-			<div className='lg:w-10/12'>
+			<div className='lg:w-8/12'>
 				<div className='flex flex-col gap-8'>
 					<div className='clip leading-10'>
 						<div className="title-reveal text-5xl font-bold leading-tight lg:text-6xl lg:leading-tight">

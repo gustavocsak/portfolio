@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import React, { useRef, useState } from 'react'
+import styled from 'styled-components'
 import { color } from '../utils/constants'
 import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
@@ -51,7 +51,7 @@ const Contact = () => {
 
 	return (
 		<div className='flex items-center justify-center px-10 my-12 mt-32'>
-			<div className='lg:w-10/12'>
+			<div className='lg:w-8/12'>
 				<div className='flex flex-col lg:flex-row lg:gap-32'>
 					<div className='flex flex-col gap-8 lg:basis-2/5'>
 						<div className='text-5xl text-left font-bold md:text-6xl'>Contact Me</div>

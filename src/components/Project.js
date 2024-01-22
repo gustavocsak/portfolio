@@ -6,10 +6,6 @@ import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import { color } from "../utils/constants"
 
-/**
- * TODO: maybe cards too big>? 10/12 -> 9 or 8/12
- */
-
 const Project = ({ project }) => {
 
     const translateTechStack = (tech) => {
@@ -27,9 +23,9 @@ const Project = ({ project }) => {
     return (
         <div className="project-reveal flex flex-col bg-zinc-900 border-2 border-zinc-600 rounded-lg p-6 gap-4 lg:flex-row lg:gap-16">
             <div className='basis-1/2 flex flex-col pl-4 border-l-2 border-primary gap-6 justify-between'>
-                <div className='text-4xl font-bold lg:text-5xl'>{project.title}</div>
-                <div className='text-2xl font-semibold lg:text-3xl'>{project.oneLiner}</div>
-                <div className='text-lg font-medium lg:text-xl'>{project.description}</div>
+                <div className='text-4xl font-bold'>{project.title}</div>
+                <div className='text-2xl font-semibold'>{project.oneLiner}</div>
+                <div className='text-lg font-medium'>{project.description}</div>
                 <div className='flex flex-row gap-2 items-center font-semibold lg:text-xl'>
                     <span>Built with: </span>
                     {project.techStack.map((tech, index) => {

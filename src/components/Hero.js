@@ -75,10 +75,10 @@ const Hero = () => {
     return (
         <div className='flex h-screen flex-col items-center justify-between gap-8 px-10'>
             <Navbar navRef={nav} />
-            <div className='h-full lg:w-10/12 gap-12 flex flex-col items-center justify-around lg:flex-row'>
+            <div className='h-full lg:w-8/12 gap-12 flex flex-col items-center justify-around lg:flex-row'>
                 <div className='flex flex-col gap-8 justify-center items-center lg:items-start' ref={comp}>
                     <div className='clip'>
-                        <h1 className="reveal text-7xl font-bold text-center">
+                        <h1 className="reveal text-7xl font-bold text-center lg:text-left">
                             <span>Hi, I'm  </span>
 
                             {titleLetter.map((letter, index) => {
