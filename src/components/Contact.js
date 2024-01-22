@@ -1,24 +1,10 @@
 import React, { useRef, useState } from 'react'
-import styled from 'styled-components'
-import { color } from '../utils/constants'
 import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
 
 /**
  * TODO: implement captcha?
  */
-
-
-const Ball = styled.div`
-	width: 30px;
-	height: 30px;
-	-webkit-box-shadow: 0px 3px 17px 1px ${color.primaryPurple};
-	-moz-box-shadow: 0px 3px 17px 1px ${color.primaryPurple};
-	box-shadow: 0px 3px 17px 1px ${color.primaryPurple};
-	border-radius: 50%;
-	background: linear-gradient(90deg, rgba(177,0,255,1) 0%, ${color.primaryPurple} 0%);
-`
-
 
 const Contact = () => {
 
@@ -50,7 +36,7 @@ const Contact = () => {
 	}, [animation])
 
 	return (
-		<div className='flex items-center justify-center px-10 my-12 mt-32'>
+		<div className='flex items-center justify-center px-10 lg:my-12'>
 			<div className='lg:w-8/12'>
 				<div className='flex flex-col lg:flex-row lg:gap-32'>
 					<div className='flex flex-col gap-8 lg:basis-2/5'>
@@ -68,7 +54,8 @@ const Contact = () => {
 							and ready to discuss your unique web development needs.
 						</div>
 						<div className='w-12'>
-							<Ball ref={ball} className='ball' />
+							<div ref={ball} className='ball w-8 h-8 shadow-2xl shadow-purple-600/50 rounded-full
+							bg-gradient-to-r from-primary to-purple-600' />
 						</div>
 					</div>
 					<div className='lg:basis-3/5'>

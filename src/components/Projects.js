@@ -118,7 +118,7 @@ const Projects = () => {
 	})
 
 	return (
-		<div className='flex items-center justify-center px-10 my-12 project-section'>
+		<div className='flex items-center justify-center px-10 project-section mt-16'>
 			<div className='lg:w-8/12'>
 				<div className='flex flex-col gap-8'>
 					<div className='clip leading-10'>
