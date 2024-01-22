@@ -27,3 +27,7 @@
 	overflow: hidden;   
 }
 
+.project-reveal {
+    transform: translateY(400px);
+    transition: transform .5s;
+}

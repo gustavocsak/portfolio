@@ -30,13 +30,13 @@ const Container = styled.div`
 
 const App = () => {
     return (
-        <Container>
+        <div className='flex flex-col text-zinc-100 bg-primaryBlack gap-16'>
             <Hero />
             <Projects />
             <About />
             <Contact />
             <Footer />
-        </Container>
+        </div>
       );
     
 }

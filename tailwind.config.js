@@ -12,7 +12,8 @@ export const theme = {
       lg: '0 8px 16px var(--tw-shadow-color)',
     },
     colors: {
-      primary: 'rgb(193, 51, 255)'
+      primary: 'rgb(193, 51, 255)',
+      primaryBlack: 'rgb(18, 18, 18)'
     },
     blur: {
       custom: '220px',

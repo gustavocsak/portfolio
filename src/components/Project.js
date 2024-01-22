@@ -1,117 +1,14 @@
-import React, { useRef } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import tricket from '../img/tricket.jpg'
 import { BsBootstrap } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
-import { gsap } from "gsap";
 import { color } from "../utils/constants"
-import { useGSAP } from '@gsap/react';
-
 
 /**
- * 
- * TODO: make it responsive
- * TODO: padding right on cards in mobile
+ * TODO: maybe cards too big>? 10/12 -> 9 or 8/12
  */
-
-
-const Wrap = styled.div`
-    display: flex;
-    flex-direction: row;
-    transform: translateY(400px);
-    transition: transform .5s;
-    background-color: #1f1f1f;
-    padding: 1.5rem;
-    border: 1px solid #353535;
-    border-radius: 1rem;
-    box-shadow: inset 5px 8px 29px 27px rgba(0,0,0,0.1);
-    @media only screen and (max-width: 768px) {
-        
-    }
-    @media only screen and (max-width: 1024px) {
-		flex-direction: column;
-        
-    }
-`
-
-const ImageWrapper = styled.div`
-    flex: 1;
-   
-`
-
-const Image = styled.img`
-    width: 100%;
-    border-radius: 20px;
-`
-
-const Info = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex: 1.5;
-    padding: 1rem;
-    padding-right: 3rem;
-    border-left: 2px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(90deg, ${color.gradientPurple} 0%, ${color.primaryPurple} 100%);
-    @media only screen and (max-width: 1024px) {
-		gap: 2rem;
-	}
-`
-
-const ProjectTitle = styled.h1`
-    font-size: 47px;
-    
-`
-
-const OneLiner = styled.div`
-    font-weight: bold;
-    font-size: 20px;
-`
-
-const Description = styled.div`
-`
-
-const Technologies = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-`
-
-const Links = styled.div`
-    
-`
-
-const Link = styled.a`
-    text-decoration: none;
-    color: #fff;
-`
-
-const ButtonColored = styled.button`
-    width: 100px;
-    padding: 10px;
-    color: white;
-    font-weight: bold;
-    border: 1px solid ${color.primaryBlackAlpha};
-    border-radius: 5px;
-    background-color: ${color.primaryPurple};
-    cursor: pointer;
-`
-
-const Button = styled.button`
-    width: 100px;
-    padding: 10px;
-    color: white;
-    font-weight: bold;
-    border: 1px solid ${color.primaryPurple};
-    border-radius: 5px;
-    background: ${color.primaryBlackAlpha};   
-    cursor: pointer;
-    margin-right: 1.5rem;
-`
 
 const Project = ({ project }) => {
 
@@ -124,54 +21,34 @@ const Project = ({ project }) => {
             case "javascript": return <IoLogoJavascript color={color.primaryPurple} size={"25px"} />;
             default: break;
         }
-    }
-    
-    const links = useRef();
-    const { contextSafe } = useGSAP({ scope: links });
-
-    const onEnter = contextSafe((event) => {
-        const buttonClasses = event.currentTarget.className.split(" ");
-        gsap.to(event.currentTarget, {
-            backgroundColor: buttonClasses[2] === "button" ? color.primaryPurple : color.primaryBlack,
-            borderColor: color.primaryPurple,
-            scale: 1.1,
-            duration: 0.2
-        })
-    })
-    
-    const onLeave = contextSafe((event) => {
-        const buttonClasses = event.currentTarget.className.split(" ");
-        gsap.to(event.currentTarget, {
-            backgroundColor: buttonClasses[2] === "button" ? color.primaryBlack : color.primaryPurple,
-            scale: 1,
-            duration: 0.2,
-        })
-    })
-
-    
+    } 
    
 
     return (
-        <Wrap className="project-reveal">
-            <Info>
-                <ProjectTitle>{project.title}</ProjectTitle>
-                <OneLiner>{project.oneLiner}</OneLiner>
-                <Description>{project.description}</Description>
-                <Technologies>
+        <div className="project-reveal flex flex-col bg-zinc-900 border-2 border-zinc-600 rounded-lg p-6 gap-4 lg:flex-row lg:gap-16">
+            <div className='basis-1/2 flex flex-col pl-4 border-l-2 border-primary gap-6 justify-between'>
+                <div className='text-4xl font-bold lg:text-5xl'>{project.title}</div>
+                <div className='text-2xl font-semibold lg:text-3xl'>{project.oneLiner}</div>
+                <div className='text-lg font-medium lg:text-xl'>{project.description}</div>
+                <div className='flex flex-row gap-2 items-center font-semibold lg:text-xl'>
                     <span>Built with: </span>
                     {project.techStack.map((tech, index) => {
                         return translateTechStack(tech);
                     })}
-                </Technologies>
-                <Links ref={links}>
-                    <Button className='button' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.github} target='_blank'>Github</Link></Button>
-                    <ButtonColored className='button-color' onMouseEnter={onEnter} onMouseLeave={onLeave}><Link href={project.liveSource} target='_blank'>Live</Link></ButtonColored>
-                </Links>
-            </Info>
-            <ImageWrapper>
-                <Image src={tricket} />
-            </ImageWrapper>
-        </Wrap>
+                </div>
+                <div className='flex gap-4 h-16'>
+                    <button className='button w-full font-bold text-lg p-2 bg-zinc-950 rounded-lg ring-2 ring-primary hover:bg-primary transition duration-100 ease-in-out'>
+                        <a href={project.github} className='no-underline' target='_blank' rel='noreferrer'>Github</a>
+                    </button>
+                    <button className='button w-full font-bold text-lg p-2 bg-primary rounded-lg ring-2 ring-primary hover:bg-zinc-900 transition duration-100 ease-in-out'>
+                        <a className='no-underline' href={project.liveSource} target='_blank' rel='noreferrer'>Live</a>
+                    </button>
+                </div>
+            </div>
+            <div className='flex basis-1/2 items-center'>
+                <img className='rounded-lg' src={tricket} alt='Project interface preview'/>
+            </div>
+        </div>
     )
 }
 

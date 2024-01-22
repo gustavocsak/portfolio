@@ -50,7 +50,7 @@ const Contact = () => {
 	}, [animation])
 
 	return (
-		<div className='flex items-center justify-center px-10 my-12'>
+		<div className='flex items-center justify-center px-10 my-12 mt-32'>
 			<div className='lg:w-10/12'>
 				<div className='flex flex-col lg:flex-row lg:gap-32'>
 					<div className='flex flex-col gap-8 lg:basis-2/5'>
@@ -99,7 +99,7 @@ const Contact = () => {
 							<div className='flex flex-col gap-2 mb-12'>
 								<button className='w-full h-16 bg-zinc-900 rounded-lg hover:bg-primary
 												  ring-2 ring-primary text-xl font-semibold
-												  transition duration-200 ease-in-out'>
+												  transition duration-150 ease-in-out'>
 									Send Message
 								</button>
 							</div>
