@@ -57,10 +57,6 @@ const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
-	@media only screen and (max-width: 768px) {
-	   width: 100%;
-    }
 	@media only screen and (max-width: 1024px) {
 		width: 100%;
 	}
@@ -107,11 +103,7 @@ const ProjectClip = styled.div`
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 	transform-style: preserve-3d;
 	perspective: 1000px;
-	overflow: hidden;
-	@media only screen and (max-width: 768px) {
-        
-    }
-    
+	overflow: hidden;    
 `
 
 const Glare = styled.div`
@@ -123,12 +115,6 @@ const Glare = styled.div`
 	filter: blur(220px);
 	opacity: 0;
 	pointer-events: none;
-	@media only screen and (max-width: 768px) {
-        
-    }
-    @media only screen and (max-width: 1024px) {
-		display: hidden;
-    }
 `
 
 

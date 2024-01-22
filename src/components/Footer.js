@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { color } from '../utils/constants'
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
 import { gsap } from 'gsap/gsap-core';
 import { HiMailOpen } from "react-icons/hi";
 

@@ -13,8 +13,7 @@ import { useGSAP } from '@gsap/react';
 /**
  * 
  * TODO: make it responsive
- * TODO: cards with slight different black color
- *       maybe add box-shadow and have the glow light behind effect following mouse (github website)
+ * TODO: padding right on cards in mobile
  */
 
 
