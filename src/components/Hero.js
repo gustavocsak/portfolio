@@ -1,5 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react'
-import styled from 'styled-components'
+import React, { useRef } from 'react'
 import Navbar from './Navbar'
 import { BsGithub } from 'react-icons/bs';
 import { AiOutlineLinkedin } from "react-icons/ai";
@@ -7,133 +6,32 @@ import LetterAnimate from '../utils/LetterAnimate';
 import Grid from './Grid';
 import { gsap } from 'gsap';
 import { color, titleLetter } from '../utils/constants';
+import { useGSAP } from '@gsap/react';
+import { FaCodepen } from 'react-icons/fa';
 
 /**
- * TODO: padronize sizes
+ * TODO: take out translate from other pages replace with gsap
+ * TODO: update useGSAP to use contextSaefe
  */
-
-const Section = styled.div`
-    height: 100vh;
-    scroll-snap-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    @media only screen and (max-width: 768px) {
-		min-height: 100vh;
-        scroll-snap-align: none;
-    }
-    @media only screen and (max-width: 1024px) {
-		min-height: 100vh;
-        scroll-snap-align: none;
-    }
-`
-
-const Container = styled.div`
-    height: 100%;
-    width: 1400px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    @media only screen and (max-width: 768px) {
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; 
-    }
-    @media only screen and (max-width: 1024px) {
-		width: 100%;
-        scroll-snap-align: none;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    
-`
-
-const Intro = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-    @media only screen and (max-width: 1024px) {
-        flex: 1;
-        align-items: center;
-    }
-`
-
-const Title = styled.div`
-    font-size: 70px;
-    font-weight: bold;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    line-height: 5rem;
-    @media only screen and (max-width: 768px) {
-        text-align: center;
-    }
-    
-`
-
-const Header = styled.h1`
-    font-size: 70px;
-    transform: translateY(115px);
-    transition: transform .5s;
-`
-
-const SubtitleClip = styled.div`
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    line-height: 5rem;
-`
-
-const Subtitle = styled.div`
-    background-color: ${color.primaryPurple};
-    color: ${color.primaryWhite};
-    border-radius: 5px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    padding: 5px;
-    transform: translateY(115px);
-    transition: transform .5s;
-    max-width: fit-content;
-    line-height: 2rem;
-`
-
-const SocialClip = styled.div`
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    line-height: 5rem;
-`
-
-const Social = styled.div`
-    display: flex;
-    gap: 30px;
-    justify-content: flex-start;
-    transform: translateY(115px);
-    transition: transform .5s;
-`
-
-const SocialIconContainer = styled.div`
-    height: 55px;
-    width: 55px;
-    border-radius: 50%;
-    border: 2px solid ${color.primaryPurple}; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-        cursor: pointer;
-    }
-
-`
-
 
 const Hero = () => {
     const comp = useRef();
     const nav = useRef();
 
-    useLayoutEffect(() => {
+    useGSAP(() => {
         let ctx = gsap.context(() => {
 
-            gsap.to(".reveal", { y: 0, duration: 0.5, stagger: 0.2, delay: 0.2, ease: "power4.out" })
+            gsap.fromTo(".reveal",
+                {
+                    y: 115,
+                },
+                {
+                    y: 0,
+                    duration: 0.5,
+                    stagger: 0.2,
+                    delay: 0.25,
+                    ease: "power4.out"
+                })
 
 
             gsap.fromTo(nav.current,
@@ -176,38 +74,75 @@ const Hero = () => {
 
 
     return (
-        <Section>
+        <div className='flex h-screen flex-col items-center justify-between gap-8 px-10'>
             <Navbar navRef={nav} />
-            <Container>
-                <Intro ref={comp}>
-                    <Title>
-                        <Header className="reveal">
+            <div className='h-full lg:w-8/12 gap-16 flex flex-col items-center justify-between lg:flex-row'>
+                <div className='flex flex-col gap-12 justify-center items-center lg:items-start' ref={comp}>
+                    <div className='clip'>
+                        <h1 className="reveal text-6xl font-bold text-center lg:text-left">
                             <span>Hi, I'm  </span>
 
                             {titleLetter.map((letter, index) => {
                                 return <LetterAnimate key={index} letter={letter} />
                             })}!
-                        </Header>
-                    </Title>
-                    <SubtitleClip>
-                        <Subtitle className="reveal">Junior Developer</Subtitle>
-                    </SubtitleClip>
-                    <SocialClip>
-                        <Social className="reveal">
-                            <SocialIconContainer onMouseEnter={onEnter} onMouseLeave={onLeave}>
-                                <BsGithub size="28px" color={color.primaryPurple} className='icon' />
-                            </SocialIconContainer>
-                            <SocialIconContainer onMouseEnter={onEnter} onMouseLeave={onLeave}>
-                                <AiOutlineLinkedin size="28px" color={color.primaryPurple} className='icon' />
-                            </SocialIconContainer>
-                        </Social>
-                    </SocialClip>
-                </Intro>
+                        </h1>
+                    </div>
+                    <div className='clip'>
+                        <div className="inline-block reveal bg-primary text-zinc-100 text-2xl
+                         font-bold px-2 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500
+                          rounded-md leading-10">
+                            Junior Developer
+                        </div>
+                    </div>
+                    <div className='clip'>
+                        <div className="reveal flex gap-8">
+                            <div className='h-14 w-14 rounded-full border-2 border-primary
+                             flex items-center justify-center hover:cursor-pointer'
+                                onMouseEnter={onEnter}
+                                onMouseLeave={onLeave}
+                            >
+                                <a href='https://github.com/gustavocsak/' target='_blank' rel='noreferrer'>
+                                    <BsGithub size="28px"
+                                        color={color.primaryPurple}
+                                        className='icon'
+                                        title='Github'
+                                    />
+                                </a>
+                            </div>
+                            <div className='h-14 w-14 rounded-full border-2 border-primary
+                             flex items-center justify-center hover:cursor-pointer'
+                                onMouseEnter={onEnter}
+                                onMouseLeave={onLeave}
+                            >
+                                <a href='https://linkedin.com/in/gustavo-de-sa/' target='_blank' rel='noreferrer'>
+                                    <AiOutlineLinkedin size="28px"
+                                        color={color.primaryPurple}
+                                        className='icon'
+                                        title='Linkedin'
+                                    />
+                                </a>
+                            </div>
+                            <div className='h-14 w-14 rounded-full border-2 border-primary
+                             flex items-center justify-center hover:cursor-pointer'
+                                onMouseEnter={onEnter}
+                                onMouseLeave={onLeave}
+                            >
+                                <a href='https://codepen.io/gustavocs' target='_blank' rel='noreferrer'>
+                                    <FaCodepen size="28px"
+                                        color={color.primaryPurple}
+                                        className='icon'
+                                        title='Codepen'
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <Grid />
                 </div>
-            </Container>
-        </Section>
+            </div>
+        </div>
     )
 }
 

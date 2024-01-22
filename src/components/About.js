@@ -1,98 +1,6 @@
 import React, { useLayoutEffect } from 'react'
-import styled from 'styled-components'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { color } from '../utils/constants';
-
-
-const Section = styled.div`
-    
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-	padding: 5rem;
-    margin-top: 2rem;
-    @media only screen and (max-width: 768px) {
-		height: 100vh;
-    }
-	@media only screen and (max-width: 1024px) {
-        
-        margin-bottom: 5rem;
-	}
-`
-
-const Container = styled.div`
-    height: 55vh;
-    width: 1400px;
-    display: flex;
-    flex-direction: row;
-	align-items: flex-start;
-	justify-content: center;
-	@media only screen and (max-width: 768px) {
-	   width: 100%;
-    }
-    @media only screen and (max-width: 1024px) {
-		width: 100%;
-	}
-`
-
-const Main = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 82%;
-    gap: 2rem;
-    @media only screen and (max-width: 1024px) {
-		width: 100%;
-        text-align: center;
-       
-	}
-`
-
-const Title = styled.div`
-	font-size: 62px;
-	font-weight: bold;
-	transform: translateY(115px);
-    transition: transform .5s;
-    line-height: 5rem;
-`
-//transition: transform .5s;
-const TitleClip = styled.div`
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    
-	
-`
-
-const Sentence = styled.div.attrs({ className: 'sentence'})`
-    font-size: 24px;
-    line-height: 2.2rem;
-    transform: translateY(400px);
-    transition: transform .5s;
-    @media only screen and (max-width: 768px) {
-		font-size: 19px;
-    }
-`
-
-const Highlight = styled.span`
-    color: ${color.primaryPurple};
-    font-size: 24px;
-    font-weight: bold;
-    @media only screen and (max-width: 768px) {
-		font-size: 19px;
-    }
-`
-
-const HighlightAnchor = styled.a`
-    text-decoration: none;
-    color: ${color.primaryPurple};
-    text-decoration: underline;
-    font-weight: bold;
-`
-
-const SentenceClip = styled.div`
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-`
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,42 +13,51 @@ const About = () => {
             duration: 0.3,
             stagger: 0.3,
             scrollTrigger: {
-                trigger: ".title-start", 
+                trigger: ".title-start",
                 start: "top 65%",
-                once: true,                
+                once: true,
             }
-        })		
-	}, []);
+        })
+    }, []);
 
     return (
-        <Section>
-            <Container>
-                <Main>
-                    <TitleClip className='title-start'>
-                        <Title className='sentence'>About Me</Title>
-                    </TitleClip>
-                    
-                    <SentenceClip>
-                        <Sentence>
-                            Currently working as a <Highlight>Computer Lab Assistant at Langara College</Highlight>, where I graduated with
-                            a <Highlight>Diploma in Computer Studies</Highlight> and a <Highlight>citation in Full Stack Web Development</Highlight>.
-                        </Sentence>
-                    </SentenceClip>
-                    <SentenceClip>
-                        <Sentence>
-                            Pursuing a bachelor's degree in <Highlight>Computer Science</Highlight> at Estácio University.
-                        </Sentence>
-                    </SentenceClip>
-                    <SentenceClip>
-                        <Sentence>
-                            Aside from coding, I really enjoy <Highlight>exploring new musical instruments </Highlight> —
-                            I'm currently learning how to play the <HighlightAnchor href="https://en.wikipedia.org/wiki/Cavaquinho" target="_blank">cavaquinho</HighlightAnchor> —
-                            watching and playing <Highlight>soccer</Highlight> and <Highlight>gaming with friends</Highlight>.
-                        </Sentence>
-                    </SentenceClip>
-                </Main>
-            </Container>
-        </Section>
+        <div className='flex items-center justify-center px-10 lg:my-12'>
+            <div className='lg:w-8/12'>
+                <div className='flex flex-col text-left text-wrap font-bold text-xl gap-8'>
+                    <div className='title-start clip'>
+                        <div className='sentence text-5xl font-bold text-left md:text-6xl'>About Me</div>
+                    </div>
+
+                    <div className='clip'>
+                        <div className='sentence'>
+                            Currently working as a&nbsp;
+                            <span className='text-shadow'>Computer Lab Assistant&nbsp;</span> at&nbsp;
+                            <span className='text-shadow'>Langara College</span>, where I graduated with a&nbsp;
+                            <span className='text-shadow'>Diploma in Computer Studies</span>&nbsp; and a &nbsp;
+                            <span className='text-shadow'>citation in Full Stack Web Development</span>.
+                        </div>
+                    </div> {/**remember put class sentence in sentence */}
+                    <div className='clip'>
+                        <div className='sentence'>
+                            Pursuing a bachelor's degree in &nbsp;
+                            <span className='text-shadow'>Computer Science</span>&nbsp; at Estácio University.
+                        </div>
+                    </div>
+                    <div className='clip'>
+                        <div className='sentence'>
+                            Aside from coding, I really enjoy&nbsp;
+                            <span className='text-shadow'>exploring new musical instruments </span> —
+                            I'm currently learning how to play the&nbsp;
+                            <a href="https://en.wikipedia.org/wiki/Cavaquinho"
+                                className='underline decoration-primary decoration-2 underline-offset-4 text-primary text-shadow hover:decoration-pink-50'
+                                target="_blank" rel='noreferrer'>cavaquinho</a> — watching and playing&nbsp;
+                            <span className='text-shadow'>soccer</span>&nbsp;
+                            and <span className='text-shadow'>gaming with friends</span>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

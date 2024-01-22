@@ -1,86 +1,21 @@
 import React from 'react'
-import styled from 'styled-components'
-
-const Section = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 0 2em;
-    @media only screen and (max-width: 1024px) {
-        width: 100%;
-    }
-`
-const Container = styled.div`
-    width: 1400px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5em 0;
-    @media only screen and (max-width: 1024px) {
-        width: 100%;
-        padding: 15px;
-    }
-`
-
-const Links = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-`
-
-const Icons = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 20px;
-`
-
-const List = styled.ul`
-    display: flex;
-    gap: 20px;
-    list-style: none;
-    @media only screen and (max-width: 1024px) {
-        display: none;
-    }
-`
-
-const ListItem = styled.li`
-    cursor: pointer;
-`
-
-const MainName = styled.h1`
-    line-height: 1em;
-    font-size: 1.75em;
-`
-
-const Button = styled.button`
-    width: 100px;
-    padding: 10px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    background: rgb(177,0,255);
-    background: linear-gradient(90deg, rgba(177,0,255,1) 0%, rgba(193,51,255,1) 100%);
-    cursor: pointer;
-`
-
-
 
 const Navbar = ({ navRef }) => {
   return (
-    <Section>
-        <Container ref={navRef}>
-            <Links >
-                <MainName>gustavocs</MainName>
-                <List>
-                    <ListItem>Projects</ListItem>
-                    <ListItem>Contact</ListItem>
-                </List>
-            </Links>
-            <Icons>
-                <Button>Resume</Button>
-            </Icons>
-        </Container>
-    </Section>
+    <div className='w-full flex justify-center'>
+        <div className='lg:w-10/12 flex justify-between items-center py-4 w-full' ref={navRef}>
+            <div className='flex items-center gap-6'>
+                <div className='font-bold text-2xl'>gustavocs</div>
+                <ul className='hidden lg:flex lg:gap-6 list-none'>
+                    <li className='cursor-pointer'>Projects</li>
+                    <li className='cursor-pointer'>Contact</li>
+                </ul>
+            </div>
+            <div className='flex items-center'>
+                <button className='p-2.5 rounded-lg px-4 bg-gradient-to-r from-primary to-pink-500'>Resume</button>
+            </div>
+        </div>
+    </div>
   )
 }
 

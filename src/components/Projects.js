@@ -1,13 +1,13 @@
-import React, { useLayoutEffect, useRef } from 'react'
-import styled from 'styled-components'
+import React, { useRef } from 'react'
 import Project from './Project'
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { color } from '../utils/constants';
+
 /**
  * TODO: fix live source URL for projects array
  * TODO: move projects data to a separate js file
+ * TODO: try it out with the 3d project card?
  */
 
 const projects = [
@@ -34,93 +34,9 @@ const projects = [
 
 ]
 
-const Section = styled.div`
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-	padding: 5rem;
-    @media only screen and (max-width: 768px) {
-		height: fit-content;
-		min-height: 100%;
-    }
-	@media only screen and (max-width: 1024px) {
-		scroll-snap-align: none;
-		padding: 0;
-	}
-`
-
-const Container = styled.div`
-    height: 100%;
-    width: 1400px;
-    display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	@media only screen and (max-width: 1024px) {
-		width: 100%;
-	}
-`
-
-const ProjectDisplay = styled.div`
-	margin-top: 5rem;
-	display: flex;
-	width: 82%;
-	flex-direction: column;
-	align-items: start;
-	justify-content: start;
-	gap: 4.5rem;
-	@media only screen and (max-width: 1024px) {
-		justify-content: center;
-		align-items: center;
-	}
-	
-`
-
-const Title = styled.div`
-	font-size: 62px;
-	font-weight: bold;
-	transform: translateY(115px);
-    transition: transform .5s;
-`
-
-const TitleClip = styled.div`
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    line-height: 5rem;
-	
-`
-
-const ProjectList = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 6rem;
-	overflow: hidden;
-`
-
-const ProjectClip = styled.div`
-	clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-	transform-style: preserve-3d;
-	perspective: 1000px;
-	overflow: hidden;    
-`
-
-const Glare = styled.div`
-	position: absolute;
-	width: 220px;
-	height: 220px;
-	border-radius: 50%;
-	background-color: ${color.primaryPurple};
-	filter: blur(220px);
-	opacity: 0;
-	pointer-events: none;
-`
-
-
 const Projects = () => {
 
-	useLayoutEffect(() => {
+	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger);
 		gsap.to(".title-reveal", {
 			scrollTrigger: {
@@ -197,34 +113,40 @@ const Projects = () => {
 		});
 		gsap.to(glare, {
 			opacity: 0,
-			duration: 0.6,
 			ease: 'power2.out'
 		})	
 	})
 
 	return (
-		<Section className="project-section">
-			<Container>
-				<ProjectDisplay className="projects">
-					<TitleClip>
-						<Title className="title-reveal">Projects</Title>
-					</TitleClip>
-					<ProjectList>
+		<div className='flex items-center justify-center px-10 project-section mt-16'>
+			<div className='lg:w-8/12'>
+				<div className='flex flex-col gap-8'>
+					<div className='clip leading-10'>
+						<div className="title-reveal text-5xl font-bold leading-tight lg:text-6xl lg:leading-tight">
+							Projects
+						</div>
+					</div>
+					<div className='flex flex-col gap-8'>
 						{projects.map((project, index) => {
 							return (
 						
-							<ProjectClip ref={clip} onMouseLeave={onLeave} onMouseMove={onMove} className='project-clip'>
-								<Glare className='glare'/>
+							<div 
+								ref={clip} 
+								onMouseLeave={onLeave} 
+								onMouseMove={onMove} 
+								className='project-clip clip glare-container'
+							>
+								<div className='glare absolute w-56 h-56 rounded-full
+											    bg-primary blur-custom opacity-0 pointer-events-none'/>
 								<Project  project={project} key={index} />
-							</ProjectClip>
+							</div>
 							
 							)
 						})}
-					</ProjectList>
-				</ProjectDisplay>
-
-			</Container>
-		</Section>
+					</div>
+				</div>
+			</div>
+		</div>
 	)
 }
 

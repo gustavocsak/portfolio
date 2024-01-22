@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import styled from 'styled-components';
 import { gsap } from 'gsap';
 import { color } from '../utils/constants';
 import { useGSAP } from '@gsap/react';
@@ -38,33 +37,6 @@ const generateShades = (rgb, factor, numOfShades) => {
 	}
 	return shades
 }
-
-
-const GridContainer = styled.div`
-	padding: 0;
-	margin: 0;
-	display: flex;
-	flex-wrap: wrap;
-	row-gap: 0px;
-	column-gap: 0px;
-	align-items: center;
-	justify-content: center;
-	width: 20rem;
-	height: 20rem;
-	
-`
-
-const GridItem = styled.div`
-	padding: 0;
-	margin: 0;
-	width: 1rem;
-	height: 1rem;
-	/* border: 1px solid rgb(193, 51, 255); */
-	border-radius: 50%;
-	background-color: rgb(193, 51, 255);
-	opacity: 90%;
-	/* box-shadow: 1px 1px 1px 1px rgb(193, 51, 255, 0.37); */
-`
 
 const Grid = () => {
 
@@ -212,11 +184,11 @@ const Grid = () => {
 	}, [endAnimation])
 
 	return (
-		<GridContainer className='grid'>
+		<div className='p-0 m-0 flex flex-wrap items-center justify-center w-80 h-80'>
 			{grid.map((_, i) => {
-				return <GridItem className='dot' key={i} />
+				return <div className='dot p-0 m-0 w-4 h-4 rounded-full bg-primary opacity-90' key={i} />
 			})}
-		</GridContainer>
+		</div>
 	)
 }
 

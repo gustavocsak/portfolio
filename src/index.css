@@ -1,8 +1,33 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 * {
     margin: 0;
     font-family: 'Inter', sans-serif;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.text-shadow {
+    color: rgb(193, 51, 255);
+	text-shadow: 7px 4px 15px rgb(193, 51, 255);
+}
+
+.clip {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.sentence {
+    transform: translateY(400px);
+    transition: transform .5s;
+}
+
+.glare-container {
+    transform-style: preserve-3d;
+	perspective: 1000px;
+	overflow: hidden;   
+}
+
+.project-reveal {
+    transform: translateY(400px);
+    transition: transform .5s;
+}
