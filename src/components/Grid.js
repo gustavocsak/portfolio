@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { gsap } from 'gsap';
 import { color } from '../utils/constants';
 import { useGSAP } from '@gsap/react';
+import { useColor } from './ColorContext';
 
 const grid = Array.from(Array(400).keys());
 
@@ -26,7 +27,7 @@ const generateRandomRGB = () => {
 const generateShades = (rgb, factor, numOfShades) => {
 	console.log(rgb)
 	const shades = [];
-	for(let i=0; i < numOfShades; i++) {
+	for (let i = 0; i < numOfShades; i++) {
 		const light = 1 - factor * i;
 		const newColor = {
 			red: Math.round(rgb.red * light),
@@ -40,12 +41,14 @@ const generateShades = (rgb, factor, numOfShades) => {
 
 const Grid = () => {
 
+	const { primaryColor } = useColor();
+
 	const createTimeline = () => {
 
 		let possibleColors = generateShades(generateRandomRGB(), 0.15, 6)
 
 		let tl = gsap.timeline({
-			
+
 			ease: 'easeInOutSine',
 			defaults: { duration: 0.5, ease: 'easeInOutQuad' },
 			onComplete: handleEndAnimation
@@ -106,13 +109,11 @@ const Grid = () => {
 		tl.to('.dot', {
 			duration: 0.3,
 			scale: 1,
-
 			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: 'center',
 				amount: 1,
-
 			}
 		}, "shrink+=0.6")
 
@@ -126,7 +127,6 @@ const Grid = () => {
 				grid: [20, 20],
 				from: 'random',
 				amount: 1,
-
 			}
 		})
 
@@ -135,15 +135,13 @@ const Grid = () => {
 			scale: 0.1,
 			y: 0,
 			x: 0,
-			backgroundColor: color.primaryPurple,
+			backgroundColor: primaryColor,
 			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: 'left',
 				amount: 1,
-
 			}
-
 		})
 
 		return tl;
@@ -154,12 +152,12 @@ const Grid = () => {
 			x: 0,
 			y: 0,
 			scale: 0.1,
-			backgroundColor: color.primaryPurple,
+			backgroundColor: primaryColor,
 		}, {
 			x: 0,
 			y: 0,
 			scale: 0.1,
-			backgroundColor: color.primaryPurple,
+			backgroundColor: primaryColor,
 			onComplete: () => {
 				setEndAnimation(!endAnimation);
 			},
@@ -170,18 +168,19 @@ const Grid = () => {
 	const animation = useRef(null);
 
 	useGSAP(() => {
-				
+		if (animation.current) {
+			animation.current.clear()
+		}
 		gsap.set('.dot', {
 			x: 0,
 			y: 0,
 			scale: 0.1,
-			backgroundColor: color.primaryPurple,
+			backgroundColor: primaryColor,
 		})
-
 		animation.current = createTimeline()
 		animation.current.play();
 
-	}, [endAnimation])
+	}, [endAnimation, primaryColor])
 
 	return (
 		<div className='p-0 m-0 flex flex-wrap items-center justify-center w-80 h-80'>

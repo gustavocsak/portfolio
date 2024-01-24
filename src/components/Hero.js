@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Navbar from './Navbar'
 import { BsGithub } from 'react-icons/bs';
 import { AiOutlineLinkedin } from "react-icons/ai";
@@ -8,6 +8,7 @@ import { gsap } from 'gsap';
 import { color, titleLetter } from '../utils/constants';
 import { useGSAP } from '@gsap/react';
 import { FaCodepen } from 'react-icons/fa';
+import { useColor } from './ColorContext';
 
 /**
  * TODO: take out translate from other pages replace with gsap
@@ -17,6 +18,7 @@ import { FaCodepen } from 'react-icons/fa';
 const Hero = () => {
     const comp = useRef();
     const nav = useRef();
+    const { primaryColor } = useColor();
 
     useGSAP(() => {
         let ctx = gsap.context(() => {
@@ -39,12 +41,13 @@ const Hero = () => {
                 { opacity: 1, y: 0, duration: 0.5, delay: 1.5, ease: "power4.out" }
             )
         }, comp)
+        console.log(primaryColor);
         return () => ctx.revert();
     }, []);
 
     const onEnter = ({ currentTarget }) => {
         gsap.to(currentTarget, {
-            backgroundColor: color.primaryPurple,
+            backgroundColor: primaryColor,
             duration: 0.35,
             ease: 'power4.out',
         })
@@ -53,7 +56,7 @@ const Hero = () => {
             color: color.primaryWhite,
             duration: 0.35,
             ease: 'power4.out',
-            backgroundColor: color.primaryPurple
+            backgroundColor: primaryColor
         })
     }
 
@@ -65,7 +68,7 @@ const Hero = () => {
         })
         const icon = currentTarget.querySelector('.icon');
         gsap.to(icon, {
-            color: color.primaryPurple,
+            color: primaryColor,
             duration: 0.35,
             ease: 'power4.out',
             backgroundColor: color.primaryBlack
@@ -96,40 +99,40 @@ const Hero = () => {
                     </div>
                     <div className='clip'>
                         <div className="reveal flex gap-8">
-                            <div className='h-14 w-14 rounded-full border-2 border-primary
-                             flex items-center justify-center hover:cursor-pointer'
+                            <div className='h-14 w-14 rounded-full border-2 flex items-center justify-center hover:cursor-pointer'
+                                style={{borderColor: primaryColor}}
                                 onMouseEnter={onEnter}
                                 onMouseLeave={onLeave}
                             >
                                 <a href='https://github.com/gustavocsak/' target='_blank' rel='noreferrer'>
                                     <BsGithub size="28px"
-                                        color={color.primaryPurple}
+                                        color={primaryColor}
                                         className='icon'
                                         title='Github'
                                     />
                                 </a>
                             </div>
-                            <div className='h-14 w-14 rounded-full border-2 border-primary
-                             flex items-center justify-center hover:cursor-pointer'
+                            <div className={`h-14 w-14 rounded-full border-2 flex items-center justify-center hover:cursor-pointer`}
+                                style={{borderColor: primaryColor}}
                                 onMouseEnter={onEnter}
                                 onMouseLeave={onLeave}
                             >
                                 <a href='https://linkedin.com/in/gustavo-de-sa/' target='_blank' rel='noreferrer'>
                                     <AiOutlineLinkedin size="28px"
-                                        color={color.primaryPurple}
+                                        color={primaryColor}
                                         className='icon'
                                         title='Linkedin'
                                     />
                                 </a>
                             </div>
-                            <div className='h-14 w-14 rounded-full border-2 border-primary
-                             flex items-center justify-center hover:cursor-pointer'
+                            <div className={`h-14 w-14 rounded-full border-2 flex items-center justify-center hover:cursor-pointer`}
+                                style={{borderColor: primaryColor}}
                                 onMouseEnter={onEnter}
                                 onMouseLeave={onLeave}
                             >
                                 <a href='https://codepen.io/gustavocs' target='_blank' rel='noreferrer'>
                                     <FaCodepen size="28px"
-                                        color={color.primaryPurple}
+                                        color={primaryColor}
                                         className='icon'
                                         title='Codepen'
                                     />
