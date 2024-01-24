@@ -35,7 +35,7 @@ const Navbar = ({ navRef }) => {
     }, [navRef]);
 
     return (
-        <div className='w-full flex justify-center'>
+        <div className='w-full flex justify-center z-10'>
             <div className='lg:w-10/12 flex justify-between items-center py-4 w-full' ref={navRef}>
                 <div className='flex items-center gap-6'>
                     <div className='font-bold text-2xl'>gustavocs</div>
@@ -50,8 +50,8 @@ const Navbar = ({ navRef }) => {
                         <MdOutlineColorLens size={36}/>
                     </button>
                     {colorPickerVisible && (
-                        <div className='absolute top-full right-0'>
-                            <HexColorPicker className='color-picker' color={primaryColor} onChange={handleColorChange}/>
+                        <div className='absolute top-full right-0 '>
+                            <HexColorPicker className='color-picker' color={primaryColor} onChange={handleColorChange} style={{zIndex: 1000 }}/>
                         </div>
                     )}
                 </div>

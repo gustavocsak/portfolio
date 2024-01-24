@@ -84,7 +84,7 @@ const Hero = () => {
     return (
         <div className='flex h-screen flex-col items-center justify-between gap-8 px-10'>
             <Navbar navRef={nav} />
-            <div className='h-full lg:w-8/12 gap-16 flex flex-col items-center justify-between lg:flex-row'>
+            <div className='z-0 h-full lg:w-8/12 gap-16 flex flex-col items-center justify-between lg:flex-row'>
                 <div className='flex flex-col gap-12 justify-center items-center lg:items-start' ref={comp}>
                     <div className='clip'>
                         <h1 className="reveal text-6xl font-bold text-center lg:text-left">

@@ -1,11 +1,16 @@
 import React, { useLayoutEffect } from 'react'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useColor } from './ColorContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-
+    const { primaryColor } = useColor();
+    const textShadow = {
+        textShadow: `7px 4px 15px ${primaryColor}`,
+        color: primaryColor
+    }
     useLayoutEffect(() => {
 
         gsap.to(".sentence", {
@@ -31,28 +36,32 @@ const About = () => {
                     <div className='clip'>
                         <div className='sentence'>
                             Currently working as a&nbsp;
-                            <span className='text-shadow'>Computer Lab Assistant&nbsp;</span> at&nbsp;
-                            <span className='text-shadow'>Langara College</span>, where I graduated with a&nbsp;
-                            <span className='text-shadow'>Diploma in Computer Studies</span>&nbsp; and a &nbsp;
-                            <span className='text-shadow'>citation in Full Stack Web Development</span>.
+                            <span style={textShadow}>Computer Lab Assistant&nbsp;</span> at&nbsp;
+                            <span style={textShadow}>Langara College</span>, where I graduated with a&nbsp;
+                            <span style={textShadow}>Diploma in Computer Studies</span>&nbsp; and a &nbsp;
+                            <span style={textShadow}>citation in Full Stack Web Development</span>.
                         </div>
                     </div> {/**remember put class sentence in sentence */}
                     <div className='clip'>
                         <div className='sentence'>
                             Pursuing a bachelor's degree in &nbsp;
-                            <span className='text-shadow'>Computer Science</span>&nbsp; at Estácio University.
+                            <span style={textShadow}>Computer Science</span>&nbsp; at Estácio University.
                         </div>
                     </div>
                     <div className='clip'>
                         <div className='sentence'>
                             Aside from coding, I really enjoy&nbsp;
-                            <span className='text-shadow'>exploring new musical instruments </span> —
+                            <span style={textShadow}>exploring new musical instruments </span> —
                             I'm currently learning how to play the&nbsp;
                             <a href="https://en.wikipedia.org/wiki/Cavaquinho"
-                                className='underline decoration-primary decoration-2 underline-offset-4 text-primary text-shadow hover:decoration-pink-50'
-                                target="_blank" rel='noreferrer'>cavaquinho</a> — watching and playing&nbsp;
-                            <span className='text-shadow'>soccer</span>&nbsp;
-                            and <span className='text-shadow'>gaming with friends</span>.
+                                className='underline decoration-2 underline-offset-4 hover:decoration-zinc-50'
+                                target="_blank"
+                                rel='noreferrer'
+                                style={textShadow}>
+                                    cavaquinho
+                            </a> — watching and playing&nbsp;
+                            <span style={textShadow}>soccer</span>&nbsp;
+                            and <span style={textShadow}>gaming with friends</span>.
                         </div>
                     </div>
                 </div>
