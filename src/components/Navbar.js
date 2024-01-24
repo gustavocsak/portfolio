@@ -34,9 +34,6 @@ const Navbar = ({ navRef }) => {
         };
     }, [navRef]);
 
-    
-
-
     return (
         <div className='w-full flex justify-center'>
             <div className='lg:w-10/12 flex justify-between items-center py-4 w-full' ref={navRef}>
@@ -49,21 +46,14 @@ const Navbar = ({ navRef }) => {
                 </div>
                 <div className='flex items-center gap-4'>
                     <button className='p-2.5 rounded-lg px-4' style={gradientStyle}>Resume</button>
-
-                    <button
-                        className=''
-                        onClick={handleColorPickerClick}
-                    >
+                    <button onClick={handleColorPickerClick}>
                         <MdOutlineColorLens size={36}/>
                     </button>
-
                     {colorPickerVisible && (
                         <div className='absolute top-full right-0'>
                             <HexColorPicker className='color-picker' color={primaryColor} onChange={handleColorChange}/>
                         </div>
                     )}
-
-
                 </div>
 
             </div>
