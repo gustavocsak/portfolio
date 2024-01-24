@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
-
+import { colorUtils } from '../utils/colorUtils'
 /**
  * TODO: implement captcha?
  */
@@ -21,15 +21,11 @@ const Contact = () => {
 		setAnimation(animation + 1);
 	}
 
-	const getRandom = (min, max) => {
-		return Math.random() * (max - min) + min;
-	}
-
 	useGSAP(() => {
 		gsap.to(".ball", {
-			x: getRandom(0, 500),
-			y: getRandom(0, 220),
-			duration: (getRandom(5, 14) / 10),
+			x: colorUtils.getRandom(0, 500),
+			y: colorUtils.getRandom(0, 220),
+			duration: (colorUtils.getRandom(5, 14) / 10),
 			ease: "power4.out",
 			onComplete: handleEndAnimation
 		})

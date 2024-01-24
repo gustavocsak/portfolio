@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { HexColorPicker } from 'react-colorful';
 import { MdOutlineColorLens } from "react-icons/md";
 import { useColor } from './ColorContext';
+import { colorUtils } from '../utils/colorUtils';
 
 
 const Navbar = ({ navRef }) => {
     const { primaryColor, setPrimaryColor } = useColor();
     const [colorPickerVisible, setColorPickerVisible] = useState(false);
+    const gradientStyle = {
+        background: `linear-gradient(to right, ${primaryColor}, ${colorUtils.lightHex(primaryColor)})`,
+    };
 
     const handleColorPickerClick = () => {
         setColorPickerVisible(!colorPickerVisible);
@@ -44,7 +48,7 @@ const Navbar = ({ navRef }) => {
                     </ul>
                 </div>
                 <div className='flex items-center gap-4'>
-                    <button className='p-2.5 rounded-lg px-4 bg-gradient-to-r from-primary to-pink-500'>Resume</button>
+                    <button className='p-2.5 rounded-lg px-4' style={gradientStyle}>Resume</button>
 
                     <button
                         className=''

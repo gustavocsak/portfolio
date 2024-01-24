@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import Navbar from './Navbar'
 import { BsGithub } from 'react-icons/bs';
 import { AiOutlineLinkedin } from "react-icons/ai";
@@ -9,6 +9,7 @@ import { color, titleLetter } from '../utils/constants';
 import { useGSAP } from '@gsap/react';
 import { FaCodepen } from 'react-icons/fa';
 import { useColor } from './ColorContext';
+import { colorUtils } from '../utils/colorUtils';
 
 /**
  * TODO: take out translate from other pages replace with gsap
@@ -19,6 +20,10 @@ const Hero = () => {
     const comp = useRef();
     const nav = useRef();
     const { primaryColor } = useColor();
+    
+    const gradientStyle = {
+        background: `linear-gradient(to right, ${primaryColor}, ${colorUtils.lightHex(primaryColor)})`,
+    };
 
     useGSAP(() => {
         let ctx = gsap.context(() => {
@@ -86,14 +91,14 @@ const Hero = () => {
                             <span>Hi, I'm  </span>
 
                             {titleLetter.map((letter, index) => {
-                                return <LetterAnimate key={index} letter={letter} />
+                                return <LetterAnimate color={primaryColor} key={index} letter={letter} />
                             })}!
                         </h1>
                     </div>
                     <div className='clip'>
-                        <div className="inline-block reveal bg-primary text-zinc-100 text-2xl
-                         font-bold px-2 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500
-                          rounded-md leading-10">
+                        <div className={`inline-block reveal text-zinc-100 text-2xl font-bold px-2 py-0.5 rounded-md leading-10`}
+                            style={gradientStyle}
+                        >
                             Junior Developer
                         </div>
                     </div>
