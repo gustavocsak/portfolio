@@ -3,6 +3,7 @@ import Project from './Project'
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useColor } from './ColorContext';
 
 /**
  * TODO: fix live source URL for projects array
@@ -35,7 +36,7 @@ const projects = [
 ]
 
 const Projects = () => {
-
+	const { primaryColor } = useColor();
 	useGSAP(() => {
 		gsap.registerPlugin(ScrollTrigger);
 		gsap.to(".title-reveal", {
@@ -137,8 +138,9 @@ const Projects = () => {
 								className='project-clip clip glare-container'
 							>
 								<div className='glare absolute w-56 h-56 rounded-full
-											    bg-primary blur-custom opacity-0 pointer-events-none'/>
-								<Project  project={project} key={index} />
+											    bg-primary blur-custom opacity-0 pointer-events-none'
+												style={{ background: primaryColor }}/>
+								<Project color={primaryColor} project={project} key={index} />
 							</div>
 							
 							)
