@@ -11,6 +11,7 @@ const Contact = () => {
 	/**
 	 * TODO: appropriate the ball animation for smaller screens
 	 * TODO: fix text spacing
+	 * TODO: change on enter and on leave to utils?
 	 */
 	
 	const { primaryColor } = useColor();
