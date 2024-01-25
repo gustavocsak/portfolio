@@ -3,7 +3,8 @@ import { HexColorPicker } from 'react-colorful';
 import { MdOutlineColorLens } from "react-icons/md";
 import { useColor } from './ColorContext';
 import { colorUtils } from '../utils/colorUtils';
-
+import { gsap } from 'gsap/gsap-core';
+import { color } from '../utils/constants';
 
 const Navbar = ({ navRef }) => {
     const { primaryColor, setPrimaryColor } = useColor();
@@ -11,6 +12,20 @@ const Navbar = ({ navRef }) => {
     const gradientStyle = {
         background: `linear-gradient(to right, ${primaryColor}, ${colorUtils.lightHex(primaryColor)})`,
     };
+
+    const onEnter = ({ currentTarget }) => {
+        gsap.to(currentTarget, {
+            color: primaryColor,
+            duration: 0.2
+        })
+    }
+
+    const onLeave = ({ currentTarget }) => {
+        gsap.to(currentTarget, {
+            color: color.primaryWhite,
+            duration: 0.2
+        })
+    }
 
     const handleColorPickerClick = () => {
         setColorPickerVisible(!colorPickerVisible);
@@ -47,11 +62,16 @@ const Navbar = ({ navRef }) => {
                 <div className='flex items-center gap-4'>
                     <button className='p-2.5 rounded-lg px-4' style={gradientStyle}>Resume</button>
                     <button onClick={handleColorPickerClick}>
-                        <MdOutlineColorLens size={36}/>
+                        <MdOutlineColorLens size={36} onMouseEnter={onEnter} onMouseLeave={onLeave} />
                     </button>
                     {colorPickerVisible && (
                         <div className='absolute top-full right-0 '>
-                            <HexColorPicker className='color-picker' color={primaryColor} onChange={handleColorChange} style={{zIndex: 1000 }}/>
+                            <HexColorPicker
+                                className='color-picker'
+                                color={primaryColor}
+                                onChange={handleColorChange}
+                                style={{ zIndex: 1000 }}
+                            />
                         </div>
                     )}
                 </div>
