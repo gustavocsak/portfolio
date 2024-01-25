@@ -7,6 +7,11 @@ import { IoLogoJavascript } from "react-icons/io5";
 import { gsap } from 'gsap/gsap-core';
 import { color } from '../utils/constants';
 
+/**
+ * 
+ *TODO: FIX BLACK ON BUTTONS 
+ */
+
 const Project = ({ project, color }) => {
 
     const translateTechStack = (tech) => {

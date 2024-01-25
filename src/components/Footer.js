@@ -4,13 +4,13 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { gsap } from 'gsap/gsap-core';
 import { HiMailOpen } from "react-icons/hi";
 import { FaCodepen } from "react-icons/fa";
-
+import { useColor } from './ColorContext';
 
 const Footer = () => {
-
+    const { primaryColor } = useColor()
     const onEnter = ({ currentTarget }) => {
         gsap.to(currentTarget, {
-            color: color.primaryPurple,
+            color: primaryColor,
             duration: 0.2
         })
     }
