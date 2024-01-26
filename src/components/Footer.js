@@ -1,5 +1,5 @@
 import React from 'react'
-import { color } from '../utils/constants'
+import { colorCodes } from '../utils/constants'
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { gsap } from 'gsap/gsap-core';
 import { HiMailOpen } from "react-icons/hi";
@@ -17,7 +17,7 @@ const Footer = () => {
 
     const onLeave = ({ currentTarget }) => {
         gsap.to(currentTarget, {
-            color: color.primaryWhite,
+            color: colorCodes.primaryWhite,
             duration: 0.2
         })
     }

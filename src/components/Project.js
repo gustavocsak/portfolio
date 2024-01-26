@@ -5,7 +5,7 @@ import { FaReact } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import { gsap } from 'gsap/gsap-core';
-import { color } from '../utils/constants';
+import { colorCodes } from '../utils/constants';
 
 /**
  * 
@@ -14,13 +14,13 @@ import { color } from '../utils/constants';
 
 const Project = ({ project, color }) => {
 
-    const translateTechStack = (tech) => {
+    const translateTechStack = (tech, index) => {
         switch (tech) {
-            case "react": return <FaReact color={color} size={"25px"} />;
-            case "mongodb": return <SiMongodb color={color} size={"25px"} aria-label="MongoDB" />;
-            case "express": return <SiExpress color={color} size={"25px"} />;
-            case "bootstrap": return <BsBootstrap color={color} size={"25px"} />;
-            case "javascript": return <IoLogoJavascript color={color} size={"25px"} />;
+            case "react": return <FaReact key={index} color={color} size={"25px"} />;
+            case "mongodb": return <SiMongodb key={index} color={color} size={"25px"} aria-label="MongoDB" />;
+            case "express": return <SiExpress key={index} color={color} size={"25px"} />;
+            case "bootstrap": return <BsBootstrap key={index} color={color} size={"25px"} />;
+            case "javascript": return <IoLogoJavascript key={index} color={color} size={"25px"} />;
             default: break;
         }
     }
@@ -28,7 +28,7 @@ const Project = ({ project, color }) => {
     const onEnter = ({ currentTarget }) => {
 
         gsap.to(currentTarget, {
-            backgroundColor: currentTarget.classList.contains('color') ? 'black' : color,
+            backgroundColor: currentTarget.classList.contains('color') ? colorCodes.primaryBlack : color,
             duration: 0.35,
             ease: 'power4.out',
         })
@@ -37,7 +37,7 @@ const Project = ({ project, color }) => {
     const onLeave = ({ currentTarget }) => {
         console.log(currentTarget)
         gsap.to(currentTarget, {
-            backgroundColor: currentTarget.classList.contains('color') ? color : 'black',
+            backgroundColor: currentTarget.classList.contains('color') ? color : colorCodes.primaryBlack,
             duration: 0.35,
             ease: 'power4.out',
         })
@@ -46,7 +46,7 @@ const Project = ({ project, color }) => {
 
     return (
         <div className="project-reveal flex flex-col bg-zinc-900 border-2 border-zinc-600 rounded-lg p-6 gap-4 lg:flex-row lg:gap-16">
-            <div className='basis-1/2 flex flex-col pl-4 border-l-2 gap-6 justify-between'
+            <div className='basis-1/2 flex flex-col pl-0 pt-4 border-t-2 gap-6 justify-between lg:border-t-0 lg:border-l-2 lg:pt-0'
                 style={{ borderColor: color }}
             >
                 <div className='text-4xl font-bold'>{project.title}</div>
@@ -55,7 +55,7 @@ const Project = ({ project, color }) => {
                 <div className='flex flex-row gap-2 items-center font-semibold lg:text-xl'>
                     <span>Built with: </span>
                     {project.techStack.map((tech, index) => {
-                        return translateTechStack(tech);
+                        return translateTechStack(tech, index);
                     })}
                 </div>
                 <div className='flex gap-4 h-16 lg:h-12'>

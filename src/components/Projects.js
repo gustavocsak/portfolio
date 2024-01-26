@@ -131,17 +131,18 @@ const Projects = () => {
 						{projects.map((project, index) => {
 							return (
 						
-							<div 
-								ref={clip} 
-								onMouseLeave={onLeave} 
-								onMouseMove={onMove} 
-								className='project-clip clip glare-container'
-							>
-								<div className='glare absolute w-56 h-56 rounded-full
-											    bg-primary blur-custom opacity-0 pointer-events-none'
-												style={{ background: primaryColor }}/>
-								<Project color={primaryColor} project={project} key={index} />
-							</div>
+								<div 
+									ref={clip} 
+									onMouseLeave={onLeave} 
+									onMouseMove={onMove} 
+									className='project-clip clip glare-container'
+									key={index}
+								>
+									<div className='glare absolute w-56 h-56 rounded-full
+													bg-primary blur-custom opacity-0 pointer-events-none'
+													style={{ background: primaryColor }}/>
+									<Project color={primaryColor} project={project} key={index} />
+								</div>
 							
 							)
 						})}

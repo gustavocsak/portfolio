@@ -4,7 +4,7 @@ import { MdOutlineColorLens } from "react-icons/md";
 import { useColor } from './ColorContext';
 import { colorUtils } from '../utils/colorUtils';
 import { gsap } from 'gsap/gsap-core';
-import { color } from '../utils/constants';
+import { colorCodes } from '../utils/constants';
 
 const Navbar = ({ navRef }) => {
     const { primaryColor, setPrimaryColor } = useColor();
@@ -32,7 +32,7 @@ const Navbar = ({ navRef }) => {
 
     const onLeave = ({ currentTarget }) => {
         gsap.to(currentTarget, {
-            color: color.primaryWhite,
+            color: colorCodes.primaryWhite,
             duration: 0.35,
             ease: 'power4.out',
         })

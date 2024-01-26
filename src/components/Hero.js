@@ -5,7 +5,7 @@ import { AiOutlineLinkedin } from "react-icons/ai";
 import LetterAnimate from '../utils/LetterAnimate';
 import Grid from './Grid';
 import { gsap } from 'gsap';
-import { color, titleLetter } from '../utils/constants';
+import { colorCodes, titleLetter } from '../utils/constants';
 import { useGSAP } from '@gsap/react';
 import { FaCodepen } from 'react-icons/fa';
 import { useColor } from './ColorContext';
@@ -46,7 +46,7 @@ const Hero = () => {
                 { opacity: 1, y: 0, duration: 0.5, delay: 1.5, ease: "power4.out" }
             )
         }, comp)
-        console.log(primaryColor);
+        
         return () => ctx.revert();
     }, []);
 
@@ -58,7 +58,7 @@ const Hero = () => {
         })
         const icon = currentTarget.querySelector('.icon');
         gsap.to(icon, {
-            color: color.primaryWhite,
+            color: colorCodes.primaryWhite,
             duration: 0.35,
             ease: 'power4.out',
             backgroundColor: primaryColor
@@ -67,7 +67,7 @@ const Hero = () => {
 
     const onLeave = ({ currentTarget }) => {
         gsap.to(currentTarget, {
-            backgroundColor: color.primaryBlack,
+            backgroundColor: colorCodes.primaryBlack,
             duration: 0.35,
             ease: 'power4.out',
         })
@@ -76,7 +76,7 @@ const Hero = () => {
             color: primaryColor,
             duration: 0.35,
             ease: 'power4.out',
-            backgroundColor: color.primaryBlack
+            backgroundColor: colorCodes.primaryBlack
         })
     }
 
