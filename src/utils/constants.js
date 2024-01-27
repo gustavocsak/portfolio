@@ -1,5 +1,9 @@
 import gsap from "gsap"
 
+/**
+ * TODO: REFACTOR ON ENTER - TAKE BACKGROUND COLOR OR COLOR/TAKE PARAMETER COLOR TO FROM
+ */
+
 const colorCodes = {
     primaryPurple: 'rgb(193, 51, 255)',
     primaryBlack: 'rgb(18, 18, 18)',
@@ -44,7 +48,31 @@ const onLeave = ({ currentTarget }, color=null, invert=false) => {
     
 }
 
-export { colorCodes, onEnter, onLeave };
+const projects = [
+	{
+		title: "Tricket",
+		oneLiner: "Ticket tracking system.",
+		description: `Allows you to create, update, delete and track tickets/tasks for your various projects.
+					 Tricket makes you more productive by giving you a view of your tasks and tickets that needs to be worked on.`,
+		techStack: ["bootstrap", "react", "express", "mongodb"],
+		liveSource: "tricket",
+		github: "https://github.com/gustavocsak/tricket",
+		image: "tricket.jpg"
+	},
+	{
+		title: "cornerBet",
+		oneLiner: "Automated bot for scrapping socccer matches.",
+		description: `Automated scrapper for soccer matches statistics and make predictions for possible end time corners.
+					Powered by cheerio, a library for parsing and manipulating HTML and XML.`,
+		techStack: ["javascript", "mongodb"],
+		liveSource: "cornerbet",
+		github: "https://github.com/gustavocsak/cornerbet",
+		image: "cornerbet.jpg"
+	},
+
+]
+
+export { colorCodes, onEnter, onLeave, projects };
 
 
 export const titleLetter = ['G', 'u', 's', 't', 'a', 'v', 'o']

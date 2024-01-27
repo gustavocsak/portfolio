@@ -4,36 +4,13 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useColor } from './ColorContext';
+import { projects } from '../utils/constants';
 
 /**
  * TODO: fix live source URL for projects array
  * TODO: move projects data to a separate js file
  * TODO: try it out with the 3d project card?
  */
-
-const projects = [
-	{
-		title: "Tricket",
-		oneLiner: "Ticket tracking system.",
-		description: `Web application that allows you to create, update, delete and track tickets/tasks for your various projects.
-					 Tricket makes you more productive by giving you a view of your tasks and tickets that needs to be worked on.`,
-		techStack: ["bootstrap", "react", "express", "mongodb"],
-		liveSource: "tricket",
-		github: "https://github.com/gustavocsak/tricket",
-		image: "tricket.jpg"
-	},
-	{
-		title: "cornerBet",
-		oneLiner: "Automated bot for scrapping socccer matches.",
-		description: `Automated scrapper for soccer matches statistics and make predictions for possible end time corners.
-					Built using javascript and powered by cheerio, a library for parsing and manipulating HTML and XML.`,
-		techStack: ["javascript", "mongodb"],
-		liveSource: "cornerbet",
-		github: "https://github.com/gustavocsak/cornerbet",
-		image: "cornerbet.jpg"
-	},
-
-]
 
 const Projects = () => {
 	const { primaryColor } = useColor();
