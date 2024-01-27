@@ -5,6 +5,7 @@ import { colorUtils } from '../utils/colorUtils'
 import { useColor } from './ColorContext'
 import { onEnter, onLeave } from '../utils/constants'
 import Alert from './Alert'
+import emailjs from '@emailjs/browser'
 /**
  * TODO: implement captcha?
  */
@@ -16,6 +17,7 @@ const Contact = () => {
 	 */
 	const { primaryColor } = useColor();
 	const ball = useRef();
+	const formRef = useRef();
 	const [form, setForm] = useState({ name: '', email: '', message: '' });
 	const [animation, setAnimation] = useState(0);
 
@@ -32,8 +34,14 @@ const Contact = () => {
 
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const handleSubmit = (e) => {
-		
 		e.preventDefault();
+		emailjs.sendForm('gustavo_portfolio', 'template_cif8i1l', formRef.current, 'jkvgv11Yrrre2t38W')
+		.then((result) => {
+			console.log(result.text);
+		}, (error) => {
+			console.log(error.text);
+		});
+		
 		setFormSubmitted(true);
 
 	}
@@ -95,7 +103,7 @@ const Contact = () => {
 						</div>
 					</div>
 					<div className='lg:basis-3/5'>
-						<form className='flex flex-col' onSubmit={handleSubmit} name='contact' netlify>
+						<form className='flex flex-col' onSubmit={handleSubmit} name='contact' ref={formRef}>
 							<div className='flex flex-col gap-2 mb-12'>
 								<label className='font-semibold text-lg leading-6 text-zinc-100' htmlFor='name'>Name</label>
 								<input
