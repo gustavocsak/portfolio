@@ -16,6 +16,7 @@ const Contact = () => {
 	 */
 	const { primaryColor } = useColor();
 	const ball = useRef();
+	const [form, setForm] = useState({ name: '', email: '', message: '' });
 	const [animation, setAnimation] = useState(0);
 
 	const textShadow = {
@@ -31,11 +32,21 @@ const Contact = () => {
 
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const handleSubmit = (e) => {
+		fetch("/", {
+			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: { "form-name": "contact-hidden", ...form }
+		})
+			.then(() => console.log("form submitted through netlify!"))
+			.catch(error => alert(error));
+
 		e.preventDefault();
-		console.log(e)
 		setFormSubmitted(true);
 
 	}
+
+	const handleChange = e => setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
+
 	const handleClose = () => {
 
 		setFormSubmitted(false);
@@ -94,28 +105,45 @@ const Contact = () => {
 						<form className='flex flex-col' onSubmit={handleSubmit} name='contact' netlify>
 							<div className='flex flex-col gap-2 mb-12'>
 								<label className='font-semibold text-lg leading-6 text-zinc-100' htmlFor='name'>Name</label>
-								<input className='input rounded-lg p-2.5 text-zinc-100 border-0
-												 bg-zinc-900 border-2 border-zinc-600
-								 				outline-none'
-									type='text' id='name' name='name'></input>
+								<input
+									className='input rounded-lg p-2.5 text-zinc-100 border-0
+											   bg-zinc-900 border-2 border-zinc-600 outline-none'
+									type='text'
+									id='name'
+									name='name'
+									value={form.name || ''}
+									onChange={handleChange}
+								></input>
 							</div>
 							<div className='flex flex-col gap-2 mb-12'>
 								<label className='font-semibold text-lg leading-6 text-zinc-100' htmlFor='email'>Email</label>
-								<input className='input rounded-lg p-2.5 text-zinc-100 bg-zinc-900 border-2 border-zinc-600 outline-none'
-									type='email' id='email' name='email'></input>
+								<input
+									className='input rounded-lg p-2.5 text-zinc-100
+								 		bg-zinc-900 border-2 border-zinc-600 outline-none'
+									type='email'
+									id='email'
+									name='email'
+									value={form.email || ''}
+									onChange={handleChange}
+								></input>
 							</div>
 							<div className='flex flex-col gap-2 mb-12'>
 								<label className='font-semibold text-lg leading-6 text-zinc-100' htmlFor='message'>Message</label>
-								<textarea className='input rounded-lg p-2.5 text-zinc-100 border-0 h-32
-												bg-zinc-900 border-2 border-zinc-600
-								 				outline-none'
-									type='textarea' id='message' name='message'></textarea>
+								<textarea
+									className='input rounded-lg p-2.5 text-zinc-100 border-0 h-32
+											   bg-zinc-900 border-2 border-zinc-600 outline-none'
+									type='textarea'
+									id='message'
+									name='message'
+									value={form.message || ''}
+									onChange={handleChange}
+								></textarea>
 							</div>
-							<input type='hidden' name='contact' value='contact-hidden' />
+							
 							<div className='flex flex-col gap-2 mb-12'>
 								<button className='w-full h-16 bg-zinc-900 rounded-lg text-xl font-semibold border-2'
 									onMouseEnter={(e) =>
-									onEnter(primaryColor, e, true)}
+										onEnter(primaryColor, e, true)}
 									onMouseLeave={(e) => onLeave(e, primaryColor, true)}
 									style={borderStyle}
 									type='submit'
