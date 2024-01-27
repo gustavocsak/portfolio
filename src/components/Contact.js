@@ -19,9 +19,9 @@ const Contact = () => {
 	const [animation, setAnimation] = useState(0);
 
 	const textShadow = {
-        textShadow: `7px 4px 15px ${primaryColor}`,
-        color: primaryColor
-    }
+		textShadow: `7px 4px 15px ${primaryColor}`,
+		color: primaryColor
+	}
 	const ballStyle = {
 		background: `linear-gradient(to right, ${primaryColor}, ${colorUtils.lightHex(primaryColor)})`,
 	}
@@ -37,7 +37,7 @@ const Contact = () => {
 
 	}
 	const handleClose = () => {
-		
+
 		setFormSubmitted(false);
 	};
 
@@ -87,33 +87,39 @@ const Contact = () => {
 							and ready to discuss your unique web development needs.
 						</div>
 						<div className='w-12'>
-							<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle}/>
+							<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} />
 						</div>
 					</div>
 					<div className='lg:basis-3/5'>
-						<form className='flex flex-col' onSubmit={handleSubmit} netlify name='contact'>
+						<form className='flex flex-col' onSubmit={handleSubmit} name='contact' netlify>
 							<div className='flex flex-col gap-2 mb-12'>
 								<label className='font-semibold text-lg leading-6 text-zinc-100' htmlFor='name'>Name</label>
 								<input className='input rounded-lg p-2.5 text-zinc-100 border-0
 												 bg-zinc-900 border-2 border-zinc-600
 								 				outline-none'
-										type='text' id='name' name='name'></input>
+									type='text' id='name' name='name'></input>
 							</div>
 							<div className='flex flex-col gap-2 mb-12'>
 								<label className='font-semibold text-lg leading-6 text-zinc-100' htmlFor='email'>Email</label>
 								<input className='input rounded-lg p-2.5 text-zinc-100 bg-zinc-900 border-2 border-zinc-600 outline-none'
-										type='email' id='email' name='email'></input>
+									type='email' id='email' name='email'></input>
 							</div>
 							<div className='flex flex-col gap-2 mb-12'>
 								<label className='font-semibold text-lg leading-6 text-zinc-100' htmlFor='message'>Message</label>
 								<textarea className='input rounded-lg p-2.5 text-zinc-100 border-0 h-32
 												bg-zinc-900 border-2 border-zinc-600
 								 				outline-none'
-										type='textarea' id='message' name='message'></textarea>
+									type='textarea' id='message' name='message'></textarea>
 							</div>
+							<input type='hidden' name='contact' value='contact-hidden' />
 							<div className='flex flex-col gap-2 mb-12'>
 								<button className='w-full h-16 bg-zinc-900 rounded-lg text-xl font-semibold border-2'
-								onMouseEnter={(e) => onEnter(primaryColor, e, true)} onMouseLeave={(e) => onLeave(e, primaryColor, true)} style={borderStyle}>
+									onMouseEnter={(e) =>
+									onEnter(primaryColor, e, true)}
+									onMouseLeave={(e) => onLeave(e, primaryColor, true)}
+									style={borderStyle}
+									type='submit'
+								>
 									Send Message
 								</button>
 							</div>
