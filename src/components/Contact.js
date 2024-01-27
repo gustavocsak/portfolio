@@ -3,6 +3,7 @@ import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
 import { colorUtils } from '../utils/colorUtils'
 import { useColor } from './ColorContext'
+
 /**
  * TODO: implement captcha?
  */
@@ -42,7 +43,7 @@ const Contact = () => {
     }
 
     const onLeave = ({ currentTarget }) => {
-        console.log(currentTarget)
+        
         gsap.to(currentTarget, {
             backgroundColor: 'black',
             duration: 0.35,
@@ -91,6 +92,8 @@ const Contact = () => {
 							and ready to discuss your unique web development needs.
 						</div>
 						<div className='w-12'>
+
+							
 							<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle}/>
 						</div>
 					</div>

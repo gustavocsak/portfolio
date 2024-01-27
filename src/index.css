@@ -45,3 +45,8 @@
     width: 150px !important;
     height: 150px !important;
 }
+
+.canvas {
+    width: auto;
+    height: auto;
+}

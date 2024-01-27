@@ -5,6 +5,7 @@ import About from "./components/About.js";
 import Footer from "./components/Footer.js";
 import { ColorProvider } from "./components/ColorContext.js";
 
+
 const App = () => {
     return (
         <ColorProvider>
@@ -14,6 +15,7 @@ const App = () => {
                 <About />
                 <Contact />
                 <Footer />
+                
             </div>
         </ColorProvider>
       );

@@ -1,12 +1,14 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useColor } from './ColorContext';
+import p5 from 'p5';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
     const { primaryColor } = useColor();
+    const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
     const textShadow = {
         textShadow: `7px 4px 15px ${primaryColor}`,
         color: primaryColor
@@ -23,7 +25,61 @@ const About = () => {
                 once: true,
             }
         })
+        // Resize event listener
+        const handleResize = () => {
+            const parent = document.querySelector('.canvas-parent');
+            setCanvasSize({ width: parent.offsetWidth, height: parent.offsetHeight });
+        };
+
+        // Initial size calculation
+        handleResize();
+
+        // Add window resize event listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup function (optional): Remove the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
+
+    useEffect(() => {
+
+
+        console.log('Script executed');
+
+        // p5.js sketch logic
+        const sketch = (p) => {
+            let parent = p.select('.canvas-parent')
+            p.setup = () => {
+               
+                let canvas = p.createCanvas(parent.width, parent.height);
+                canvas.class('border-2 border-zinc-600')
+                
+                canvas.parent(parent);
+                p.background(0);
+            };
+
+            p.draw = () => {
+                p.fill(primaryColor);
+                p.ellipse(50, 50, 80, 80);
+            };
+
+            p.windowResized = () => {
+                parent = p.select('.canvas-parent')
+                console.log(parent.width)
+                p.resizeCanvas(parent.width, parent.height);
+            }
+        };
+
+        // Create a new p5 instance
+        const myP5 = new p5(sketch);
+
+        // Cleanup function (optional): Remove p5.js canvas when the component unmounts
+        return () => {
+            myP5.remove();
+        };
+    }, [primaryColor])
 
     return (
         <div className='flex items-center justify-center px-10 lg:my-12'>
@@ -58,11 +114,22 @@ const About = () => {
                                 target="_blank"
                                 rel='noreferrer'
                                 style={textShadow}>
-                                    cavaquinho
+                                cavaquinho
                             </a> — watching and playing&nbsp;
                             <span style={textShadow}>soccer</span>&nbsp;
                             and <span style={textShadow}>gaming with friends</span>.
                         </div>
+                    </div>
+                    <div className='clip'>
+                        <div className='sentence'>
+                            Also, I really like&nbsp;
+                            <span style={textShadow}>animating </span> —
+                            things! Try dragging your mouse below: &nbsp;
+
+                        </div>
+                    </div>
+                    <div className='self-center canvas-parent w-11/12 h-96'>
+                        {/* <canvas id='mycanvas' className='w-full h-96 border-2 border-zinc-600'></canvas> */}
                     </div>
                 </div>
             </div>
