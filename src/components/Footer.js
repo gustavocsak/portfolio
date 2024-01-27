@@ -1,28 +1,17 @@
 import React from 'react'
-import { colorCodes } from '../utils/constants'
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { gsap } from 'gsap/gsap-core';
 import { HiMailOpen } from "react-icons/hi";
 import { FaCodepen } from "react-icons/fa";
 import { useColor } from './ColorContext';
+import { onEnter, onLeave } from '../utils/constants';
 
 const Footer = () => {
     const { primaryColor } = useColor()
-    const onEnter = ({ currentTarget }) => {
-        gsap.to(currentTarget, {
-            color: primaryColor,
-            duration: 0.2
-        })
+    const iconConfig = {
+        onMouseEnter: (e) => onEnter(primaryColor, e),
+        onMouseLeave: (e) => onLeave(e, primaryColor),
+        size: 22
     }
-
-    const onLeave = ({ currentTarget }) => {
-        gsap.to(currentTarget, {
-            color: colorCodes.primaryWhite,
-            duration: 0.2
-        })
-    }
-
-    const iconConfig = { onMouseEnter: onEnter, onMouseLeave: onLeave, size: 22 }
 
     return (
         <div className=' bg-neutral-800 py-6 flex justify-center'>

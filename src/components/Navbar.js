@@ -3,8 +3,7 @@ import { HexColorPicker } from 'react-colorful';
 import { MdOutlineColorLens } from "react-icons/md";
 import { useColor } from './ColorContext';
 import { colorUtils } from '../utils/colorUtils';
-import { gsap } from 'gsap/gsap-core';
-import { colorCodes } from '../utils/constants';
+import { onEnter, onLeave } from '../utils/constants';
 
 const Navbar = ({ navRef }) => {
     const { primaryColor, setPrimaryColor } = useColor();
@@ -20,23 +19,6 @@ const Navbar = ({ navRef }) => {
     const handleColorChange = (color) => {
         setPrimaryColor(color);
     };
-
-    const onEnter = ({ currentTarget }) => {
-
-        gsap.to(currentTarget, {
-            color: primaryColor,
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-    }
-
-    const onLeave = ({ currentTarget }) => {
-        gsap.to(currentTarget, {
-            color: colorCodes.primaryWhite,
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-    }
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -64,8 +46,8 @@ const Navbar = ({ navRef }) => {
                 </div>
                 <div className='flex items-center gap-4'>
                     <button className='p-2.5 rounded-lg px-4' style={gradientStyle}>Resume</button>
-                    <button onClick={handleColorPickerClick}>
-                        <MdOutlineColorLens onMouseEnter={onEnter} onMouseLeave={onLeave} size={36}/>
+                    <button onClick={handleColorPickerClick} type='button' className='flex justify-center border-2 border-zinc-600 rounded-lg p-0.5'>
+                        <MdOutlineColorLens onMouseEnter={(e) => onEnter(primaryColor, e)} onMouseLeave={onLeave} size={36}/>
                     </button>
                     {colorPickerVisible && (
                         <div className='absolute top-full right-0 '>

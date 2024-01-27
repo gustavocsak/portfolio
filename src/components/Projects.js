@@ -87,7 +87,7 @@ const Projects = () => {
 			x: mouseX - 80,
 			y: mouseY - 80,
 			opacity: 1,
-			duration: 0.4,
+			duration: 0.01,
 			zIndex: 99,
 		})
 		if(projectCard) {

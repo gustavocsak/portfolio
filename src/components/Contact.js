@@ -3,6 +3,7 @@ import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
 import { colorUtils } from '../utils/colorUtils'
 import { useColor } from './ColorContext'
+import { onEnter, onLeave } from '../utils/constants'
 /**
  * TODO: implement captcha?
  */
@@ -11,7 +12,6 @@ const Contact = () => {
 	/**
 	 * TODO: appropriate the ball animation for smaller screens
 	 * TODO: fix text spacing
-	 * TODO: change on enter and on leave to utils?
 	 */
 	
 	const { primaryColor } = useColor();
@@ -31,24 +31,6 @@ const Contact = () => {
 	const handleEndAnimation = () => {
 		setAnimation(animation + 1);
 	}
-
-	const onEnter = ({ currentTarget }) => {
-
-        gsap.to(currentTarget, {
-            backgroundColor: primaryColor,
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-    }
-
-    const onLeave = ({ currentTarget }) => {
-        console.log(currentTarget)
-        gsap.to(currentTarget, {
-            backgroundColor: 'black',
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-    }
 
 	useEffect(() => {
 		const inputs = [...document.getElementsByClassName('input')]
@@ -117,7 +99,7 @@ const Contact = () => {
 							</div>
 							<div className='flex flex-col gap-2 mb-12'>
 								<button className='input w-full h-16 bg-zinc-900 rounded-lg text-xl font-semibold border-2'
-								onMouseEnter={onEnter} onMouseLeave={onLeave} style={borderStyle}>
+								onMouseEnter={(e) => onEnter(primaryColor, e, true)} onMouseLeave={(e) => onLeave(e, primaryColor, true)} style={borderStyle}>
 									Send Message
 								</button>
 							</div>

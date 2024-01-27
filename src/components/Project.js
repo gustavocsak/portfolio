@@ -4,13 +4,7 @@ import { BsBootstrap } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
-import { gsap } from 'gsap/gsap-core';
-import { colorCodes } from '../utils/constants';
-
-/**
- * 
- *TODO: FIX BLACK ON BUTTONS 
- */
+import { onEnter, onLeave } from '../utils/constants';
 
 const Project = ({ project, color }) => {
 
@@ -25,28 +19,9 @@ const Project = ({ project, color }) => {
         }
     }
 
-    const onEnter = ({ currentTarget }) => {
-
-        gsap.to(currentTarget, {
-            backgroundColor: currentTarget.classList.contains('color') ? colorCodes.primaryBlack : color,
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-    }
-
-    const onLeave = ({ currentTarget }) => {
-        console.log(currentTarget)
-        gsap.to(currentTarget, {
-            backgroundColor: currentTarget.classList.contains('color') ? color : colorCodes.primaryBlack,
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-    }
-
-
     return (
         <div className="project-reveal flex flex-col bg-zinc-900 border-2 border-zinc-600 rounded-lg p-6 gap-4 lg:flex-row lg:gap-16">
-            <div className='basis-1/2 flex flex-col pl-0 pt-4 border-t-2 gap-6 justify-between lg:border-t-0 lg:border-l-2 lg:pt-0'
+            <div className='basis-1/2 flex flex-col pl-0 pt-4 border-t-2 gap-6 justify-between lg:border-t-0 lg:border-l-2 lg:pt-0 lg:pl-4'
                 style={{ borderColor: color }}
             >
                 <div className='text-4xl font-bold'>{project.title}</div>
@@ -60,15 +35,15 @@ const Project = ({ project, color }) => {
                 </div>
                 <div className='flex gap-4 h-16 lg:h-12'>
                     <button className='w-full font-bold text-lg p-2 bg-zinc-950 rounded-lg border-2'
-                        onMouseEnter={onEnter}
-                        onMouseLeave={onLeave}
+                        onMouseEnter={(e) => onEnter(color, e, true)}
+                        onMouseLeave={(e) => onLeave(e, color, true)}
                         style={{ borderColor: color }}
                     >
                         <a href={project.github} className='no-underline' target='_blank' rel='noreferrer'>Github</a>
                     </button>
                     <button className='color w-full font-bold text-lg p-2 rounded-lg border-2'
-                        onMouseEnter={onEnter}
-                        onMouseLeave={onLeave}
+                        onMouseEnter={(e) => onEnter(color, e, true)}
+                        onMouseLeave={(e) => onLeave(e, color, true)}
                         style={{ background: color, borderColor: color }}
                     >
                         <a className='no-underline' href={project.liveSource} target='_blank' rel='noreferrer'>Live</a>
