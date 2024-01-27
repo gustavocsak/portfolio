@@ -32,14 +32,7 @@ const Contact = () => {
 
 	const [formSubmitted, setFormSubmitted] = useState(false);
 	const handleSubmit = (e) => {
-		fetch("/", {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: { "form-name": "contact-hidden", ...form }
-		})
-			.then(() => console.log("form submitted through netlify!"))
-			.catch(error => alert(error));
-
+		
 		e.preventDefault();
 		setFormSubmitted(true);
 
