@@ -3,17 +3,17 @@ import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useColor } from './ColorContext';
 import p5 from 'p5';
+import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
     const { primaryColor } = useColor();
-    const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
     const textShadow = {
         textShadow: `7px 4px 15px ${primaryColor}`,
         color: primaryColor
     }
-    useLayoutEffect(() => {
+    useGSAP(() => {
 
         gsap.to(".sentence", {
             y: 0,
@@ -25,61 +25,102 @@ const About = () => {
                 once: true,
             }
         })
-        // Resize event listener
-        const handleResize = () => {
-            const parent = document.querySelector('.canvas-parent');
-            setCanvasSize({ width: parent.offsetWidth, height: parent.offsetHeight });
-        };
-
-        // Initial size calculation
-        handleResize();
-
-        // Add window resize event listener
-        window.addEventListener('resize', handleResize);
-
-        // Cleanup function (optional): Remove the event listener when the component unmounts
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
+        
     }, []);
 
     useEffect(() => {
 
-
-        console.log('Script executed');
-
-        // p5.js sketch logic
         const sketch = (p) => {
+
+            const createGrid = (cols, rows) => {
+                let arr = new Array(cols);
+                for(let i = 0; i < arr.length; i++) {
+                    arr[i] = new Array(rows);
+                    for(let j = 0; j < arr[i].length; j++) {
+                        arr[i][j] = 0;
+                    }
+                }
+                return arr;
+            }
+            let grid;
+            let width = 10;
+            let cols, rows;
+
             let parent = p.select('.canvas-parent')
             p.setup = () => {
-               
-                let canvas = p.createCanvas(parent.width, parent.height);
-                canvas.class('border-2 border-zinc-600')
-                
+                let canvas = p.createCanvas(500, 400);
+                canvas.class('border-2 border-zinc-600 self-center')
                 canvas.parent(parent);
                 p.background(0);
+                console.log(p.width)
+                cols = Math.floor(p.width / width) 
+                rows = Math.floor(p.height / width)
+                grid = createGrid(cols, rows);
+               
+
+                for(let i = 0; i < cols; i++) {
+                    for(let j = 0; j < rows; j++) {
+                        grid[i][j] = 0;
+                    }
+                }
+
             };
+
+            p.mouseDragged = () => {
+                let row = p.floor(p.mouseX / width);
+                let col = p.floor(p.mouseY / width);
+                grid[row][col] = 1;
+            }
 
             p.draw = () => {
-                p.fill(primaryColor);
-                p.ellipse(50, 50, 80, 80);
+                p.background(0);
+                
+                for(let i = 0; i < cols; i++) {
+                    for(let j = 0; j < rows; j++) {
+                        p.stroke(255);
+                        p.fill(grid[i][j] * 255);
+                        let x = i * width;
+                        let y = j * width;
+                        p.square(x, y, width);
+                    }
+                }
+                let nextGrid = createGrid(cols, rows);
+                for(let i = 0; i < cols; i++) {
+                    for(let j = 0; j < rows; j++) {
+                        let current = grid[i][j];
+                        
+                        if(current === 1) {
+                            let below = grid[i][j + 1];
+                            let bottomR = grid[i + 1][j + 1];
+                            let bottomL = grid[i - 1][j + 1];
+                            if(j === rows - 1) {
+                                nextGrid[i][j] = 1;
+                            } else if(below === 0) {
+                                nextGrid[i][j + 1] = 1;
+                            } else if(bottomR === 0) {
+                                nextGrid[i + 1][j + 1] = 1;
+                            } else if(bottomL === 0) {
+                                nextGrid[i - 1][j + 1] = 1
+                            } else {
+                                nextGrid[i][j] = 1;
+                            }
+                        }
+                    }
+                }
+                grid = nextGrid;
             };
 
-            p.windowResized = () => {
-                parent = p.select('.canvas-parent')
-                console.log(parent.width)
-                p.resizeCanvas(parent.width, parent.height);
-            }
+            // p.windowResized = () => {
+            //     parent = p.select('.canvas-parent')
+            //     console.log(parent.width)
+            //     p.resizeCanvas(parent.width, parent.height);
+            // }
         };
-
-        // Create a new p5 instance
-        const myP5 = new p5(sketch);
-
-        // Cleanup function (optional): Remove p5.js canvas when the component unmounts
+        const myP5 = new p5(sketch);        
         return () => {
             myP5.remove();
         };
-    }, [primaryColor])
+    }, [])
 
     return (
         <div className='flex items-center justify-center px-10 lg:my-12'>
