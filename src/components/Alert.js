@@ -2,7 +2,7 @@ import React from 'react'
 import { IoClose } from "react-icons/io5";
 
 
-const Alert = ({ message, onClose }) => {
+const Alert = ({ message, onClose, color }) => {
 
 	return (
 		<div className='rounded-lg flex bg-gray-800 justify-between p-4 py-5'>

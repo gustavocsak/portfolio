@@ -15,11 +15,17 @@ const Contact = () => {
 	 * TODO: appropriate the ball animation for smaller screens
 	 * TODO: fix text spacing
 	 */
+	const [recaptchaToken, setRecaptchaToken] = useState(null);
+
+	const handleVerify = (token) => {
+		setRecaptchaToken(token);
+	};
 	const { primaryColor } = useColor();
 	const ball = useRef();
 	const formRef = useRef();
 	const [form, setForm] = useState({ name: '', email: '', message: '' });
 	const [animation, setAnimation] = useState(0);
+	const [formSubmitted, setFormSubmitted] = useState(false);
 
 	const textShadow = {
 		textShadow: `7px 4px 15px ${primaryColor}`,
@@ -32,16 +38,23 @@ const Contact = () => {
 		borderColor: primaryColor
 	}
 
-	const [formSubmitted, setFormSubmitted] = useState(false);
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (!recaptchaToken) {
+			console.error('reCAPTCHA verification failed');
+			return;
+		}
+
+
 		emailjs.sendForm('gustavo_portfolio', 'template_cif8i1l', formRef.current, 'jkvgv11Yrrre2t38W')
-		.then((result) => {
-			console.log(result.text);
-		}, (error) => {
-			console.log(error.text);
-		});
-		
+			.then((result) => {
+				console.log(result.text);
+			}, (error) => {
+				console.log(error.text);
+			});
+
+		console.log('form submitted with recaptcha', recaptchaToken);
+		setForm({ name: '', email: '', message: '' });
 		setFormSubmitted(true);
 
 	}
@@ -49,7 +62,6 @@ const Contact = () => {
 	const handleChange = e => setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
 
 	const handleClose = () => {
-
 		setFormSubmitted(false);
 	};
 
