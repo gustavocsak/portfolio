@@ -14,7 +14,7 @@ const Footer = () => {
     }
 
     return (
-        <footer className=' bg-neutral-800 py-6 flex justify-center'>
+        <footer className=' bg-gray-900 py-6 flex justify-center'>
             <div className='flex justify-center flex-col gap-2 items-center w-full md:flex-row md:justify-around'>
                 <div className='font-semibold'>gustavocs | made by Gustavo Carvalhaes</div>
                 <div className='flex gap-4'>

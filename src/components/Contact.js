@@ -37,33 +37,33 @@ const Contact = () => {
 	}, [animation])
 
 	return (
-		<div className='flex items-center justify-center px-10 lg:my-12'>
+		<section className='flex items-center justify-center px-10 lg:my-12'>
 			<div className='lg:w-8/12'>
 				<div className='flex flex-col lg:flex-row lg:gap-28'>
-					<div className='flex flex-col gap-8 lg:basis-2/5'>
-						<div className='text-5xl text-left font-bold md:text-6xl'>Contact Me</div>
-						<div className='font-bold text-left text-xl text-wrap'>
-
+					<article className='flex flex-col gap-8 lg:basis-2/5'>
+						<h2 className='text-5xl text-left font-bold md:text-6xl'>Contact Me</h2>
+						<p className='font-bold text-left text-xl text-wrap'>
 							Feel free to reach out if you want to&nbsp;
 							<span style={textShadow}>
-								discuss a project,<br />share ideas or make suggestions&nbsp;
+								discuss a project, share ideas or make suggestions&nbsp;
 							</span>
-							—
+						</p>
+						<p className='font-bold text-left text-xl text-wrap'>
 							<span style={textShadow}>
-								&nbsp;Open for work opportunities&nbsp;
+								Open for work opportunities&nbsp;
 							</span>
 							and ready to discuss your unique web development needs.
-						</div>
-						<div className='w-12'>
+						</p>
+						<article className='w-12'>
 							<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} />
-						</div>
-					</div>
-					<div className='lg:basis-3/5'>
+						</article>
+					</article>
+					<article className='lg:basis-3/5'>
 						<ContactForm color={primaryColor} />
-					</div>
+					</article>
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
 

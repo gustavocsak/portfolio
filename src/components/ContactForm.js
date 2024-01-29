@@ -62,7 +62,8 @@ const ContactForm = ({ color }) => {
                 element.style.borderColor = color
             })
             element.addEventListener('blur', () => {
-                element.style.borderColor = 'rgb(82, 82, 91)'
+                element.style.borderColor = ''
+                element.classList.add('border-gray-700')
             })
         })
     }, [color])
@@ -76,12 +77,13 @@ const ContactForm = ({ color }) => {
                     </label>
                     <input
                         className='input rounded-lg p-2.5 text-zinc-100 border-0
-											   bg-zinc-900 border-2 border-zinc-600 outline-none'
+                        bg-gray-900 border-2 border-gray-700 outline-none'
                         type='text'
                         id='name'
                         name='name'
                         value={form.name || ''}
                         onChange={handleChange}
+                        required
                     ></input>
                 </p>
                 <p className='flex flex-col gap-2 mb-12'>
@@ -90,12 +92,13 @@ const ContactForm = ({ color }) => {
                     </label>
                     <input
                         className='input rounded-lg p-2.5 text-zinc-100
-								 		bg-zinc-900 border-2 border-zinc-600 outline-none'
+						bg-gray-900 border-2 border-gray-700 outline-none'
                         type='email'
                         id='email'
                         name='email'
                         value={form.email || ''}
                         onChange={handleChange}
+                        required
                     ></input>
                 </p>
                 <p className='flex flex-col gap-2 mb-12'>
@@ -104,17 +107,18 @@ const ContactForm = ({ color }) => {
                     </label>
                     <textarea
                         className='input rounded-lg p-2.5 text-zinc-100 border-0 h-32
-											   bg-zinc-900 border-2 border-zinc-600 outline-none'
+                        bg-gray-900 border-2 border-gray-700 outline-none'
                         type='textarea'
                         id='message'
                         name='message'
                         value={form.message || ''}
                         onChange={handleChange}
+                        required
                     ></textarea>
                 </p>
             </section>
             <section className='flex flex-col gap-2 mb-12'>
-                <button className='w-full h-16 bg-zinc-900 rounded-lg text-xl font-semibold border-2'
+                <button className='w-full h-16 bg-gray-950 rounded-lg text-xl font-semibold border-2'
                     onMouseEnter={(e) =>
                         onEnter(color, e, true)}
                     onMouseLeave={(e) => onLeave(e, color, true)}
