@@ -6,6 +6,8 @@ import { useColor } from './ColorContext'
 import { onEnter, onLeave } from '../utils/constants'
 import Alert from './Alert'
 import emailjs from '@emailjs/browser'
+import ReCAPTCHA from 'react-google-recaptcha'
+
 /**
  * TODO: implement captcha?
  */
@@ -15,17 +17,14 @@ const Contact = () => {
 	 * TODO: appropriate the ball animation for smaller screens
 	 * TODO: fix text spacing
 	 */
-	const [recaptchaToken, setRecaptchaToken] = useState(null);
-
-	const handleVerify = (token) => {
-		setRecaptchaToken(token);
-	};
 	const { primaryColor } = useColor();
+	const recaptchaRef = useRef();
 	const ball = useRef();
 	const formRef = useRef();
-	const [form, setForm] = useState({ name: '', email: '', message: '' });
+	const [form, setForm] = useState({ name: '', email: '', message: ''});
 	const [animation, setAnimation] = useState(0);
 	const [formSubmitted, setFormSubmitted] = useState(false);
+	const [recaptcha, setRecaptcha] = useState(null)
 
 	const textShadow = {
 		textShadow: `7px 4px 15px ${primaryColor}`,
@@ -38,27 +37,42 @@ const Contact = () => {
 		borderColor: primaryColor
 	}
 
-	const handleSubmit = (e) => {
+
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!recaptchaToken) {
-			console.error('reCAPTCHA verification failed');
-			return;
+		try {
+			const token = await recaptchaRef.current.executeAsync()
+			if(token) {
+				const result = await emailjs.send(
+					'gustavo_portfolio',
+					'template_cif8i1l',
+					{ ...form, 'g-recaptcha-response': token },
+					'jkvgv11Yrrre2t38W'
+				)
+				console.log(result.text)
+			} else {
+				console.error("something went wrong")
+			}
+			
+
+			
+
+
+		} catch(error) {
+			console.error(error.text)
 		}
+		
 
-
-		emailjs.sendForm('gustavo_portfolio', 'template_cif8i1l', formRef.current, 'jkvgv11Yrrre2t38W')
-			.then((result) => {
-				console.log(result.text);
-			}, (error) => {
-				console.log(error.text);
-			});
-
-		console.log('form submitted with recaptcha', recaptchaToken);
-		setForm({ name: '', email: '', message: '' });
+		setForm({ name: '', email: '', message: ''});
 		setFormSubmitted(true);
+		setRecaptcha(false)
 
 	}
 
+	const handleRecaptchaChange = (value) => {
+		setRecaptcha(value)
+	}
 	const handleChange = e => setForm((prevForm) => ({ ...prevForm, [e.target.name]: e.target.value }));
 
 	const handleClose = () => {
@@ -152,7 +166,12 @@ const Contact = () => {
 									onChange={handleChange}
 								></textarea>
 							</div>
-							
+							<ReCAPTCHA
+								ref={recaptchaRef}
+								size='invisible'
+								sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+								onChange={handleRecaptchaChange}
+							/>
 							<div className='flex flex-col gap-2 mb-12'>
 								<button className='w-full h-16 bg-zinc-900 rounded-lg text-xl font-semibold border-2'
 									onMouseEnter={(e) =>
@@ -163,6 +182,25 @@ const Contact = () => {
 								>
 									Send Message
 								</button>
+								<div className='text-center text-xs'>
+									This site is protected by reCAPTCHA and the Google&nbsp;
+									<a
+										href="https://policies.google.com/privacy"
+										className='text-blue-700 underline'
+										target='_blank'
+										rel='noreferrer'
+									>
+										Privacy Policy
+									</a>&nbsp; and&nbsp;
+									<a
+										href="https://policies.google.com/terms"
+										className='text-blue-700 underline'
+										target='_blank'
+										rel='noreferrer'
+									>
+										Terms of Service
+									</a>&nbsp; apply.
+								</div>
 							</div>
 							{formSubmitted && <Alert message='Thank you for sending a message!' onClose={handleClose} />}
 						</form>

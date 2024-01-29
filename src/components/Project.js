@@ -20,7 +20,7 @@ const Project = ({ project, color }) => {
     }
 
     return (
-        <div className="basis-1/2 project-reveal flex flex-col bg-zinc-900 border-2 border-zinc-600 rounded-lg p-6 gap-4 lg:flex-row lg:gap-16">
+        <article className="basis-1/2 project-reveal flex flex-col bg-zinc-900 border-2 border-zinc-600 rounded-lg p-6 gap-4 lg:flex-row lg:gap-16">
             <div className='basis-1/2 flex flex-col pl-0 pt-4 border-t-2 gap-6 justify-between lg:border-t-0 lg:border-l-2 lg:pt-0 lg:pl-4'
                 style={{ borderColor: color }}
             >
@@ -53,7 +53,7 @@ const Project = ({ project, color }) => {
             <div className='flex basis-1/2 items-center'>
                 <img className='rounded-lg' src={tricket} alt='Project interface preview' />
             </div>
-        </div>
+        </article>
     )
 }
 

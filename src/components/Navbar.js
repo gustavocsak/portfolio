@@ -35,7 +35,7 @@ const Navbar = ({ navRef }) => {
     }, [navRef]);
 
     return (
-        <div className='w-full flex justify-center z-10'>
+        <nav className='w-full flex justify-center z-10'>
             <div className='lg:w-10/12 flex justify-between items-center py-4 w-full' ref={navRef}>
                 <div className='flex items-center gap-6'>
                     <div className='font-bold text-2xl'>gustavocs</div>
@@ -57,7 +57,7 @@ const Navbar = ({ navRef }) => {
                 </div>
 
             </div>
-        </div>
+        </nav>
     )
 }
 
