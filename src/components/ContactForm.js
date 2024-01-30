@@ -8,6 +8,7 @@ const ContactForm = ({ color }) => {
     const recaptchaRef = useRef();
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [recaptcha, setRecaptcha] = useState(null)
+    const [formError, setFormError] = useState(false)
     const formRef = useRef();
     const [form, setForm] = useState({ name: '', email: '', message: '' });
     const borderStyle = {
@@ -15,31 +16,29 @@ const ContactForm = ({ color }) => {
     }
 
     const handleSubmit = async (e) => {
+        setFormSubmitted(false);
         e.preventDefault();
+        
         try {
             const token = await recaptchaRef.current.executeAsync()
             if (token) {
                 const result = await emailjs.send(
-                    'gustavo_portfolio',
-                    'template_cif8i1l',
+                    process.env.REACT_APP_EMAILJS_SERVICE,
+                    process.env.REACT_APP_EMAILJS_TEMPLATE,
                     { ...form, 'g-recaptcha-response': token },
-                    'jkvgv11Yrrre2t38W'
+                    process.env.REACT_APP_EMAILJS_PUBLIC_KEY
                 )
-                console.log(result.text)
+                setForm({ name: '', email: '', message: '' });
+                setFormSubmitted(true);
+                setRecaptcha(false)
             } else {
-                console.error("something went wrong")
-                /**
-                 * TODO: Implement alert to inform user
-                 */
+                setFormError(true)
+                
             }
 
         } catch (error) {
             console.error(error.text)
         }
-
-        setForm({ name: '', email: '', message: '' });
-        setFormSubmitted(true);
-        setRecaptcha(false)
 
     }
 
@@ -52,6 +51,7 @@ const ContactForm = ({ color }) => {
 
     const handleClose = () => {
         setFormSubmitted(false);
+        setFormError(false);
     };
 
     // Reset border color for focus and blur when primary website color changes
@@ -153,7 +153,13 @@ const ContactForm = ({ color }) => {
                     onChange={handleRecaptchaChange}
                 />
             </section>
-            {formSubmitted && <Alert message='Thank you for sending a message!' onClose={handleClose} />}
+            {formSubmitted && 
+                <Alert message='Thank you for sending a message!' onClose={handleClose}  color='green'/>
+            }
+            {formError && 
+                <Alert message='Something went wrong, please try again later' onClose={handleClose}  color='red'/>
+            }
+            
         </form>
     )
 }
