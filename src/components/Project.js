@@ -5,6 +5,7 @@ import { FaReact } from "react-icons/fa";
 import { SiExpress, SiMongodb } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import { onEnter, onLeave } from '../utils/constants';
+import ProjectTech from './ProjectTech';
 
 const Project = ({ project, color }) => {
 
@@ -28,10 +29,11 @@ const Project = ({ project, color }) => {
                 <div className='text-2xl font-semibold'>{project.oneLiner}</div>
                 <div className='text-lg font-medium'>{project.description}</div>
                 <div className='flex flex-row gap-2 items-center font-semibold lg:text-xl'>
-                    <span>Built with: </span>
+                    {/* <span>Built with: </span>
                     {project.techStack.map((tech, index) => {
                         return translateTechStack(tech, index);
-                    })}
+                    })} */}
+                    <ProjectTech techStack={project.techStack} />
                 </div>
                 <div className='flex gap-4 h-16 lg:h-12'>
                     <button className='w-full font-bold text-lg p-2 bg-zinc-950 rounded-lg border-2'
