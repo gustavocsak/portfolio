@@ -6,7 +6,8 @@ import gsap from "gsap"
 
 const colorCodes = {
     primaryPurple: 'rgb(193, 51, 255)',
-    primaryBlack: 'rgb(18, 18, 18)',
+    // primaryBlack: 'rgb(18, 18, 21)',
+    primaryBlack: '#030712',
     primaryBlackAlpha: 'rgba(18, 18, 18, 0.7)',
     primaryWhite: 'rgb(248, 248, 255)',
     gradientPurple: 'rgba(177,0,255,1)'
