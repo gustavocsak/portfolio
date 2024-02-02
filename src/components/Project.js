@@ -1,24 +1,9 @@
 import React from 'react'
 import tricket from '../img/tricket.jpg'
-import { BsBootstrap } from "react-icons/bs";
-import { FaReact } from "react-icons/fa";
-import { SiExpress, SiMongodb } from "react-icons/si";
-import { IoLogoJavascript } from "react-icons/io5";
 import { onEnter, onLeave } from '../utils/constants';
 import ProjectTech from './ProjectTech';
 
 const Project = ({ project, color }) => {
-
-    const translateTechStack = (tech, index) => {
-        switch (tech) {
-            case "react": return <FaReact key={index} color={color} size={"25px"} />;
-            case "mongodb": return <SiMongodb key={index} color={color} size={"25px"} aria-label="MongoDB" />;
-            case "express": return <SiExpress key={index} color={color} size={"25px"} />;
-            case "bootstrap": return <BsBootstrap key={index} color={color} size={"25px"} />;
-            case "javascript": return <IoLogoJavascript key={index} color={color} size={"25px"} />;
-            default: break;
-        }
-    }
 
     return (
         <article className="basis-1/2 project-reveal flex flex-col bg-gray-900 border-2 border-gray-700 rounded-lg p-6 gap-4 lg:flex-row lg:gap-16">
@@ -29,10 +14,6 @@ const Project = ({ project, color }) => {
                 <h4 className='text-2xl font-semibold'>{project.oneLiner}</h4>
                 <p className='text-lg font-medium'>{project.description}</p>
                 <div className='flex flex-row gap-2 items-center font-semibold lg:text-xl'>
-                    {/* <span>Built with: </span>
-                    {project.techStack.map((tech, index) => {
-                        return translateTechStack(tech, index);
-                    })} */}
                     <ProjectTech techStack={project.techStack} />
                 </div>
                 <div className='flex gap-4 h-16 lg:h-12'>

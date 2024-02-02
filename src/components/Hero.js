@@ -1,15 +1,13 @@
 import React, { useRef } from 'react'
 import Navbar from './Navbar'
-import { BsGithub } from 'react-icons/bs';
-import { AiOutlineLinkedin } from "react-icons/ai";
 import LetterAnimate from '../utils/LetterAnimate';
 import Grid from './Grid';
 import { gsap } from 'gsap';
-import { colorCodes, titleLetter } from '../utils/constants';
+import { titleLetter } from '../utils/constants';
 import { useGSAP } from '@gsap/react';
-import { FaCodepen } from 'react-icons/fa';
 import { useColor } from './ColorContext';
 import { colorUtils } from '../utils/colorUtils';
+import HeroSocial from './HeroSocial';
 
 /**
  * TODO: take out translate from other pages replace with gsap
@@ -50,37 +48,6 @@ const Hero = () => {
         return () => ctx.revert();
     }, []);
 
-    const onEnter = ({ currentTarget }) => {
-        gsap.to(currentTarget, {
-            backgroundColor: primaryColor,
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-        const icon = currentTarget.querySelector('.icon');
-        gsap.to(icon, {
-            color: colorCodes.primaryWhite,
-            duration: 0.35,
-            ease: 'power4.out',
-            backgroundColor: primaryColor
-        })
-    }
-
-    const onLeave = ({ currentTarget }) => {
-        gsap.to(currentTarget, {
-            backgroundColor: colorCodes.primaryBlack,
-            duration: 0.35,
-            ease: 'power4.out',
-        })
-        const icon = currentTarget.querySelector('.icon');
-        gsap.to(icon, {
-            color: primaryColor,
-            duration: 0.35,
-            ease: 'power4.out',
-            backgroundColor: colorCodes.primaryBlack
-        })
-    }
-
-
     return (
         <div className='flex h-screen flex-col items-center justify-between gap-8 px-10'>
             <Navbar navRef={nav} />
@@ -104,45 +71,7 @@ const Hero = () => {
                     </div>
                     <div className='clip'>
                         <div className="reveal flex gap-8">
-                            <div className='h-14 w-14 rounded-full border-2 flex items-center justify-center hover:cursor-pointer'
-                                style={{borderColor: primaryColor}}
-                                onMouseEnter={onEnter}
-                                onMouseLeave={onLeave}
-                            >
-                                <a href='https://github.com/gustavocsak/' target='_blank' rel='noreferrer'>
-                                    <BsGithub size="28px"
-                                        color={primaryColor}
-                                        className='icon'
-                                        title='Github'
-                                    />
-                                </a>
-                            </div>
-                            <div className={`h-14 w-14 rounded-full border-2 flex items-center justify-center hover:cursor-pointer`}
-                                style={{borderColor: primaryColor}}
-                                onMouseEnter={onEnter}
-                                onMouseLeave={onLeave}
-                            >
-                                <a href='https://linkedin.com/in/gustavo-de-sa/' target='_blank' rel='noreferrer'>
-                                    <AiOutlineLinkedin size="28px"
-                                        color={primaryColor}
-                                        className='icon'
-                                        title='Linkedin'
-                                    />
-                                </a>
-                            </div>
-                            <div className={`h-14 w-14 rounded-full border-2 flex items-center justify-center hover:cursor-pointer`}
-                                style={{borderColor: primaryColor}}
-                                onMouseEnter={onEnter}
-                                onMouseLeave={onLeave}
-                            >
-                                <a href='https://codepen.io/gustavocs' target='_blank' rel='noreferrer'>
-                                    <FaCodepen size="28px"
-                                        color={primaryColor}
-                                        className='icon'
-                                        title='Codepen'
-                                    />
-                                </a>
-                            </div>
+                            <HeroSocial />
                         </div>
                     </div>
                 </div>

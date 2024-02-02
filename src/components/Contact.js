@@ -8,7 +8,6 @@ import ContactForm from './ContactForm'
 const Contact = () => {
 	/**
 	 * TODO: appropriate the ball animation for smaller screens
-	 * TODO: fix text spacing
 	 */
 	const { primaryColor } = useColor();
 	const ball = useRef();
