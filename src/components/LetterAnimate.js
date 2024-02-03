@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { gsap } from "gsap/gsap-core";
 import { useGSAP } from "@gsap/react";
+import { colorUtils } from '../utils/colorUtils';
 
 
 const LetterAnimate = ({ letter, time, color }) => {
@@ -13,14 +14,15 @@ const LetterAnimate = ({ letter, time, color }) => {
 			color: color,
 			repeat: -1,
 			duration: 2,
-			ease: "power2.out",
+			ease: "power4.out",
 			yoyo: true
 		})
 	}, [color])
 
 	const onEnter = contextSafe((e) => {
+		console.log(e.target)
 		gsap.to(e.target, {
-			color: color.primaryWhite,
+			color: colorUtils.generateRandomRGBString(),
 			duration: 0.6,
 		})
 	})

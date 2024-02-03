@@ -1,16 +1,14 @@
 import React, { useRef } from 'react'
 import Navbar from './Navbar'
-import LetterAnimate from '../utils/LetterAnimate';
 import Grid from './Grid';
 import { gsap } from 'gsap';
-import { titleLetter } from '../utils/constants';
 import { useGSAP } from '@gsap/react';
 import { useColor } from './ColorContext';
 import { colorUtils } from '../utils/colorUtils';
 import HeroSocial from './HeroSocial';
+import HeroTitle from './HeroTitle';
 
 /**
- * TODO: take out translate from other pages replace with gsap
  * TODO: update useGSAP to use contextSaefe
  */
 
@@ -25,7 +23,6 @@ const Hero = () => {
 
     useGSAP(() => {
         let ctx = gsap.context(() => {
-
             gsap.fromTo(".reveal",
                 {
                     y: 115,
@@ -38,13 +35,11 @@ const Hero = () => {
                     ease: "power4.out"
                 })
 
-
             gsap.fromTo(nav.current,
                 { opacity: 0, y: 50 },
                 { opacity: 1, y: 0, duration: 0.5, delay: 1.5, ease: "power4.out" }
             )
         }, comp)
-        
         return () => ctx.revert();
     }, []);
 
@@ -54,13 +49,14 @@ const Hero = () => {
             <main className='z-0 h-full lg:w-8/12 gap-16 flex flex-col items-center justify-between lg:flex-row'>
                 <div className='flex flex-col gap-12 justify-center items-center lg:items-start' ref={comp}>
                     <div className='clip'>
-                        <h1 className="reveal text-6xl font-bold text-center lg:text-left">
+                        {/* <h1 className="reveal text-6xl font-bold text-center lg:text-left">
                             <span>Hi, I'm  </span>
 
                             {titleLetter.map((letter, index) => {
                                 return <LetterAnimate color={primaryColor} key={index} letter={letter} />
                             })}!
-                        </h1>
+                        </h1> */}
+                        <HeroTitle primaryColor={primaryColor} />
                     </div>
                     <div className='clip'>
                         <h2 className={`inline-block reveal text-zinc-100 text-2xl font-bold px-2 py-0.5 rounded-md leading-10`}

@@ -11,6 +11,11 @@ const generateRandomRGB = () => {
     return generatedColor;
 }
 
+const generateRandomRGBString = () => {
+    const c = generateRandomRGB();
+    return `rgb(${c.red}, ${c.green}, ${c.blue})`
+}
+
 const generateShades = (rgb, factor, numOfShades) => {
     const shades = [];
     for (let i = 0; i < numOfShades; i++) {
@@ -37,6 +42,7 @@ const lightHex = (hex, factor=0.3) => {
 export const colorUtils = {
     getRandom,
     generateRandomRGB,
+    generateRandomRGBString,
     generateShades,
     lightHex
 };
