@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { gsap, random } from 'gsap';
+import { gsap } from 'gsap';
 import { colorUtils } from '../utils/colorUtils';
 import { useGSAP } from '@gsap/react';
 import { useColor } from './ColorContext';
@@ -11,18 +11,28 @@ const grid = Array.from(Array(400).keys());
  * TODO: animate only when in view?
  */
 
+const getRandomGrid = () => {
+	const randomColor = colorUtils.generateRandomHSL();
+	const HSLShades = colorUtils.generateHSLShades(randomColor, 7, 10)
+	const RGBShades = HSLShades.map((shade) => {
+		let newShade = gsap.utils.splitColor(shade);
+		console.log(newShade)
+		return `rgb(${newShade[0]}, ${newShade[1]}, ${newShade[2]})`
+	})
+
+	const randomGrid = {
+		shades: RGBShades,
+		directions: ['center', 'edges', 'random', 'end']
+	}
+
+	return randomGrid;
+}
+
 const Grid = () => {
 	const { primaryColor } = useColor();
 
 	const createTimeline = () => {
-		const randomColor = colorUtils.generateRandomHSL();
-		const shades = colorUtils.generateHSLShades(randomColor, 6)
-		const rgbShades = shades.map((shade) => {
-			let newShade = gsap.utils.splitColor(shade);
-			console.log(newShade)
-			return `rgb(${newShade[0]}, ${newShade[1]}, ${newShade[2]})`
-		})
-		console.log(rgbShades)
+		const gridConfig = getRandomGrid();
 		let tl = gsap.timeline({
 			ease: 'easeInOutSine',
 			defaults: { duration: 0.5, ease: 'easeInOutQuad' },
@@ -88,11 +98,13 @@ const Grid = () => {
 
 		tl.fromTo('.dot', {background: primaryColor},{
 			duration: 1,
-			backgroundColor: (index) => rgbShades[index % 6],
+			backgroundColor: (index) => {
+				return gridConfig.shades[colorUtils.getRandom(0, 7)];
+			},
 			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
-				from: 'right',
+				from: gridConfig.directions[colorUtils.getRandom(0, 4)],
 				amount: 1,
 			}
 		})
@@ -106,7 +118,7 @@ const Grid = () => {
 			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
-				from: 'left',
+				from: gridConfig.directions[colorUtils.getRandom(0, 4)],
 				amount: 1,
 			}
 		})
