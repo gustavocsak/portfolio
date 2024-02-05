@@ -1,29 +1,29 @@
-const getRandom = (min, max) => {
+function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-const generateRandomRGB = () => {
-    const generatedColor = {
+function generateRandomRGB() {
+    const color = {
         red: Math.floor(Math.random() * 160) + 95,
         green: Math.floor(Math.random() * 160) + 95,
         blue: Math.floor(Math.random() * 160) + 95,
-        str: `rgb(${this.red}, ${this.green}, ${this.blue})`
     }
-    console.log(generatedColor);
-    return generatedColor;
+    color.str = `rgb(${color.red}, ${color.green}, ${color.blue})`;
+    return color;
 }
 
-const generateRandomHSL = () => {
-    const generatedColor = {
+function generateRandomHSL() {
+    const color = {
         hue: Math.floor(Math.random() * 360),
         saturation: 100,
         lightness: 50,
-        str: `hsl(${this.hue}, ${this.saturation}%, ${this.lightness}%)`
     }
-    return generatedColor;
+    color.str = `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
+    console.log(color)
+    return color;
 }
 
-const generateHSLShades = (hsl, numOfShades) => {
+function generateHSLShades(hsl, numOfShades) {
     const shades = [];
     const step = (100 - hsl.saturation) / numOfShades;
     for(let i = 0; i < numOfShades; i++) {
@@ -33,7 +33,7 @@ const generateHSLShades = (hsl, numOfShades) => {
     return shades;
 }
 
-const generateShades = (rgb, factor, numOfShades) => {
+function generateShades(rgb, factor, numOfShades) {
     const shades = [];
     for (let i = 0; i < numOfShades; i++) {
         const light = 1 - factor * i;
@@ -47,7 +47,7 @@ const generateShades = (rgb, factor, numOfShades) => {
     return shades
 }
 
-const lightHex = (hex, factor=0.3) => {
+function lightHex(hex, factor=0.3) {
     const light = 1 - factor;
     const newRed = Math.round(parseInt(hex.slice(1,3), 16) * light).toString(16).padStart(2, '0')
     const newGreen = Math.round(parseInt(hex.slice(3,5), 16) * light).toString(16).padStart(2, '0')
