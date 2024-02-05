@@ -22,11 +22,12 @@ function generateRandomHSL() {
     return color;
 }
 
-function generateHSLShades(hsl, numOfShades) {
+function generateHSLShades(hsl, numOfShades, step = 15) {
     const shades = [];
-    const step = (100 - hsl.saturation) / numOfShades;
+    console.log(hsl)
     for(let i = 0; i < numOfShades; i++) {
-        const light = hsl.lightness + i * step;
+        // const light = Math.floor(Math.random() * 75) + 10;
+        const light = i * step + step;
         shades.push(`hsl(${hsl.hue}, ${hsl.saturation}%, ${light}%)`)
     }
     return shades;

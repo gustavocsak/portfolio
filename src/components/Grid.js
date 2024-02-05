@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { gsap } from 'gsap';
+import { gsap, random } from 'gsap';
 import { colorUtils } from '../utils/colorUtils';
 import { useGSAP } from '@gsap/react';
 import { useColor } from './ColorContext';
@@ -12,12 +12,17 @@ const grid = Array.from(Array(400).keys());
  */
 
 const Grid = () => {
-
 	const { primaryColor } = useColor();
 
 	const createTimeline = () => {
-
-		let possibleColors = colorUtils.generateShades(colorUtils.generateRandomRGB(), 0.15, 6)
+		const randomColor = colorUtils.generateRandomHSL();
+		const shades = colorUtils.generateHSLShades(randomColor, 6)
+		const rgbShades = shades.map((shade) => {
+			let newShade = gsap.utils.splitColor(shade);
+			console.log(newShade)
+			return `rgb(${newShade[0]}, ${newShade[1]}, ${newShade[2]})`
+		})
+		console.log(rgbShades)
 		let tl = gsap.timeline({
 			ease: 'easeInOutSine',
 			defaults: { duration: 0.5, ease: 'easeInOutQuad' },
@@ -81,13 +86,13 @@ const Grid = () => {
 			}
 		}, "shrink+=0.6")
 
-		tl.to('.dot', {
+		tl.fromTo('.dot', {background: primaryColor},{
 			duration: 1,
-			backgroundColor: (index) => possibleColors[colorUtils.getRandom(0, possibleColors.length)],
+			backgroundColor: (index) => rgbShades[index % 6],
 			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
-				from: 'random',
+				from: 'right',
 				amount: 1,
 			}
 		})
