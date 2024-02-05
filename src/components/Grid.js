@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap';
 import { colorUtils } from '../utils/colorUtils';
 import { useGSAP } from '@gsap/react';
@@ -30,6 +30,7 @@ const getRandomGrid = () => {
 
 const Grid = () => {
 	const { primaryColor } = useColor();
+	const [firstMount, setFirstMount] = useState(true);
 
 	const createTimeline = () => {
 		const gridConfig = getRandomGrid();
@@ -38,7 +39,8 @@ const Grid = () => {
 			defaults: { duration: 0.5, ease: 'easeInOutQuad' },
 			onComplete: handleEndAnimation
 		});
-
+		
+		
 		tl.to('.dot', {
 			duration: 0.8,
 			scale: 1,
@@ -46,11 +48,16 @@ const Grid = () => {
 			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
-				from: 'center',
+				from: 
+					firstMount ? 
+						'center':
+						gridConfig.directions[colorUtils.getRandom(0, 4)],
 				amount: 1,
 
 			}
 		})
+
+		
 
 		tl.to('.dot', {
 			duration: 0.4,
@@ -137,14 +144,20 @@ const Grid = () => {
 			y: 0,
 			scale: 0.1,
 			backgroundColor: primaryColor,
+			duration: 0,
 			onComplete: () => {
 				setEndAnimation(!endAnimation);
+				setFirstMount(false);
 			},
 		});
 	};
 
-	let [endAnimation, setEndAnimation] = useState()
+	const [endAnimation, setEndAnimation] = useState()
 	const animation = useRef(null);
+
+	useEffect(() => {
+		setFirstMount(true);
+	}, [primaryColor])
 
 	useGSAP(() => {
 		if (animation.current) {
@@ -164,7 +177,9 @@ const Grid = () => {
 	return (
 		<div className='p-0 m-0 flex flex-wrap items-center justify-center w-80 h-80'>
 			{grid.map((_, i) => {
-				return <div className='dot p-0 m-0 w-4 h-4 rounded-full bg-primary opacity-90' key={i} />
+				return <>
+					<div className='dot p-0 m-0 w-4 h-4 rounded-full bg-primary opacity-90' key={i} />
+				</>			
 			})}
 		</div>
 	)
