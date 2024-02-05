@@ -72,7 +72,7 @@ const Hero = () => {
                     </div>
                 </div>
                 <div>
-                    <Grid />
+                    {/* <Grid /> */}
                 </div>
             </main>
         </div>
