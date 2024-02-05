@@ -19,7 +19,6 @@ function generateRandomHSL() {
         lightness: 50,
     }
     color.str = `hsl(${color.hue}, ${color.saturation}%, ${color.lightness}%)`;
-    console.log(color)
     return color;
 }
 
@@ -33,21 +32,19 @@ function generateHSLShades(hsl, numOfShades) {
     return shades;
 }
 
-function generateShades(rgb, factor, numOfShades) {
+function generateRGBShades(rgb, factor, numOfShades) {
     const shades = [];
     for (let i = 0; i < numOfShades; i++) {
         const light = 1 - factor * i;
-        const newColor = {
-            red: Math.round(rgb.red * light),
-            green: Math.round(rgb.green * light),
-            blue: Math.round(rgb.blue * light)
-        }
-        shades.push(`rgb(${newColor.red}, ${newColor.green}, ${newColor.blue})`)
+        const red = Math.round(rgb.red * light);
+        const green = Math.round(rgb.green * light);
+        const blue = Math.round(rgb.blue * light);
+        shades.push(`rgb(${red}, ${green}, ${blue})`)
     }
-    return shades
+    return shades;
 }
 
-function lightHex(hex, factor=0.3) {
+function lightHex(hex, factor = 0.3) {
     const light = 1 - factor;
     const newRed = Math.round(parseInt(hex.slice(1,3), 16) * light).toString(16).padStart(2, '0')
     const newGreen = Math.round(parseInt(hex.slice(3,5), 16) * light).toString(16).padStart(2, '0')
@@ -61,6 +58,6 @@ export const colorUtils = {
     generateRandomRGB,
     generateRandomHSL,
     generateHSLShades,
-    generateShades,
+    generateRGBShades,
     lightHex
 };
