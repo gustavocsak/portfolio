@@ -8,12 +8,8 @@ import { colorUtils } from '../utils/colorUtils';
 import HeroSocial from './HeroSocial';
 import HeroTitle from './HeroTitle';
 
-/**
- * TODO: update useGSAP to use contextSaefe
- */
-
 const Hero = () => {
-    const comp = useRef();
+    const container = useRef();
     const nav = useRef();
     const { primaryColor } = useColor();
     
@@ -22,40 +18,30 @@ const Hero = () => {
     };
 
     useGSAP(() => {
-        let ctx = gsap.context(() => {
-            gsap.fromTo(".reveal",
-                {
-                    y: 115,
-                },
-                {
-                    y: 0,
-                    duration: 0.5,
-                    stagger: 0.2,
-                    delay: 0.25,
-                    ease: "power4.out"
-                })
+        gsap.fromTo(".reveal",
+            {
+                y: 115,
+            },
+            {
+                y: 0,
+                duration: 0.5,
+                stagger: 0.2,
+                delay: 0.25,
+                ease: "power4.out"
+            })
 
-            gsap.fromTo(nav.current,
-                { opacity: 0, y: 50 },
-                { opacity: 1, y: 0, duration: 0.5, delay: 1.5, ease: "power4.out" }
-            )
-        }, comp)
-        return () => ctx.revert();
-    }, []);
+        gsap.fromTo(nav.current,
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 0.5, delay: 1.2, ease: "power4.out" }
+        )
+    }, { scope: container});
 
     return (
         <div className='flex h-screen flex-col items-center justify-between gap-8 px-10'>
             <Navbar navRef={nav} />
             <main className='z-0 h-full lg:w-8/12 gap-16 flex flex-col items-center justify-between lg:flex-row'>
-                <div className='flex flex-col gap-12 justify-center items-center lg:items-start' ref={comp}>
+                <section className='flex flex-col gap-12 justify-center items-center lg:items-start' ref={container}>
                     <div className='clip'>
-                        {/* <h1 className="reveal text-6xl font-bold text-center lg:text-left">
-                            <span>Hi, I'm  </span>
-
-                            {titleLetter.map((letter, index) => {
-                                return <LetterAnimate color={primaryColor} key={index} letter={letter} />
-                            })}!
-                        </h1> */}
                         <HeroTitle primaryColor={primaryColor} />
                     </div>
                     <div className='clip'>
@@ -70,10 +56,10 @@ const Hero = () => {
                             <HeroSocial />
                         </div>
                     </div>
-                </div>
-                <div>
+                </section>
+                <article>
                     <Grid />
-                </div>
+                </article>
             </main>
         </div>
     )
