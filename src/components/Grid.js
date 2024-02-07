@@ -16,7 +16,6 @@ const getRandomGrid = () => {
 	const HSLShades = colorUtils.generateHSLShades(randomColor, 7, 10)
 	const RGBShades = HSLShades.map((shade) => {
 		let newShade = gsap.utils.splitColor(shade);
-		console.log(newShade)
 		return `rgb(${newShade[0]}, ${newShade[1]}, ${newShade[2]})`
 	})
 
@@ -35,17 +34,15 @@ const Grid = () => {
 	const createTimeline = () => {
 		const gridConfig = getRandomGrid();
 		let tl = gsap.timeline({
-			ease: 'easeInOutSine',
-			defaults: { duration: 0.5, ease: 'easeInOutQuad' },
+			ease: 'power4.out',
+			defaults: { duration: 0.5, ease: 'power4.out' },
 			onComplete: handleEndAnimation
 		});
-		
 		
 		tl.to('.dot', {
 			duration: 0.8,
 			scale: 1,
 			y: -30,
-			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: 
@@ -57,12 +54,9 @@ const Grid = () => {
 			}
 		})
 
-		
-
 		tl.to('.dot', {
 			duration: 0.4,
 			scale: 0.4,
-			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: 'center',
@@ -73,7 +67,6 @@ const Grid = () => {
 		tl.to('.dot', {
 			duration: 0.5,
 			scale: 1,
-			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: 'center',
@@ -84,7 +77,6 @@ const Grid = () => {
 		tl.to('.dot', {
 			duration: 0.5,
 			scale: 0.4,
-			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: 'center',
@@ -95,7 +87,6 @@ const Grid = () => {
 		tl.to('.dot', {
 			duration: 0.3,
 			scale: 1,
-			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: 'center',
@@ -103,12 +94,11 @@ const Grid = () => {
 			}
 		}, "shrink+=0.6")
 
-		tl.fromTo('.dot', {background: primaryColor},{
+		tl.to('.dot', {
 			duration: 1,
 			backgroundColor: (index) => {
 				return gridConfig.shades[colorUtils.getRandom(0, 7)];
 			},
-			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: gridConfig.directions[colorUtils.getRandom(0, 4)],
@@ -122,7 +112,6 @@ const Grid = () => {
 			y: 0,
 			x: 0,
 			backgroundColor: primaryColor,
-			ease: "power4.out",
 			stagger: {
 				grid: [20, 20],
 				from: gridConfig.directions[colorUtils.getRandom(0, 4)],
@@ -177,9 +166,7 @@ const Grid = () => {
 	return (
 		<div className='p-0 m-0 flex flex-wrap items-center justify-center w-80 h-80'>
 			{grid.map((_, i) => {
-				return <>
-					<div className='dot p-0 m-0 w-4 h-4 rounded-full bg-primary opacity-90' key={i} />
-				</>			
+				return <div className='dot p-0 m-0 w-4 h-4 rounded-full bg-primary opacity-90' key={i} />			
 			})}
 		</div>
 	)
