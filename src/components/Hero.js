@@ -8,10 +8,6 @@ import { colorUtils } from '../utils/colorUtils';
 import HeroSocial from './HeroSocial';
 import HeroTitle from './HeroTitle';
 
-/**
- * TODO: update useGSAP to use contextSaefe
- */
-
 const Hero = () => {
     const container = useRef();
     const nav = useRef();

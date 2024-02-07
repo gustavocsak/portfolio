@@ -24,7 +24,6 @@ function generateRandomHSL() {
 
 function generateHSLShades(hsl, numOfShades, step = 15) {
     const shades = [];
-    console.log(hsl)
     for(let i = 0; i < numOfShades; i++) {
         // const light = Math.floor(Math.random() * 75) + 10;
         const light = i * step + step;

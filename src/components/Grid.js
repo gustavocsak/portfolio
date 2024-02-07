@@ -7,7 +7,6 @@ import { useColor } from './ColorContext';
 const grid = Array.from(Array(400).keys());
 
 /**
- * TODO: put util functions in constants or another file
  * TODO: animate only when in view?
  */
 
