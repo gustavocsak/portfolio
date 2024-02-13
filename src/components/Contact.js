@@ -1,11 +1,21 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap/gsap-core'
 import { useGSAP } from '@gsap/react'
 import { colorUtils } from '../utils/colorUtils'
 import { useColor } from './ColorContext'
 import ContactForm from './ContactForm'
+import { Draggable } from 'gsap/all'
+
+gsap.registerPlugin(Draggable)
+
 
 const Contact = () => {
+	useEffect(() => {
+		Draggable.create('.ball', {
+			bounds: '.c',
+			throwProps: true,		
+		})
+	}, [])
 	/**
 	 * TODO: appropriate the ball animation for smaller screens
 	 */
@@ -24,7 +34,6 @@ const Contact = () => {
 	const handleEndAnimation = () => {
 		setAnimation(animation + 1);
 	}
-
 	useGSAP(() => {
 		gsap.to(".ball", {
 			x: colorUtils.getRandom(0, 500),
@@ -36,7 +45,7 @@ const Contact = () => {
 	}, [animation])
 
 	return (
-		<section className='flex items-center justify-center px-10 lg:my-12'>
+		<section className='c flex items-center justify-center px-10 lg:my-12'>
 			<div className='lg:w-8/12'>
 				<div className='flex flex-col lg:flex-row lg:gap-28'>
 					<article className='flex flex-col gap-8 lg:basis-2/5'>
@@ -54,6 +63,11 @@ const Contact = () => {
 							and ready to discuss your unique web development needs.
 						</p>
 						<article className='w-12'>
+							<section>
+								<form>
+									
+								</form>
+							</section>
 							<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} />
 						</article>
 					</article>
