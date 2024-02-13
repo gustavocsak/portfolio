@@ -63,10 +63,10 @@ const Contact = () => {
 							</span>
 							and ready to discuss your unique web development needs.
 						</p>
-						<article className='w-12'>
-							<ShapeMaker color={primaryColor}/>
-							<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} />
-						</article>
+						
+						<ShapeMaker color={primaryColor}/>
+						<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} />
+						
 					</article>
 					<article className='lg:basis-3/5'>
 						<ContactForm color={primaryColor} />

@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import { useGSAP } from '@gsap/react';
+import React, { useRef } from 'react'
+import { Engine } from 'matter-js';
 
 const ShapeMaker = ({ color }) => {
-    const [square, setSquare] = useState(false);
-    const [circle, setCircle] = useState(false);
-    const [triangle, setTriangle] = useState(false);
-    const [size, setSize] = useState(1);
-     
+    const scene = useRef()
+    const engine = useRef(Engine.create())
     return (
-        <article className='hidden flex-row md:flex'>
-            <div className='square w-2'></div>
+        <article ref={scene} className='w-full h-full'>
+            
         </article>
     )
 }
