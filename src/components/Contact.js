@@ -5,6 +5,7 @@ import { colorUtils } from '../utils/colorUtils'
 import { useColor } from './ColorContext'
 import ContactForm from './ContactForm'
 import { Draggable } from 'gsap/all'
+import ShapeMaker from './ShapeMaker'
 
 gsap.registerPlugin(Draggable)
 
@@ -63,11 +64,7 @@ const Contact = () => {
 							and ready to discuss your unique web development needs.
 						</p>
 						<article className='w-12'>
-							<section>
-								<form>
-									
-								</form>
-							</section>
+							<ShapeMaker color={primaryColor}/>
 							<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} />
 						</article>
 					</article>
