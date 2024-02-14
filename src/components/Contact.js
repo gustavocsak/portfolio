@@ -65,7 +65,7 @@ const Contact = () => {
 						</p>
 						
 						<ShapeMaker color={primaryColor}/>
-						<div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} />
+						{/* <div ref={ball} className='ball w-8 h-8 rounded-full' style={ballStyle} /> */}
 						
 					</article>
 					<article className='lg:basis-3/5'>
