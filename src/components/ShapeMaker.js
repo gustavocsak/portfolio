@@ -1,15 +1,15 @@
-import { useGSAP } from '@gsap/react';
-import React, { useRef } from 'react'
-import { Engine } from 'matter-js';
+import React, { useEffect, useMemo, useState } from 'react'
+import Particles, { initParticlesEngine } from '@tsparticles/react'
 
 const ShapeMaker = ({ color }) => {
-    const scene = useRef()
-    const engine = useRef(Engine.create())
-    return (
-        <article ref={scene} className='w-full h-full'>
-            
-        </article>
-    )
+	return (
+		<div
+			className='h-full border-4 rounded-xl'
+			style={{ borderColor: color }}
+		>
+			
+		</div>
+	)
 }
 
 export default ShapeMaker
