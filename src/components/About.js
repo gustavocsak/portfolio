@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from 'react'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useColor } from './ColorContext';
+import ShapeMaker from './ShapeMaker';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,7 +29,7 @@ const About = () => {
     return (
         <section className='flex items-center justify-center px-10 lg:my-12'>
             <div className='lg:w-8/12'>
-                <div className='flex flex-col text-left text-wrap font-bold text-xl gap-8'>
+                <div className='flex flex-col text-left text-wrap font-bold text-xl gap-8' id='canvas'>
                     <div className='title-start clip'>
                         <h2 className='sentence text-5xl font-bold text-left md:text-6xl'>About Me</h2>
                     </div>
@@ -64,6 +65,7 @@ const About = () => {
                             and <span style={textShadow}>gaming with friends</span>.
                         </div>
                     </div>
+                    <ShapeMaker color={primaryColor}/>
                 </div>
             </div>
         </section>
