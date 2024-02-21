@@ -42,7 +42,7 @@ const About = () => {
                             <span style={textShadow}>Diploma in Computer Studies</span>&nbsp; and a &nbsp;
                             <span style={textShadow}>citation in Full Stack Web Development</span>.
                         </div>
-                    </div> {/**remember put class sentence in sentence */}
+                    </div>
                     <div className='clip'>
                         <div className='sentence'>
                             Pursuing a bachelor's degree in &nbsp;
@@ -65,7 +65,7 @@ const About = () => {
                             and <span style={textShadow}>gaming with friends</span>.
                         </div>
                     </div>
-                    <ShapeMaker color={primaryColor}/>
+                    {/* <ShapeMaker color={primaryColor}/> */}
                 </div>
             </div>
         </section>
