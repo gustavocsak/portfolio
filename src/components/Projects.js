@@ -46,54 +46,7 @@ const Projects = () => {
 		
 	}, []);
 
-	const clip = useRef();
-    const { contextSafe } = useGSAP({ scope: clip });
-    const onMove = contextSafe((event) => {
-		const projectCard = event.target.closest('.project-clip');
-		const glare = projectCard.querySelector('.glare');
-		const rect = projectCard.getBoundingClientRect();
-        const width = rect.width;
-		const height = rect.height;
-		const mouseX = event.clientX - rect.left;
-		const mouseY = event.clientY - rect.top;
-
-        const rotateX =  -1 + (mouseY / height) * 2;
-        const rotateY =  1.5 - (mouseX / width) * 3;
-
-		gsap.to(glare, {
-			x: mouseX - 80,
-			y: mouseY - 80,
-			opacity: 1,
-			duration: 0.01,
-			zIndex: 99,
-		})
-		if(projectCard) {
-			gsap.to(projectCard, {
-				rotationY: -5 * rotateY,
-				rotationX: -5 * rotateX,
-				ease: 'power2.out',
-				duration: 0.5,
-				perspective: 1000,
-			});
-		}
-        
-    })
-
-	const onLeave = contextSafe((event) => {
-		const projectCard = event.target.closest('.project-clip');
-		const glare = projectCard.querySelector('.glare');
-		gsap.to(projectCard, {
-			rotationY: 0,
-			rotationX: 0,
-			ease: 'power2.out',
-			duration: 0.7,
-			perspective: 700,
-		});
-		gsap.to(glare, {
-			opacity: 0,
-			ease: 'power2.out'
-		})	
-	})
+	const clip = useRef();  
 
 	return (
 		<section className='flex items-center justify-center px-10 project-section mt-16'>
@@ -110,14 +63,9 @@ const Projects = () => {
 						
 								<div 
 									ref={clip} 
-									onMouseLeave={onLeave} 
-									onMouseMove={onMove} 
-									className='project-clip clip glare-container'
+									className='project-clip clip'
 									key={index}
 								>
-									<div className='glare absolute w-56 h-56 rounded-full
-													bg-primary blur-custom opacity-0 pointer-events-none'
-													style={{ background: primaryColor }}/>
 									<Project color={primaryColor} project={project} key={index} />
 								</div>
 							

@@ -2,7 +2,6 @@ import React, { useLayoutEffect } from 'react'
 import { gsap } from 'gsap/gsap-core'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useColor } from './ColorContext';
-import ShapeMaker from './ShapeMaker';
 
 gsap.registerPlugin(ScrollTrigger);
 
