@@ -49,7 +49,7 @@ const Projects = () => {
 	const clip = useRef();  
 
 	return (
-		<section className='flex items-center justify-center px-10 project-section mt-16'>
+		<section id='projects' className='flex items-center justify-center px-10 project-section mt-16'>
 			<div className='lg:w-8/12'>
 				<div className='flex flex-col gap-8'>
 					<div className='clip leading-10'>

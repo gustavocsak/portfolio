@@ -41,8 +41,9 @@ const Navbar = ({ navRef }) => {
                 <div className='flex items-center gap-6'>
                     <div className='font-bold text-2xl'>gustavocs</div>
                     <ul className='hidden lg:flex lg:gap-6 list-none'>
-                        <li className='cursor-pointer'>Projects</li>
-                        <li className='cursor-pointer'>Contact</li>
+                        {/* TODO: make it smooth scroll */}
+                        <li className='cursor-pointer'><a href='#projects'>Projects</a></li>
+                        <li className='cursor-pointer'><a href='#contact'>Contact</a></li>
                     </ul>
                 </div>
                 <div className='flex items-center gap-4'>

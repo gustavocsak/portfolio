@@ -51,14 +51,14 @@ const onLeave = ({ currentTarget }, color=null, invert=false) => {
 
 const projects = [
 	{
-		title: "Tricket",
+		title: "Tricky",
 		oneLiner: "Ticket tracking system.",
 		description: `Allows you to create, update, delete and track tickets/tasks for your various projects.
-					 Tricket makes you more productive by giving you a view of your tasks and tickets that needs to be worked on.`,
-		techStack: ["bootstrap", "react", "express", "mongodb"],
+					 Tricky makes you more productive by giving you a view of your tasks and tickets that needs to be worked on.`,
+		techStack: ["tailwind", "next", "prisma", "mongodb"],
 		liveSource: "tricket",
 		github: "https://github.com/gustavocsak/tricket",
-		image: "tricket.jpg"
+		image: "tricky.png"
 	},
 	{
 		title: "cornerBet",
@@ -68,7 +68,7 @@ const projects = [
 		techStack: ["javascript", "mongodb"],
 		liveSource: "cornerbet",
 		github: "https://github.com/gustavocsak/cornerbet",
-		image: "cornerbet.jpg"
+		image: "cornerbet.png"
 	},
 
 ]

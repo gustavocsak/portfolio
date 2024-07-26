@@ -46,7 +46,7 @@ const Contact = () => {
 	}, [animation])
 
 	return (
-		<section className='c flex items-center justify-center px-10 lg:my-12'>
+		<section id='contact' className='c flex items-center justify-center px-10 lg:my-12'>
 			<div className='lg:w-8/12'>
 				<div className='flex flex-col lg:flex-row lg:gap-28'>
 					<article className='flex flex-col gap-8 lg:basis-2/5'>
