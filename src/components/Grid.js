@@ -37,15 +37,15 @@ const Grid = () => {
 			defaults: { duration: 0.5, ease: 'power4.out' },
 			onComplete: handleEndAnimation
 		});
-		
+
 		tl.to('.dot', {
 			duration: 0.8,
 			scale: 1,
 			y: -30,
 			stagger: {
 				grid: [20, 20],
-				from: 
-					firstMount ? 
+				from:
+					firstMount ?
 						'center':
 						gridConfig.directions[colorUtils.getRandom(0, 4)],
 				amount: 1,
@@ -165,7 +165,7 @@ const Grid = () => {
 	return (
 		<div className='p-0 m-0 flex flex-wrap items-center justify-center w-80 h-80'>
 			{grid.map((_, i) => {
-				return <div className='dot p-0 m-0 w-4 h-4 rounded-full bg-primary opacity-90' key={i} />			
+				return <div className='dot p-0 m-0 w-4 h-4 rounded-full bg-primary opacity-90' key={i} />
 			})}
 		</div>
 	)
