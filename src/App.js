@@ -6,18 +6,17 @@ import Footer from "./components/Footer.js";
 import { ColorProvider } from "./components/ColorContext.js";
 
 const App = () => {
-    return (
-        <ColorProvider>
-            <div className='flex flex-col text-zinc-100 bg-zinc-950 gap-16'>
-                <Hero />
-                <Projects />
-                <About />
-                <Contact />
-                <Footer />
-            </div>
-        </ColorProvider>
-      );
-    
-}
+  return (
+    <ColorProvider>
+      <div className="flex flex-col text-zinc-100 bg-zinc-950 gap-16">
+        <Hero />
+        <Projects />
+        <About />
+        <Contact />
+        <Footer />
+      </div>
+    </ColorProvider>
+  );
+};
 
 export default App;

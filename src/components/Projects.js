@@ -1,10 +1,8 @@
-import React, { useRef } from 'react'
-import Project from './Project'
-import { gsap } from "gsap";
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-import { useColor } from './ColorContext';
-import { projects } from '../utils/constants';
+import React, { useRef } from "react";
+import Project from "./Project";
+import { useColor } from "./ColorContext";
+import { projects } from "../utils/constants";
+import { motion } from "framer-motion";
 
 /**
  * TODO: fix live source URL for projects array
@@ -13,69 +11,61 @@ import { projects } from '../utils/constants';
  */
 
 const Projects = () => {
-	const { primaryColor } = useColor();
-	useGSAP(() => {
-		gsap.registerPlugin(ScrollTrigger);
-		gsap.to(".title-reveal", {
-			scrollTrigger: {
-				trigger: ".project-section",
-				start: "top 90%",
-				end: "+=200",
-				scrub: true,
-				once: true,
-			},
-			y: 0,
-			duration: 0.5,
-			ease: "power4.out"
-		})
-		
-		
-		let projectClips = gsap.utils.toArray(".project-clip")
-		projectClips.forEach((clip) => {
-			let eachProject = clip.querySelectorAll(".project-reveal")
-			gsap.to(eachProject, {
-				y: 0,
-				duration: 0.5,
-				scrollTrigger: {
-					trigger: clip, 
-					start: "top 90%"
-				}
-			})
-		})
+  const { primaryColor } = useColor();
 
-		
-	}, []);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
 
-	const clip = useRef();  
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+      },
+    },
+  };
 
-	return (
-		<section id='projects' className='flex items-center justify-center px-10 project-section mt-16'>
-			<div className='lg:w-8/12'>
-				<div className='flex flex-col gap-8'>
-					<div className='clip leading-10'>
-						<div className="title-reveal text-5xl font-bold leading-tight lg:text-6xl lg:leading-tight">
-							Projects
-						</div>
-					</div>
-					<div className='flex flex-col gap-8'>
-						{projects.map((project, index) => {
-							return (
-						
-								<div 
-									ref={clip} 
-									className='project-clip clip'
-									key={index}
-								>
-									<Project color={primaryColor} project={project} key={index} />
-								</div>
-							
-							)
-						})}
-					</div>
-				</div>
-			</div>
-		</section>
-	)
-}
+  return (
+    <motion.section
+      id="projects"
+      className="flex items-center justify-center px-10 project-section mt-16"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+    >
+      <div className="lg:w-8/12">
+        <div className="flex flex-col gap-8">
+          <motion.div className="leading-10" variants={titleVariants}>
+            <div className="text-5xl font-bold leading-tight lg:text-6xl lg:leading-tight">
+              Projects
+            </div>
+          </motion.div>
+          <motion.div
+            className="flex flex-col gap-8"
+            variants={containerVariants}
+          >
+            {projects.map((project, index) => {
+              return (
+                <Project color={primaryColor} project={project} key={index} />
+              );
+            })}
+          </motion.div>
+        </div>
+      </div>
+    </motion.section>
+  );
+};
 
-export default Projects
+export default Projects;
